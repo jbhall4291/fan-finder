@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
 
-console.log(isLoggedIn)
+// console.log(isLoggedIn)
 
   return (
     <View style={styles.layout}>
