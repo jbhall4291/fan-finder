@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import MapView, {Marker, Callout, PROVIDER_GOOGLE} from 'react-native-maps'
-
+import * as Location from 'expo-location';
+import {useState, useEffect} from 'react'
 
 
 
@@ -43,26 +44,54 @@ export const Map = () => {
     })
   }
 
+  const [location , setLocation]= useState(null);
+  const [errorMsg , setErrorMsg]= useState(null);
+  useEffect( () => {
+    (async() => {
+      let {status}= await Location.requestForegroundPermissionsAsync();
+      if(status !=='granted')
+      {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+      let location= await Location.getCurrentPositionAsync({});
+      setLocation(location);
+
+
+    })();
+
+  },[]);
+
+  let text= 'Waiting...';
+  if(errorMsg)
+  {
+    text(errorMsg)
+  }
+  else if(location) {
+    text=JSON.stringify(location);
+  }
+
+
   return (
     <View style={styles.container}>
     <MapView 
     provider={PROVIDER_GOOGLE}
-    style={styles.map}
     onRegionChange={onRegionChange}
+    showsMyLocationButton= {true}
+    showsUserLocation= {true}
+    style={styles.map}
     initialRegion={
-      {"latitude": 53.4696815846948, 
-      "latitudeDelta": 0.10408435934594706, 
-      "longitude": -2.2426839731633663, 
-      "longitudeDelta": 0.08552860468626022}
-    }>
-     {showLocationsOfInterest()}
+  {"latitude": 53.4696815846948, 
+  "latitudeDelta": 0.10408435934594706, 
+  "longitude": -2.2426839731633663, 
+  "longitudeDelta": 0.08552860468626022}
+}>
+ {showLocationsOfInterest()}
+    
+
     </MapView>
-      
-      
-    
-    
     <Text>FanFinder Map</Text>
-    <Text></Text>
+    
   </View>
   );
 };
@@ -91,3 +120,7 @@ const styles = StyleSheet.create({
     height:'95%'
   }
 });
+
+
+
+
