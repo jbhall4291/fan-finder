@@ -76,7 +76,7 @@ export const Map = () => {
                   longitude: gig._embedded.venues[0].location.longitude,
                 }}
                 title={gig.name}
-                description={"nice gig that"}
+                description={`nice gig, that\nunique id: ${gig.id}\n${gig.url}`}
               />
             );
           })}
@@ -90,7 +90,7 @@ export const Map = () => {
     <View style={styles.container}>
       <Text>loading map...</Text>
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
