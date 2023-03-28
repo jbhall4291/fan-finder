@@ -26,19 +26,16 @@ let locationsOfInterest = [
 
 export const Map = () => {
   const [practiceData, setPracticeData] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [userLat, setUserLat] = useState(null);
+  const [userLong, setUserLong] = useState(null);
 
-  useEffect(() => {
-    getGigs().then((results) => {
-      setPracticeData(results);
-      console.log(results);
-      
-    }, []);
-  });
-
+  
   const onRegionChange = (region) => {
     // console.log(region);
   };
-
+  
   const showLocationsOfInterest = () => {
     return locationsOfInterest.map((item, index) => {
       return (
@@ -52,11 +49,7 @@ export const Map = () => {
     });
   };
 
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [userLat, setUserLat] = useState(null);
-  const [userLong, setUserLong] = useState(null);
-
+  
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -66,22 +59,35 @@ export const Map = () => {
       }
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
-
+      
       setUserLat(location.coords.latitude);
       setUserLong(location.coords.longitude);
     })();
   }, []);
-
+  
   let text = "Waiting...";
   if (errorMsg) {
     text(errorMsg);
   } else if (location) {
     text = JSON.stringify(location);
   }
-
+  
   console.log(userLat);
   console.log(userLong);
+  
 
+  //allows ticket master api to get event around user location, err code works to prevent axios errors somehow...7
+  
+  useEffect(() => {
+    getGigs(userLat, userLong).then((results) => {
+      setPracticeData(results);
+      console.log(results);
+      
+    }).catch((err) => {}, [])
+  });
+  
+
+  
   if (userLat !== null && userLong !== null) {
     return (
       <View style={styles.container}>
