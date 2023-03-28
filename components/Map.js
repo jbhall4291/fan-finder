@@ -5,131 +5,41 @@ import * as Location from "expo-location";
 import { useState, useEffect } from "react";
 import { getGigs } from "../utils/api";
 
-
-////// hardcoded pins ///////
-// let locationsOfInterest = [
-//   {
-//     title: "Northcoders",
-//     location: {
-//       latitude: 53.47237955300849,
-//       longitude: -2.2382431,
-//     },
-//     description: "Northcoders HQ Manchester",
-//   },
-//   {
-//     title: "Manchester Academy",
-//     location: {
-//       latitude: 53.46375031620907,
-//       longitude: -2.2314531000949103,
-//     },
-//     description: "Concert venue in the Student's Union",
-//   },
-// ];
-
 export const Map = () => {
-  
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-
-  // check if we have the users location, don't make the call to ticketmaster API until we have!
+  // check if we have the users location, so we don't immediatley make the ticketmaster API call
   const [haveUserLocation, setHaveUserLocation] = useState(false);
 
-// store the events ticketmaster API returns
+  // store the events ticketmaster API returns
   const [markersList, setMarkersList] = useState([]);
 
   const onRegionChange = (region) => {
-    // console.log(region);
+    //this is used when the user moves around the map view via panning/zooming
   };
-
-  // const showLocationsOfInterest = () => {
-  //   return locationsOfInterest.map((item, index) => {
-  //     return (
-  //       <Marker
-  //         key={index}
-  //         coordinate={item.location}
-  //         title={item.title}
-  //         description={item.description}
-  //       />
-  //     );
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   (async () => {
-  //     let { status } = await Location.requestForegroundPermissionsAsync();
-  //     if (status !== "granted") {
-  //       setErrorMsg("Permission to access location was denied");
-  //       return;
-  //     }
-  //     let location = await Location.getCurrentPositionAsync({});
-  //     setLocation(location);
-
-  //     setUserLat(location.coords.latitude);
-  //     setUserLong(location.coords.longitude);
-  //   })();
-  // }, []);
-
-  // refactored getting the users location to be outside of a useEffect
 
   const [userLat, setUserLat] = useState(null);
   const [userLong, setUserLong] = useState(null);
-  
-  
+
   async function getLocation() {
     let { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      console.log('Permission to access location was denied');
+    if (status !== "granted") {
+      console.log("Permission to access location was denied");
       return;
     }
-  
+
     let location = await Location.getCurrentPositionAsync({});
     console.log(location.coords.latitude, location.coords.longitude);
     setUserLat(location.coords.latitude);
     setUserLong(location.coords.longitude);
     setHaveUserLocation(true);
   }
-  
-  getLocation()
-  
 
-
-
-
-  let text = "Waiting...";
-  if (errorMsg) {
-    text(errorMsg);
-  } else if (location) {
-    text = JSON.stringify(location);
-  }
-
-  // console.log(userLat);
-  // console.log(userLong);
-
-  //allows ticket master api to get event around user location, err code works to prevent axios errors somehow...7
+  getLocation();
 
   //NOTE: ticketmaster long and lat comes back on _embedded.events[0]._embedded.venues[0].location.longitude
-
   useEffect(() => {
     getGigs(userLat, userLong)
       .then((results) => {
-        // setPracticeData(results);
-
-        console.log(results);
         setMarkersList(results);
-        results.forEach((eachEvent) => {
-          // console.log(eachEvent._embedded.venues[0].location.latitude);
-          // console.log(eachEvent._embedded.venues[0].location.longitude);
-          // setMarkersList([
-          //   ...markersList,
-          //   {
-          //     name: eachEvent.name,
-          //     latitude: eachEvent._embedded.venues[0].location.latitude,
-          //     longitude: eachEvent._embedded.venues[0].location.longitude,
-          //   },
-          // ]);
-        });
-
-        console.log(markersList);
       })
       .catch((err) => {
         // some error handling here
@@ -137,7 +47,7 @@ export const Map = () => {
       });
   }, [haveUserLocation]);
 
-  if (userLat !== null && userLong !== null) {
+  if (haveUserLocation) {
     return (
       <View style={styles.container}>
         <MapView
@@ -154,8 +64,6 @@ export const Map = () => {
             longitudeDelta: 0.08552860468626022,
           }}
         >
-
-          {/* {showLocationsOfInterest()} */}
           {markersList.map((marker, index) => {
             return (
               <Marker
@@ -188,6 +96,6 @@ const styles = StyleSheet.create({
   },
   map: {
     width: "100%",
-    height: "95%",
+    height: "100%",
   },
 });
