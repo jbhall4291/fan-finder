@@ -20,6 +20,13 @@ export const getGigs = (lat, long) => {
       // console.log(results.data._embedded.events[0].name);
 
       return results.data._embedded.events.map((event) => {
+        // console.log(event.classifications[0].segment) === Music for music events
+        // console.log(event.classifications[0].genre.name)
+        // console.log(event.classifications[0].subGenre)
+
+         console.log(results.data._embedded.events[0].classifications[0].subGenre)
+        
+
         return {
           name: event.name,
           latitude: event._embedded.venues[0].location.latitude,
@@ -28,6 +35,3 @@ export const getGigs = (lat, long) => {
       });
     });
 };
-
-//  53.6221281,-2.1770889
-// 51.807779660497,1.1491083819429846
