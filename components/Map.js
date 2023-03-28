@@ -31,11 +31,12 @@ export const Map = () => {
   const [userLat, setUserLat] = useState(null);
   const [userLong, setUserLong] = useState(null);
 
-  
+  const [markersList, setMarkersList] = useState([]);
+
   const onRegionChange = (region) => {
     // console.log(region);
   };
-  
+
   const showLocationsOfInterest = () => {
     return locationsOfInterest.map((item, index) => {
       return (
@@ -49,7 +50,6 @@ export const Map = () => {
     });
   };
 
-  
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -59,35 +59,56 @@ export const Map = () => {
       }
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
-      
+
       setUserLat(location.coords.latitude);
       setUserLong(location.coords.longitude);
     })();
   }, []);
-  
+
   let text = "Waiting...";
   if (errorMsg) {
     text(errorMsg);
   } else if (location) {
     text = JSON.stringify(location);
   }
-  
-  console.log(userLat);
-  console.log(userLong);
-  
+
+  // console.log(userLat);
+  // console.log(userLong);
 
   //allows ticket master api to get event around user location, err code works to prevent axios errors somehow...7
-  
-  useEffect(() => {
-    getGigs(userLat, userLong).then((results) => {
-      setPracticeData(results);
-      console.log(results);
-      
-    }).catch((err) => {}, [])
-  });
-  
+
+  //ticketmaster long and lat comes back on _embedded.events[0]._embedded.venues[0].location.longitude
 
   
+  useEffect(() => {
+    getGigs(userLat, userLong)
+      .then((results) => {
+        setPracticeData(results);
+
+        console.log(results);
+        setMarkersList(results);
+        results.forEach((eachEvent) => {
+          // console.log(eachEvent._embedded.venues[0].location.latitude);
+          // console.log(eachEvent._embedded.venues[0].location.longitude);
+          // setMarkersList([
+          //   ...markersList,
+          //   {
+          //     name: eachEvent.name,
+          //     latitude: eachEvent._embedded.venues[0].location.latitude,
+          //     longitude: eachEvent._embedded.venues[0].location.longitude,
+          //   },
+          // ]);
+        });
+
+
+        console.log(markersList);
+      })
+      .catch((err) => {
+        // some error handling here
+        console.log(err);
+      });
+  }, []);
+
   if (userLat !== null && userLong !== null) {
     return (
       <View style={styles.container}>
@@ -106,6 +127,19 @@ export const Map = () => {
           }}
         >
           {showLocationsOfInterest()}
+          {markersList.map((marker, index) => {
+            return (
+              <Marker
+                key={index}
+                coordinate={{
+                  latitude: marker.latitude,
+                  longitude: marker.longitude,
+                }}
+                title={marker.name}
+                // description={marker.description}
+              />
+            );
+          })}
         </MapView>
         <Text>FanFinder Map</Text>
       </View>
