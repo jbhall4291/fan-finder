@@ -4,8 +4,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
 
-// console.log(isLoggedIn)
-
   return (
     <View style={styles.layout}>
       <Text style={styles.title}>Welcome to FanFinder!</Text>

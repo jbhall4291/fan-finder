@@ -11,3 +11,9 @@ broad genre name is here, if available! (sometimes undefined)
 subgenre name is here, if available! (sometimes undefined)
 * results.data._embedded.events[i].classifications[0].subGenre
 
+- - - - 
+
+for lat and long
+
+* event._embedded.venues[0].location.latitude
+* event._embedded.venues[0].location.longitude

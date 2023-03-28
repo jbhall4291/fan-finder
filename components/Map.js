@@ -9,14 +9,14 @@ export const Map = () => {
   // check if we have the users location, so we don't immediately make the ticketmaster API call
   const [haveUserLocation, setHaveUserLocation] = useState(false);
 
-  // store all the events that ticketmaster API returns
-  const [markersList, setMarkersList] = useState([]);
+  // store all gigs the ticketmaster API returns
+  const [fetchedGigs, setFetchedGigs] = useState([]);
 
   const [userLat, setUserLat] = useState(null);
   const [userLong, setUserLong] = useState(null);
 
   const onRegionChange = (region) => {
-    //this is used when the user moves around the map view via panning/zooming
+    //this is used when the user moves around the map view i.e. panning/zooming
   };
 
   // get the users geolocation, ask for permission if necessary
@@ -41,7 +41,7 @@ export const Map = () => {
     if (haveUserLocation) {
       getGigs(userLat, userLong)
         .then((results) => {
-          setMarkersList(results);
+          setFetchedGigs(results);
         })
         .catch((err) => {
           // some error handling here
@@ -67,24 +67,30 @@ export const Map = () => {
             longitudeDelta: 0.08552860468626022,
           }}
         >
-          {markersList.map((marker, index) => {
+          {fetchedGigs.map((gig, index) => {
             return (
               <Marker
                 key={index}
                 coordinate={{
-                  latitude: marker.latitude,
-                  longitude: marker.longitude,
+                  latitude: gig._embedded.venues[0].location.latitude,
+                  longitude: gig._embedded.venues[0].location.longitude,
                 }}
-                title={marker.name}
-                // description={marker.description}
+                title={gig.name}
+                description={"nice gig that"}
               />
             );
           })}
         </MapView>
-        <Text>FanFinder Map</Text>
       </View>
     );
   }
+
+  // whilst waiting for the user location to get set, display a loading message
+  return (
+    <View style={styles.container}>
+      <Text>loading map...</Text>
+    </View>
+  )
 };
 
 const styles = StyleSheet.create({
