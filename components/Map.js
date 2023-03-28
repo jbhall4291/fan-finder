@@ -28,7 +28,6 @@ export const Map = () => {
     }
 
     let location = await Location.getCurrentPositionAsync({});
-    console.log(location.coords.latitude, location.coords.longitude);
     setUserLat(location.coords.latitude);
     setUserLong(location.coords.longitude);
     setHaveUserLocation(true);
