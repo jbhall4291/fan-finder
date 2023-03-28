@@ -6,19 +6,20 @@ import { useState, useEffect } from "react";
 import { getGigs } from "../utils/api";
 
 export const Map = () => {
-  // check if we have the users location, so we don't immediatley make the ticketmaster API call
+  // check if we have the users location, so we don't immediately make the ticketmaster API call
   const [haveUserLocation, setHaveUserLocation] = useState(false);
 
-  // store the events ticketmaster API returns
+  // store all the events that ticketmaster API returns
   const [markersList, setMarkersList] = useState([]);
+
+  const [userLat, setUserLat] = useState(null);
+  const [userLong, setUserLong] = useState(null);
 
   const onRegionChange = (region) => {
     //this is used when the user moves around the map view via panning/zooming
   };
 
-  const [userLat, setUserLat] = useState(null);
-  const [userLong, setUserLong] = useState(null);
-
+  // get the users geolocation, ask for permission if necessary
   async function getLocation() {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
@@ -37,14 +38,16 @@ export const Map = () => {
 
   //NOTE: ticketmaster long and lat comes back on _embedded.events[0]._embedded.venues[0].location.longitude
   useEffect(() => {
-    getGigs(userLat, userLong)
-      .then((results) => {
-        setMarkersList(results);
-      })
-      .catch((err) => {
-        // some error handling here
-        console.log(err);
-      });
+    if (haveUserLocation) {
+      getGigs(userLat, userLong)
+        .then((results) => {
+          setMarkersList(results);
+        })
+        .catch((err) => {
+          // some error handling here
+          console.log(err);
+        });
+    }
   }, [haveUserLocation]);
 
   if (haveUserLocation) {
