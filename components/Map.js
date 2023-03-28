@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import { useState, useEffect } from "react";
+import { getGigs } from "../utils/api";
 
 let locationsOfInterest = [
   {
@@ -24,6 +25,16 @@ let locationsOfInterest = [
 ];
 
 export const Map = () => {
+  const [practiceData, setPracticeData] = useState(null);
+
+  useEffect(() => {
+    getGigs().then((results) => {
+      setPracticeData(results);
+      console.log(results);
+      
+    }, []);
+  });
+
   const onRegionChange = (region) => {
     // console.log(region);
   };
@@ -69,6 +80,7 @@ export const Map = () => {
   }
 
   console.log(userLat);
+  console.log(userLong);
 
   if (userLat !== null && userLong !== null) {
     return (
@@ -82,9 +94,9 @@ export const Map = () => {
           initialRegion={{
             //delta values - the higher the number, the more zoomed out
             latitude: userLat,
-            latitudeDelta: 10.20408435934594706,
+            latitudeDelta: 0.10408435934594706,
             longitude: userLong,
-            longitudeDelta: 10.18552860468626022,
+            longitudeDelta: 0.08552860468626022,
           }}
         >
           {showLocationsOfInterest()}
