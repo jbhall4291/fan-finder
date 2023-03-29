@@ -5,7 +5,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-const NestedScreen = ({route}) => {
+const SingleGigCard = ({route}) => {
     return (
         <View style={styles.screen}>
             <Text style={styles.text}>{route.params.msg}</Text>
@@ -15,7 +15,7 @@ const NestedScreen = ({route}) => {
     )
 }
 
-export default NestedScreen
+export default SingleGigCard
 
 const styles = StyleSheet.create({
     screen:{

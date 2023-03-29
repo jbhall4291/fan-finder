@@ -1,8 +1,10 @@
+//THIS FILE NEEDS TO BE KEPT OUTSIDE OF COMPONENTS OR CREATES A 500 ANGRY DOG ERROR!
+
 import React from "react";
 
 import { createStackNavigator } from "@react-navigation/stack";
 
-import NestedScreen from "./components/NestedScreen";
+import SingleGigCard from "./components/SingleGigCard";
 
 import {Map} from "./components/Map"
 
@@ -17,8 +19,8 @@ const SecondScreenNavigator = () => {
             component={Map}
         />
          <Stack.Screen
-          name="NestedScreen2"
-          component={NestedScreen}
+          name="SingleGigCard"
+          component={SingleGigCard}
         />
       </Stack.Navigator>
     );

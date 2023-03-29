@@ -79,7 +79,7 @@ export const Map = ({navigation}) => {
                 // title={gig.name}
                 // description={`nice gig, that\nunique id: ${gig.id}\n${gig.url}`}
               >
-                <Callout onPress={()=>navigation.navigate('NestedScreen2',{msg:"From Screen 2"})} >
+                <Callout onPress={()=>navigation.navigate('SingleGigCard',{msg:"This is how we pass props?"})} >
                   <Text>{gig.name}</Text>
                   <Text>Gig id: {gig.id}</Text>
                   <Text>Start time?</Text>

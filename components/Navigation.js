@@ -5,8 +5,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Map } from "./Map";
 // import { SingleGig } from "./SingleGig";
+import { SecondScreenNavigator } from "../InnerStackNavigation";
 
-import { SecondScreenNavigator } from "../CustomNavigation";
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
