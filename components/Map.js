@@ -19,7 +19,6 @@ export const Map = () => {
     //this is used when the user moves around the map view i.e. panning/zooming
   };
 
-
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -28,7 +27,7 @@ export const Map = () => {
         return;
       }
       let location = await Location.getCurrentPositionAsync({});
-      
+
       setUserLat(location.coords.latitude);
       setUserLong(location.coords.longitude);
       setHaveUserLocation(true);
@@ -74,9 +73,18 @@ export const Map = () => {
                   latitude: Number(gig._embedded.venues[0].location.latitude),
                   longitude: Number(gig._embedded.venues[0].location.longitude),
                 }}
-                title={gig.name}
-                description={`nice gig, that\nunique id: ${gig.id}\n${gig.url}`}
-              />
+                // onPress={()=>navigation.navigate('NestedScreen1',{msg:"From Screen 1"})}
+                // title={gig.name}
+                // description={`nice gig, that\nunique id: ${gig.id}\n${gig.url}`}
+              >
+                <Callout onPress={() => console.log("test!")}>
+                  <Text>{gig.name}</Text>
+                  <Text>Gig id: {gig.id}</Text>
+                  <Text>Start time?</Text>
+                  <Text>Ticket price?</Text>
+                  <Text>Etc etc</Text>
+                </Callout>
+              </Marker>
             );
           })}
         </MapView>
