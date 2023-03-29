@@ -4,7 +4,7 @@ import MapView, { Marker, Callout, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import { useState, useEffect } from "react";
 import { getGigs } from "../utils/api";
-import { Navigation } from "./Navigation";
+
 
 export const Map = ({navigation}) => {
   // check if we have the users location, so we don't immediately make the ticketmaster API call
@@ -75,9 +75,6 @@ export const Map = ({navigation}) => {
                   longitude: Number(gig._embedded.venues[0].location.longitude),
                 }}
                 
-                // onPress={()=>navigation.navigate('NestedScreen1',{msg:"From Screen 1"})}
-                // title={gig.name}
-                // description={`nice gig, that\nunique id: ${gig.id}\n${gig.url}`}
               >
                 <Callout onPress={()=>navigation.navigate('SingleGigCard',{msg:"This is how we pass props?"})} >
                   <Text>{gig.name}</Text>

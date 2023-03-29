@@ -4,11 +4,13 @@ import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Map } from "./Map";
-// import { SingleGig } from "./SingleGig";
-import { SecondScreenNavigator } from "../InnerStackNavigation";
+import { MapPinNavigator } from "../InnerStackNavigation";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+
+// Here is the bottom tab navigation
 
 export const Navigation = () => {
   return (
@@ -17,18 +19,11 @@ export const Navigation = () => {
       screenOptions={{
         headerShown: false,
     }}
-    initialRouteName="Map">
+    initialRouteName="Home">
         <Tab.Screen 
-        name="Map" 
-        component={SecondScreenNavigator} />
-        {/* <Tab.Screen
-        name="Screen 2"
-        component={SecondScreenNavigator}
-        /> */}
+        name="Home" 
+        component={MapPinNavigator} />
       </Tab.Navigator>
-      {/* <Stack.Navigator>
-        <Stack.Screen name="SingleGig" component={SingleGig} />
-      </Stack.Navigator> */}
     </NavigationContainer>
   );
 };

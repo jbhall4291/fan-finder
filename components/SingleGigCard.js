@@ -1,6 +1,4 @@
-// THIS IS THE SING
-
-
+// THIS IS THE SINGLE GIG CARD
 
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'

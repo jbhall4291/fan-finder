@@ -11,7 +11,7 @@ import {Map} from "./components/Map"
 
 const Stack = createStackNavigator();  // creates object for Stack Navigator
 
-const SecondScreenNavigator = () => {
+const MapPinNavigator = () => {
     return (
       <Stack.Navigator >
           <Stack.Screen
@@ -26,4 +26,4 @@ const SecondScreenNavigator = () => {
     );
   }
   
-  export {SecondScreenNavigator}; // Stack-Navigator for Screen 2 Tab
+  export {MapPinNavigator}; // Stack-Navigator for Screen 2 Tab
