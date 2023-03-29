@@ -13,9 +13,13 @@ const Stack = createStackNavigator();
 export const Navigation = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="Home">
+      <Tab.Navigator 
+      screenOptions={{
+        headerShown: false,
+    }}
+    initialRouteName="Map">
         <Tab.Screen 
-        name="Home" 
+        name="Map" 
         component={SecondScreenNavigator} />
         {/* <Tab.Screen
         name="Screen 2"
