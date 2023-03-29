@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { getGigs } from "../utils/api";
 import { Navigation } from "./Navigation";
 
-export const Map = () => {
+export const Map = ({navigation}) => {
   // check if we have the users location, so we don't immediately make the ticketmaster API call
   const [haveUserLocation, setHaveUserLocation] = useState(false);
 
@@ -74,16 +74,12 @@ export const Map = () => {
                   latitude: Number(gig._embedded.venues[0].location.latitude),
                   longitude: Number(gig._embedded.venues[0].location.longitude),
                 }}
+                
                 // onPress={()=>navigation.navigate('NestedScreen1',{msg:"From Screen 1"})}
                 // title={gig.name}
                 // description={`nice gig, that\nunique id: ${gig.id}\n${gig.url}`}
               >
-                <Callout onPress={() => {
-                  Navigation.navigate("SingleGig")
-                  console.log("test!")}
-                  
-
-                  }>
+                <Callout onPress={()=>navigation.navigate('NestedScreen2',{msg:"From Screen 2"})} >
                   <Text>{gig.name}</Text>
                   <Text>Gig id: {gig.id}</Text>
                   <Text>Start time?</Text>
