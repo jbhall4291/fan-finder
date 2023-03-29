@@ -4,6 +4,7 @@ import MapView, { Marker, Callout, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import { useState, useEffect } from "react";
 import { getGigs } from "../utils/api";
+import { Navigation } from "./Navigation";
 
 export const Map = () => {
   // check if we have the users location, so we don't immediately make the ticketmaster API call
@@ -77,7 +78,12 @@ export const Map = () => {
                 // title={gig.name}
                 // description={`nice gig, that\nunique id: ${gig.id}\n${gig.url}`}
               >
-                <Callout onPress={() => console.log("test!")}>
+                <Callout onPress={() => {
+                  Navigation.navigate("SingleGig")
+                  console.log("test!")}
+                  
+
+                  }>
                   <Text>{gig.name}</Text>
                   <Text>Gig id: {gig.id}</Text>
                   <Text>Start time?</Text>

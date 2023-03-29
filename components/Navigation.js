@@ -1,10 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { Map } from "./Map";
+import { SingleGig } from "./SingleGig";
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export const Navigation = () => {
   return (
@@ -12,6 +15,9 @@ export const Navigation = () => {
       <Tab.Navigator initialRouteName="Map">
         <Tab.Screen name="Map" component={Map} />
       </Tab.Navigator>
+      {/* <Stack.Navigator>
+        <Stack.Screen name="SingleGig" component={SingleGig} />
+      </Stack.Navigator> */}
     </NavigationContainer>
   );
 };
