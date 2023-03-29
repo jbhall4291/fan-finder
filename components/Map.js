@@ -19,21 +19,21 @@ export const Map = () => {
     //this is used when the user moves around the map view i.e. panning/zooming
   };
 
-  // get the users geolocation, ask for permission if necessary
-  async function getLocation() {
-    let { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== "granted") {
-      console.log("Permission to access location was denied");
-      return;
-    }
 
-    let location = await Location.getCurrentPositionAsync({});
-    setUserLat(location.coords.latitude);
-    setUserLong(location.coords.longitude);
-    setHaveUserLocation(true);
-  }
-
-  getLocation();
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+      let location = await Location.getCurrentPositionAsync({});
+      
+      setUserLat(location.coords.latitude);
+      setUserLong(location.coords.longitude);
+      setHaveUserLocation(true);
+    })();
+  }, []);
 
   //NOTE: ticketmaster long and lat comes back on _embedded.events[0]._embedded.venues[0].location.longitude
   useEffect(() => {
@@ -71,8 +71,8 @@ export const Map = () => {
               <Marker
                 key={index}
                 coordinate={{
-                  latitude: gig._embedded.venues[0].location.latitude,
-                  longitude: gig._embedded.venues[0].location.longitude,
+                  latitude: Number(gig._embedded.venues[0].location.latitude),
+                  longitude: Number(gig._embedded.venues[0].location.longitude),
                 }}
                 title={gig.name}
                 description={`nice gig, that\nunique id: ${gig.id}\n${gig.url}`}
