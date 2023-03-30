@@ -6,8 +6,8 @@ import { Navigation } from "./components/Navigation";
 import {io} from 'socket.io-client'
 import {getSocketServerAddress} from './utils/api'
 
-// const socketAddress = getSocketServerAddress()
-export const socket = io.connect('http://localhost:4000')
+const socketAddress = getSocketServerAddress()
+export const socket = io.connect(socketAddress)
 // Make sure socket server is running
 
 export default function App() {
