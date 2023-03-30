@@ -1,8 +1,9 @@
 // THIS IS THE SINGLE GIG CARD
+// DO NOT TOUCH STATES INVOLVING GIGS, (This works (: ) 
 
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, Image} from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView, Linking} from 'react-native'
 import { getGigById } from '../utils/api'
 
 const SingleGigCard = ({route}) => {
@@ -29,16 +30,27 @@ const SingleGigCard = ({route}) => {
       }, [gigId]);
     if (loading) return <Text>Loading...</Text>
     return (
+      // <ScrollView style={styles.screen}>
         <View style={styles.screen}>
-            <Text style={styles.text}>{gigInfo.name}</Text>
-            <Text>{gigInfo.dates.start.localDate}</Text>
-            <Text>{gigInfo.dates.start.localTime}</Text>
+            <Text style={styles.titleText}>{gigInfo.name}</Text>
+            <Text style={styles.bodyText}>Date: {gigInfo.dates.start.localDate}</Text>
+            <Text style={styles.bodyText}>Time: {gigInfo.dates.start.localTime}</Text>
             <Image
               style={styles.gigImage}
               source={{
-                uri: `${gigInfo.images[0].url}`
+                uri: `${gigInfo.images[0].url}`  //index 0 has the majority most relevant band image at highest resolution
               }}></Image>
+               <Text></Text>
+              <Text>Info: {gigInfo.pleaseNote}</Text>
+              <Text style={{color: 'blue'}}
+      onPress={() => Linking.openURL(`${gigInfo.url}`)}>
+  Buy Tickets
+</Text>
+              
+          
+             
         </View>
+        // </ScrollView>
     )
 }
 
@@ -50,12 +62,16 @@ const styles = StyleSheet.create({
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'#00000025',
+        backgroundColor:'`#000000`',
     },
-    text:{
+    titleText:{
         color:'#000',
         fontWeight:'700',
         fontSize:30
+    },
+    bodyText:{
+      color: '#000',
+      fontSize: 20
     },
     gigImage: {
       height: "25%",
