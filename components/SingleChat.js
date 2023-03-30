@@ -17,6 +17,7 @@ export const SingleChat = ({route}) => {
     
     useEffect(()=>{
         socket.on('send_message', (data) => {
+            console.log('getting message')
             setMessages(...messages,data)
             // Add new messages to list of messages
         })
@@ -24,6 +25,8 @@ export const SingleChat = ({route}) => {
 
     return (
         <View>
+            <View>
+
             {messages?.map((msg)=>{
                 return (
                     <Text id={msg.id}>{msg.msg}</Text>
@@ -32,7 +35,15 @@ export const SingleChat = ({route}) => {
             <TextInput 
                 onChangeText={onChangeText}
                 value={text}
-            />
+                >
+            </TextInput>
+            
+            </View>
+            <View>
+                <Button title={"send"} onPress={()=>{
+                    socket.emit('send_message', {msg: text})
+                }}></Button>
+            </View>
         </View>
     )
 }
