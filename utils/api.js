@@ -87,3 +87,7 @@ export const getChatHistoryById = (id = "chat-1") => {
 
   return chatHistories[id]
 }
+
+export const getSocketServerAddress = () => {
+  return 'http://localhost:4000'
+}

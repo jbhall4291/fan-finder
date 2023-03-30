@@ -3,6 +3,12 @@ import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { LoginPage } from "./components/LoginPage";
 import { Navigation } from "./components/Navigation";
+import {io} from 'socket.io-client'
+import {getSocketServerAddress} from './utils/api'
+
+// const socketAddress = getSocketServerAddress()
+export const socket = io.connect('http://localhost:4000')
+// Make sure socket server is running
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
