@@ -26,7 +26,7 @@ export const Navigation = () => {
         name="Home" 
         component={MapPinNavigator} />
          <Tab.Screen 
-        name="Chats" 
+        name="ChatsScreen" 
         component={ChatsStackNavigation} />
 
       </Tab.Navigator>

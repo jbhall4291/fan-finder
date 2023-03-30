@@ -36,8 +36,54 @@ export const getGigById = (gig_id) => {
     })
   }
 
-  // path, {
-  //   params: {
-  //     apiKey : {apiKey},
-  //   }
-  // }
+  
+export const getUserChatIds = (user = "testUser") => {
+
+  return ["chat-1", "chat-2", "chat-3"];
+}
+
+export const getUsersByChatId = (id = "chat-1") => {
+
+  const chats = {
+    "chat-1": ["testUser", "user-2"],
+    "chat-2": ["testUser", "user-4"],
+    "chat-3": ["testUser", "user-3"]
+  }
+
+  return chats[id]
+}
+
+export const getChatHistoryById = (id = "chat-1") => {
+
+  const chatHistories = {
+    "chat-1": [
+      {msg: "Hello", id:1},
+      {msg: "Howdy",id:2},
+      {msg: "Whatsup",id:3},
+      {msg: "hiya",id:4},
+      {msg: "hola",id:5},
+      {msg: "bonjour",id:6},
+      {msg: "dumela",id:7},
+    ],
+    "chat-2": [
+      {msg: "Hello", id:1},
+      {msg: "Howdy",id:2},
+      {msg: "Whatsup",id:3},
+      {msg: "hiya",id:4},
+      {msg: "hola",id:5},
+      {msg: "bonjour",id:6},
+      {msg: "dumela",id:7},
+    ],
+    "chat-3": [
+      {msg: "Hello", id:1},
+      {msg: "Howdy",id:2},
+      {msg: "Whatsup",id:3},
+      {msg: "hiya",id:4},
+      {msg: "hola",id:5},
+      {msg: "bonjour",id:6},
+      {msg: "dumela",id:7},
+    ]
+  }
+
+  return chatHistories[id]
+}
