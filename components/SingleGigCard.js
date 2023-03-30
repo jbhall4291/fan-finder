@@ -1,14 +1,43 @@
 // THIS IS THE SINGLE GIG CARD
 
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { useState, useEffect } from 'react'
+import { StyleSheet, Text, View, Image} from 'react-native'
+import { getGigById } from '../utils/api'
 
 const SingleGigCard = ({route}) => {
+    const [gigId, setGigId] = useState("")
+    const [gigInfo, setGigInfo] = useState({})
+    const [loading, setLoading] = useState(true)
+    const id = route.params.msg
+    useEffect(() => {
+      setGigId(id)
+      console.log(gigId)
+        if (gigId !== "") {
+          // console.log(route.params.msg)
+          getGigById(id)
+            .then((results) => {
+              // console.log(results)
+              setGigInfo(results)
+              setLoading(false)
+            })
+            .catch((err) => {
+              // some error handling here
+              console.log(err);
+            });
+        }
+      }, [gigId]);
+    if (loading) return <Text>Loading...</Text>
     return (
         <View style={styles.screen}>
-            <Text style={styles.text}>{route.params.msg}</Text>
-            <Text>This is the nested screen off map!</Text>
-            <Text>This is a single page view for a gig!</Text>
+            <Text style={styles.text}>{gigInfo.name}</Text>
+            <Text>{gigInfo.dates.start.localDate}</Text>
+            <Text>{gigInfo.dates.start.localTime}</Text>
+            <Image
+              style={styles.gigImage}
+              source={{
+                uri: `${gigInfo.images[0].url}`
+              }}></Image>
         </View>
     )
 }
@@ -28,4 +57,8 @@ const styles = StyleSheet.create({
         fontWeight:'700',
         fontSize:30
     },
+    gigImage: {
+      height: "25%",
+      width: "75%"
+    }
 })

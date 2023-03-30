@@ -25,3 +25,19 @@ export const getGigs = (lat, long) => {
       return results.data._embedded.events; // array of all gigs
     });
 };
+
+export const getGigById = (gig_id) => {
+  let path =`${gig_id}?`
+  return ticketMasterAPI
+    .get(`/${path}apikey=${apiKey}`).then((results) => {
+      console.log(results.data)
+      return results.data
+      
+    })
+  }
+
+  // path, {
+  //   params: {
+  //     apiKey : {apiKey},
+  //   }
+  // }

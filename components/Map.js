@@ -75,8 +75,7 @@ export const Map = ({navigation}) => {
                   longitude: Number(gig._embedded.venues[0].location.longitude),
                 }}
               >
-                <Callout onPress={()=>navigation.navigate('SingleGigCard',{msg:"This is how we pass props?"})} >
-                  {console.log(gig)}
+                <Callout onPress={()=>navigation.navigate('SingleGigCard',{msg:`${gig.id}`})} >
                   <Text>{gig.name}</Text>
                   <Text>Gig id: {gig.id}</Text>
                   <Text>Start time?</Text>
