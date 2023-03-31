@@ -9,13 +9,34 @@ import {
   Linking,
 } from "react-native";
 import { getGigById } from "../utils/api";
+import { getGigComments } from "../utils/api";
 
 export const ForumCard = ({ route }) => {
   const id = route.params.msg;
+  const fullGigInfo = route.params.infoForGig;
   console.log(id + "<<<< this is from forumcard!!!!!");
-  return (
+  const [comments, setComments] = useState([]);
+  useEffect(() => {
+    getGigComments(id).then((data) => {
+      setComments(data);
+      console.log(comments)
+    });
+  }, []);
+  return comments.length === 0 ? (
     <View style={styles.screen}>
-      <Text style={styles.titleText}>Hello from ForumCard for unique gig: {id}!</Text>
+      <Text style={styles.titleText}>
+        Join the discussion for {fullGigInfo.name} -
+        {fullGigInfo.dates.start.localDate}
+      </Text>
+      <Text>Be the first to comment! </Text>
+    </View>
+  ) : (
+    <View style={styles.screen}>
+      <Text style={styles.titleText}>
+        Join the discussion for {fullGigInfo.name} -
+        {fullGigInfo.dates.start.localDate}
+      </Text>
+      <Text>Comments</Text>
     </View>
   );
 };

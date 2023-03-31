@@ -62,7 +62,7 @@ const SingleGigCard = ({ route, navigation }) => {
         title="Go To Forum!"
         color="#841584"
         onPress={() =>
-          navigation.navigate("ForumCard", {msg:`${gigId}`})
+          navigation.navigate("ForumCard", {msg:`${gigId}`, infoForGig: gigInfo})
 
           // msg: `${gig.id}` 
 

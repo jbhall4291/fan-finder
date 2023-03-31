@@ -27,17 +27,20 @@ export const getGigs = (lat, long) => {
 };
 
 export const getGigById = (gig_id) => {
-  let path =`${gig_id}?`
-  return ticketMasterAPI
-    .get(`/${path}apikey=${apiKey}`).then((results) => {
-      console.log(results.data)
-      return results.data
-      
-    })
-  }
+  let path = `${gig_id}?`;
+  return ticketMasterAPI.get(`/${path}apikey=${apiKey}`).then((results) => {
+    return results.data;
+  });
+};
 
-  // path, {
-  //   params: {
-  //     apiKey : {apiKey},
-  //   }
-  // }
+const fanfinderAPI = axios.create({
+  baseURL: "https://fanfinder-api.onrender.com/api",
+});
+
+export const getGigComments = (gigId) => {
+  let path = `/gigs/${gigId}/comments`
+  return fanfinderAPI.get(`/gigs/${gigId}/comments`)
+  .then((results) => {
+    return results.data.comments
+  })
+};
