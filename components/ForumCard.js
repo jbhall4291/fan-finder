@@ -8,8 +8,11 @@ import {
   ScrollView,
   Linking,
 } from "react-native";
+
 import { getGigById } from "../utils/api";
 import { getGigComments } from "../utils/api";
+
+import { CommentCard } from "./CommentCard";
 
 export const ForumCard = ({ route }) => {
   const id = route.params.msg;
@@ -36,7 +39,7 @@ export const ForumCard = ({ route }) => {
         Join the discussion for {fullGigInfo.name} -
         {fullGigInfo.dates.start.localDate}
       </Text>
-      <Text>Comments</Text>
+      <CommentCard />
     </View>
   );
 };

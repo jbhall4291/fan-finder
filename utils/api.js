@@ -14,9 +14,14 @@ export const getGigs = (lat, long) => {
       params: {
         apikey: apiKey,
         latlong: `${lat},${long}`,
-        radius: 50, // defaults to 25miles if not queried
+        radius: 150, // defaults to 25miles if not queried
         locale: "*",
         segmentName: "Music",
+
+
+        startDateTime: "2023-03-31T12:48:00Z",
+        endDateTime: "2023-03-31T23:59:00Z",
+
         size: 200, // max number of results returned; 200 is the limit from the API, unless we deal with pagination
         // <--- this is where we could add queries for specific genres (genreID) or subgenres (subGenreID)
       },

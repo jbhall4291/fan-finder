@@ -19,9 +19,11 @@ const SingleGigCard = ({ route, navigation }) => {
   const [gigInfo, setGigInfo] = useState({});
   const [loading, setLoading] = useState(true);
   const id = route.params.msg;
+
+  console.log(gigId + " <<< gigId from state in SingleGigCard");
+  
   useEffect(() => {
     setGigId(id);
-    console.log(gigId);
     if (gigId !== "") {
       // console.log(route.params.msg)
       getGigById(id)
