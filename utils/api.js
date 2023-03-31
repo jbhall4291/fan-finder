@@ -18,7 +18,6 @@ export const getGigs = (lat, long) => {
         locale: "*",
         segmentName: "Music",
 
-
         startDateTime: "2023-03-31T12:48:00Z",
         endDateTime: "2023-03-31T23:59:00Z",
 
@@ -43,9 +42,27 @@ const fanfinderAPI = axios.create({
 });
 
 export const getGigComments = (gigId) => {
-  let path = `/gigs/${gigId}/comments`
-  return fanfinderAPI.get(`/gigs/${gigId}/comments`)
-  .then((results) => {
-    return results.data.comments
-  })
+  let path = `/gigs/${gigId}/comments`;
+  return fanfinderAPI.get(`/gigs/${gigId}/comments`).then((results) => {
+    return results.data.comments;
+  });
+};
+
+export const postComment = ({ id, commentText }) => {
+  console.log(id, "id from api")
+  console.log(commentText, "comment from api")
+  return fanfinderAPI
+    .post(`/gigs/${id}/comments`, {
+      gig_id: id,
+      user: "teamexpress",
+      text: commentText,
+      created_at: new Date(),
+    })
+    .then((results) => {
+      console.log(results.data.comment, "results in api")
+      return results.data.comment;
+    })
+    .catch((err) => {
+      console.log(err, "<< err");
+    });
 };

@@ -15,15 +15,24 @@ import { getGigById } from "../utils/api";
 import { getGigComments } from "../utils/api";
 
 import { CommentCard } from "./CommentCard";
+import { postComment } from "../utils/api";
 
 export const ForumCard = ({ route }) => {
   const id = route.params.msg;
   const fullGigInfo = route.params.infoForGig;
-  console.log(id + "<<<< this is from forumcard!!!!!");
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("")
-  const [text, steText] = useState("")
+  const [text, setText] = useState("")
 
+  const submitComment = () => {
+    postComment({id, commentText}) .then((returnedComment) => {
+      setCommentText("")
+      setComments((currentComments) => {
+        console.log(returnedComment, "returned comment in forumcard")
+        return [returnedComment, ...currentComments]
+      })
+    })
+  }
   useEffect(() => {
     getGigComments(id).then((data) => {
       setComments(data);
@@ -54,7 +63,9 @@ export const ForumCard = ({ route }) => {
       <Button
         title="POST COMMENT"
         color="#841584"
-        // onPress={() => ()}
+        onPress={() => ( 
+          submitComment()
+        )}
       />
 
       {comments.map((comment) => {
