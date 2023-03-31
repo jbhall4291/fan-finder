@@ -6,25 +6,21 @@ import { Button } from "@rneui/themed";
 export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <View style={styles.layout}>
-    
       <Text style={styles.title}>Welcome to</Text>
       <View style={styles.imageContainer}>
-      <Image
-        style={styles.logo}
-        source={require("../assets/fan_finder_logo.png")}
-      />
+        <Image
+          style={styles.logo}
+          source={require("../assets/fan_finder_logo.png")}
+        />
       </View>
       <View style={styles.buttonContainer}>
         <Button
-
-        
           title="Login"
           color="primary"
           size="lg"
           buttonStyle={{ width: 80 }}
           onPress={() => setIsLoggedIn(true)}
-          type="outline"
-          
+          // type="outline"
         />
       </View>
     </View>
@@ -49,6 +45,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     marginVertical: 20,
+    marginTop: 300,
   },
   logo: {
     resizeMode: "contain",
@@ -62,5 +59,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     marginVertical: 20,
-  }
+  },
 });
