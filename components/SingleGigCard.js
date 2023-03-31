@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import { getGigById } from "../utils/api";
 import { Button } from "@rneui/themed";
+import { getUserGigs } from "../utils/api";
 
 const SingleGigCard = ({ route, navigation }) => {
   const [gigId, setGigId] = useState("");
@@ -23,7 +24,14 @@ const SingleGigCard = ({ route, navigation }) => {
 
   console.log(gigId + " <<< gigId from state in SingleGigCard");
 
+  //We got to here - checking if user is attending (before implenting patch request, maybe disable button and say 'hooray you're going' if it is in the array?)
+  const checkUserGigs = () => {
+     return getUserGigs().then((res) => {
+        console.log(res, "single card res")
+      })
+    }
   useEffect(() => {
+    checkUserGigs()
     setGigId(id);
     if (gigId !== "") {
       // console.log(route.params.msg)
@@ -39,6 +47,9 @@ const SingleGigCard = ({ route, navigation }) => {
         });
     }
   }, [gigId]);
+
+  
+  
   if (loading) return <Text>Loading...</Text>;
   return (
     // <ScrollView style={styles.screen}>
@@ -61,6 +72,21 @@ const SingleGigCard = ({ route, navigation }) => {
         Buy Tickets
       </Text>
       <View style={styles.buttonContainer}>
+      <Button
+          color="primary"
+          size="lg"
+          buttonStyle={{ width: 150 }}
+          title="I'm going!"
+          onPress={
+            () =>
+              navigation.navigate("ForumCard", {
+                msg: `${gigId}`,
+                infoForGig: gigInfo,
+              })
+
+            // msg: `${gig.id}`
+          }
+        />
         <Button
           color="primary"
           size="lg"

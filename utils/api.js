@@ -66,3 +66,26 @@ export const postComment = ({ id, commentText }) => {
       console.log(err, "<< err");
     });
 };
+
+export const getUserGigs = () => {
+  console.log("gigs")
+  return fanfinderAPI.get(`/users/teamexpress/gigs`).then((results) => {
+      console.log(results.data.gigs, "these are the users gigs")
+      return results.data.gigs
+    }).catch((err) => {
+      console.log(err)
+    })
+}
+
+// export const getGigComments = (gigId) => {
+//   let path = `/gigs/${gigId}/comments`;
+//   return fanfinderAPI.get(`/gigs/${gigId}/comments`).then((results) => {
+//     return results.data.comments;
+//   });
+// };
+// export const getGigById = (gig_id) => {
+//   let path = `${gig_id}?`;
+//   return ticketMasterAPI.get(`/${path}apikey=${apiKey}`).then((results) => {
+//     return results.data;
+//   });
+// };
