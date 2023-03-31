@@ -7,6 +7,8 @@ import {
   Image,
   ScrollView,
   Linking,
+  TextInput,
+  Button
 } from "react-native";
 
 import { getGigById } from "../utils/api";
@@ -19,10 +21,13 @@ export const ForumCard = ({ route }) => {
   const fullGigInfo = route.params.infoForGig;
   console.log(id + "<<<< this is from forumcard!!!!!");
   const [comments, setComments] = useState([]);
+  const [commentText, setCommentText] = useState("")
+  const [text, steText] = useState("")
+
   useEffect(() => {
     getGigComments(id).then((data) => {
       setComments(data);
-      console.log(comments)
+      console.log(comments);
     });
   }, []);
   return comments.length === 0 ? (
@@ -39,8 +44,21 @@ export const ForumCard = ({ route }) => {
         Join the discussion for {fullGigInfo.name} -
         {fullGigInfo.dates.start.localDate}
       </Text>
+
+      <TextInput
+        style={styles.input}
+        onChangeText={setCommentText}
+        placeholder="enter your comment here"
+        value={commentText}
+      />
+      <Button
+        title="POST COMMENT"
+        color="#841584"
+        // onPress={() => ()}
+      />
+
       {comments.map((comment) => {
-      return <CommentCard key={comment._id} comment={comment}/>
+        return <CommentCard key={comment._id} comment={comment} />;
       })}
     </View>
   );
