@@ -39,7 +39,9 @@ export const ForumCard = ({ route }) => {
         Join the discussion for {fullGigInfo.name} -
         {fullGigInfo.dates.start.localDate}
       </Text>
-      <CommentCard />
+      {comments.map((comment) => {
+      return <CommentCard key={comment._id} comment={comment}/>
+      })}
     </View>
   );
 };
