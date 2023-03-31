@@ -8,7 +8,7 @@ export const SingleChat = ({route}) => {
 
     const chatId = route.params.id
     const room = route.params.room
-    const [text, onChangeText] = React.useState('. . .');
+    const [text, setText] = useState('Send a message...');
 
     const [messages, setMessages] = useState([])
     useEffect(()=>{
@@ -33,7 +33,7 @@ export const SingleChat = ({route}) => {
                 )
             })}
             <TextInput 
-                onChangeText={onChangeText}
+                onChangeText= {(text) => {setText(text)} }
                 value={text}
                 >
             </TextInput>
@@ -42,6 +42,10 @@ export const SingleChat = ({route}) => {
             <View>
                 <Button title={"send"} onPress={()=>{
                     socket.emit('send_message', {msg: text})
+                    setMessages([...messages, {msg: text}])
+                    console.log("sending message")
+                    setText("Send a message...")
+
                 }}></Button>
             </View>
         </View>

@@ -5,19 +5,16 @@ import { getUserChatIds, getUsersByChatId } from "../utils/api";
 import { socket } from "../App";
 
 export const Chats = ({navigation}) => {
-
+    const [user, setUser] = useState("Test User")
     const [room, setRoom] = useState('')
     // a room is the connection socketio makes between clients :)
 
     const allChatIds = getUserChatIds()
 
-    const joinRoom = () => {
-        socket.emit('join_room',{room})
+    const joinRoom = (room) => {
+        socket.emit('join_room', {"room": room, "user": user})
+        console.log("joining room")
     }
-
-    useEffect(()=>{
-
-    },[room, socket])
 
 
     return (

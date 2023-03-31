@@ -9,6 +9,8 @@ import {getSocketServerAddress} from './utils/api'
 const socketAddress = getSocketServerAddress()
 export const socket = io.connect(socketAddress)
 // Make sure socket server is running
+console.log(socketAddress)
+
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
