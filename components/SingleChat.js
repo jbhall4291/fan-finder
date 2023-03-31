@@ -29,7 +29,7 @@ export const SingleChat = ({route}) => {
 
             {messages?.map((msg)=>{
                 return (
-                    <Text id={msg.id}>{msg.msg}</Text>
+                    <Text >{msg.msg}</Text> // android bugs here adding chat id
                 )
             })}
             <TextInput 
