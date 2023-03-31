@@ -10,9 +10,10 @@ import {
   Image,
   ScrollView,
   Linking,
-  Button
+  
 } from "react-native";
 import { getGigById } from "../utils/api";
+import { Button } from "@rneui/themed";
 
 const SingleGigCard = ({ route, navigation }) => {
   const [gigId, setGigId] = useState("");
@@ -21,7 +22,7 @@ const SingleGigCard = ({ route, navigation }) => {
   const id = route.params.msg;
 
   console.log(gigId + " <<< gigId from state in SingleGigCard");
-  
+
   useEffect(() => {
     setGigId(id);
     if (gigId !== "") {
@@ -59,17 +60,23 @@ const SingleGigCard = ({ route, navigation }) => {
       >
         Buy Tickets
       </Text>
+      <View style={styles.buttonContainer}>
+        <Button
+          color="primary"
+          size="lg"
+          buttonStyle={{ width: 150 }}
+          title="Go To Forum"
+          onPress={
+            () =>
+              navigation.navigate("ForumCard", {
+                msg: `${gigId}`,
+                infoForGig: gigInfo,
+              })
 
-      <Button
-        title="Go To Forum!"
-        color="#841584"
-        onPress={() =>
-          navigation.navigate("ForumCard", {msg:`${gigId}`, infoForGig: gigInfo})
-
-          // msg: `${gig.id}` 
-
-        }
-      />
+            // msg: `${gig.id}`
+          }
+        />
+      </View>
     </View>
     // </ScrollView>
   );
@@ -97,5 +104,14 @@ const styles = StyleSheet.create({
   gigImage: {
     height: "25%",
     width: "75%",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    marginVertical: 20,
+    
   },
 });
