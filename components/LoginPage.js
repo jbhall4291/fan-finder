@@ -20,7 +20,7 @@ export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
           size="lg"
           buttonStyle={{ width: 80 }}
           onPress={() => setIsLoggedIn(true)}
-          // type="outline"
+          // type="outline" 
         />
       </View>
     </View>
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     width: "100%",
     marginVertical: 20,
     marginTop: 300,
+    
   },
   logo: {
     resizeMode: "contain",

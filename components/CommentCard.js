@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderRadius: 15,
     borderStyle: "solid",
-    borderWidth: 10,
+    borderWidth: 5,
   },
   commentText: {
     fontSize: 25,

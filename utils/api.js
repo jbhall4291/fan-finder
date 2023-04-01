@@ -23,8 +23,8 @@ export const getGigs = (lat, long) => {
         locale: "*",
         segmentName: "Music",
 
-        startDateTime: fromNow,
-        endDateTime: untilMidnight,
+        // startDateTime: fromNow,
+        // endDateTime: untilMidnight,
 
         size: 200, // max number of results returned; 200 is the limit from the API, unless we deal with pagination
         // <--- this is where we could add queries for specific genres (genreID) or subgenres (subGenreID)

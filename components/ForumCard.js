@@ -8,8 +8,8 @@ import {
   ScrollView,
   Linking,
   TextInput,
-  Button,
 } from "react-native";
+import { Button } from "@rneui/base";
 
 import { getGigById } from "../utils/api";
 import { getGigComments } from "../utils/api";
@@ -43,11 +43,13 @@ export const ForumCard = ({ route }) => {
 
   const ForumCardHeader = () => {
     return (
-      <Text style={styles.titleText}>
-        Join the discussion for {fullGigInfo.name} at
-        {fullGigInfo._embedded.venues[0].name} on
-        {fullGigInfo.dates.start.localDate}
-      </Text>
+      <View style={styles.ForumCardHeader}>
+        <Text>This is the forum for</Text>
+        <Text>{fullGigInfo.name}</Text>
+        <Text>At: {fullGigInfo._embedded.venues[0].name}</Text>
+        <Text>On: {fullGigInfo.dates.start.localDate}</Text>
+        <Text>Join the discussion!</Text>
+      </View>
     );
   };
 
@@ -55,16 +57,23 @@ export const ForumCard = ({ route }) => {
     <View style={styles.screen}>
       <ForumCardHeader />
       <TextInput
-        style={styles.input}
+        style={styles.CommentInput}
         onChangeText={setCommentText}
         placeholder="enter your comment here"
         value={commentText}
         onSubmitEditing={() => submitComment()}
       />
       <Button
-        title="POST COMMENT"
-        color="#841584"
+        title="POST COMMENT!"
         onPress={() => submitComment()}
+        color="primary"
+        size="lg"
+        buttonStyle={{ width: 200 }}
+        containerStyle={{
+          width: 200,
+          marginHorizontal: 50,
+          marginVertical: 10,
+        }}
       />
       <ScrollView style={styles.ScrollView}>
         {comments.map((comment) => {
@@ -130,5 +139,27 @@ const styles = StyleSheet.create({
     height: "50%",
     backgroundColor: "blue",
     width: "100%",
+  },
+  ForumCardHeader: {
+    width: "100%",
+    justifyContent: "center",
+    alignItem: "center",
+    // backgroundColor: "darkgrey",
+    padding: 10,
+    borderColor: "black",
+    borderRadius: 15,
+    borderStyle: "solid",
+    borderWidth: 5,
+  },
+  CommentInput: {
+    height: 80,
+    width: "100%",
+    margin: 5,
+    borderColor: "black",
+    borderRadius: 15,
+    borderStyle: "solid",
+    borderWidth: 5,
+
+    backgroundColor: "green",
   },
 });
