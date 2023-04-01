@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
+import {convertTimeAndDate} from "../utils/functions"
 
 export const CommentCard = (props) => {
     console.log(props.comment.text)
@@ -7,6 +8,9 @@ export const CommentCard = (props) => {
   return (
     <View style={styles.layout}>
       <Text style={styles.title}>{commentText}</Text>
+      <Text style={styles.commentText}>Comment by {props.comment.user}</Text>
+      <Text style={styles.commentText}>posted {convertTimeAndDate(props.comment.created_at)}</Text>
+      <Text style={styles.commentText}></Text>
     </View>
   );
 };
@@ -16,9 +20,12 @@ const styles = StyleSheet.create({
     // flex: 1,
     justifyContent: "center",
     alignItem: "center",
+    backgroundColor: "red",
+    width: "100%"
   },
   title: {
     fontSize: 12,
+    width: "100%"
     // marginBottom: 16,
   },
 });
