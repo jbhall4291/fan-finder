@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   StyleSheet,
   Text,
@@ -24,7 +24,10 @@ export const ForumCard = ({ route }) => {
   const [commentText, setCommentText] = useState("");
   const [text, setText] = useState("");
 
+  const commentInputBoxRef = useRef(null);
+
   const submitComment = () => {
+    commentInputBoxRef.current.blur();
     postComment({ id, commentText }).then((returnedComment) => {
       setCommentText("");
       setComments((currentComments) => {
@@ -58,15 +61,19 @@ export const ForumCard = ({ route }) => {
       <ForumCardHeader />
       <View style={styles.CommentAdder}>
         <TextInput
+          ref={commentInputBoxRef}
           style={styles.CommentTextInput}
           onChangeText={setCommentText}
           placeholder="enter your comment here"
           value={commentText}
           onSubmitEditing={() => submitComment()}
+          // blurOnSubmit={true}
         />
         <Button
           title="POST COMMENT!"
-          onPress={() => submitComment()}
+          onPress={() => {
+            submitComment();
+          }}
           color="primary"
           size="lg"
           buttonStyle={{ width: 200 }}
