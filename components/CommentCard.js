@@ -8,8 +8,8 @@ export const CommentCard = (props) => {
   return (
     <View style={styles.layout}>
       <Text style={styles.title}>{commentText}</Text>
-      <Text style={styles.commentText}>Comment by {props.comment.user}</Text>
-      <Text style={styles.commentText}>posted {convertTimeAndDate(props.comment.created_at)}</Text>
+      <Text style={styles.commentText}>Comment by: {props.comment.user}</Text>
+      <Text style={styles.commentText}>Posted: {convertTimeAndDate(props.comment.created_at)}</Text>
       <Text style={styles.commentText}></Text>
     </View>
   );

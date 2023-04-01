@@ -59,6 +59,7 @@ export const ForumCard = ({ route }) => {
         onChangeText={setCommentText}
         placeholder="enter your comment here"
         value={commentText}
+        onSubmitEditing={() => submitComment()}
       />
       <Button
         title="POST COMMENT"
