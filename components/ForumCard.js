@@ -56,25 +56,27 @@ export const ForumCard = ({ route }) => {
   return (
     <View style={styles.screen}>
       <ForumCardHeader />
-      <TextInput
-        style={styles.CommentInput}
-        onChangeText={setCommentText}
-        placeholder="enter your comment here"
-        value={commentText}
-        onSubmitEditing={() => submitComment()}
-      />
-      <Button
-        title="POST COMMENT!"
-        onPress={() => submitComment()}
-        color="primary"
-        size="lg"
-        buttonStyle={{ width: 200 }}
-        containerStyle={{
-          width: 200,
-          marginHorizontal: 50,
-          marginVertical: 10,
-        }}
-      />
+      <View style={styles.CommentAdder}>
+        <TextInput
+          style={styles.CommentTextInput}
+          onChangeText={setCommentText}
+          placeholder="enter your comment here"
+          value={commentText}
+          onSubmitEditing={() => submitComment()}
+        />
+        <Button
+          title="POST COMMENT!"
+          onPress={() => submitComment()}
+          color="primary"
+          size="lg"
+          buttonStyle={{ width: 200 }}
+          containerStyle={{
+            width: 200,
+            marginHorizontal: 0,
+            marginVertical: 10,
+          }}
+        />
+      </View>
       <ScrollView style={styles.ScrollView}>
         {comments.map((comment) => {
           return <CommentCard key={comment._id} comment={comment} />;
@@ -122,24 +124,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "`#000000`",
   },
-  titleText: {
-    color: "#000",
-    fontWeight: "700",
-    fontSize: 10,
-  },
-  bodyText: {
-    color: "#000",
-    fontSize: 20,
-  },
-  gigImage: {
-    height: "25%",
-    width: "75%",
-  },
-  ScrollView: {
-    height: "50%",
-    backgroundColor: "blue",
+
+  CommentAdder: {
+    backgroundColor: "red",
+    borderColor: "black",
+    // borderRadius: 15,
+    borderStyle: "solid",
+    borderWidth: 5,
     width: "100%",
+    alignItems: "center",
   },
+
   ForumCardHeader: {
     width: "100%",
     justifyContent: "center",
@@ -147,19 +142,23 @@ const styles = StyleSheet.create({
     // backgroundColor: "darkgrey",
     padding: 10,
     borderColor: "black",
-    borderRadius: 15,
+    // borderRadius: 15,
     borderStyle: "solid",
     borderWidth: 5,
   },
-  CommentInput: {
+  CommentTextInput: {
     height: 80,
-    width: "100%",
+    width: "90%",
     margin: 5,
+    backgroundColor: "green",
+  },
+
+  ScrollView: {
+    backgroundColor: "grey",
+    width: "100%",
     borderColor: "black",
-    borderRadius: 15,
+    // borderRadius: 15,
     borderStyle: "solid",
     borderWidth: 5,
-
-    backgroundColor: "green",
   },
 });
