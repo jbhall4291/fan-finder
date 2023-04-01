@@ -6,6 +6,11 @@ const ticketMasterAPI = axios.create({
 });
 
 export const getGigs = (lat, long) => {
+  // get todays date into the correct format for making calls to the ticketmaster api
+  const currentDate = new Date();
+  const fromNow = currentDate.toISOString().slice(0, 19) + "Z"; // lop off the millisecs & replace the Z
+  const untilMidnight = currentDate.toISOString().slice(0, 11) + "23:59:59Z"; // hardcode until midnight of the current day
+
   // just queries with getGigs, no path
   let path = "";
 
@@ -18,8 +23,8 @@ export const getGigs = (lat, long) => {
         locale: "*",
         segmentName: "Music",
 
-        startDateTime: "2023-03-31T12:48:00Z",
-        endDateTime: "2023-03-31T23:59:00Z",
+        startDateTime: fromNow,
+        endDateTime: untilMidnight,
 
         size: 200, // max number of results returned; 200 is the limit from the API, unless we deal with pagination
         // <--- this is where we could add queries for specific genres (genreID) or subgenres (subGenreID)
@@ -49,8 +54,8 @@ export const getGigComments = (gigId) => {
 };
 
 export const postComment = ({ id, commentText }) => {
-  console.log(id, "id from api")
-  console.log(commentText, "comment from api")
+  console.log(id, "id from api");
+  console.log(commentText, "comment from api");
   return fanfinderAPI
     .post(`/gigs/${id}/comments`, {
       gig_id: id,
@@ -59,7 +64,7 @@ export const postComment = ({ id, commentText }) => {
       created_at: new Date(),
     })
     .then((results) => {
-      console.log(results.data.comment, "results in api")
+      console.log(results.data.comment, "results in api");
       return results.data.comment;
     })
     .catch((err) => {
@@ -68,14 +73,17 @@ export const postComment = ({ id, commentText }) => {
 };
 
 export const getUserGigs = () => {
-  console.log("gigs")
-  return fanfinderAPI.get(`/users/teamexpress/gigs`).then((results) => {
-      console.log(results.data.gigs, "these are the users gigs")
-      return results.data.gigs
-    }).catch((err) => {
-      console.log(err)
+  console.log("gigs");
+  return fanfinderAPI
+    .get(`/users/teamexpress/gigs`)
+    .then((results) => {
+      console.log(results.data.gigs, "these are the users gigs");
+      return results.data.gigs;
     })
-}
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 // export const getGigComments = (gigId) => {
 //   let path = `/gigs/${gigId}/comments`;
