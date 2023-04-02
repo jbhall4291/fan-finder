@@ -1,6 +1,13 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { StyleSheet, Text, View, ScrollView, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TextInput,
+  ActivityIndicator,
+} from "react-native";
 import { Button } from "@rneui/base";
 
 import { getGigComments } from "../utils/api";
@@ -11,7 +18,7 @@ import { postComment } from "../utils/api";
 export const ForumCard = ({ route }) => {
   const id = route.params.msg;
   const fullGigInfo = route.params.infoForGig;
-  
+
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("");
   const [haveCommentsLoaded, setHaveCommentsLoaded] = useState(false);
@@ -50,15 +57,34 @@ export const ForumCard = ({ route }) => {
   };
 
   const CommentsDisplayer = () => {
-    return haveCommentsLoaded ? (
-      <ScrollView style={styles.ScrollView}>
-        {comments.map((comment) => {
-          return <CommentCard key={comment._id} comment={comment} />;
-        })}
-      </ScrollView>
-    ) : (
-      <Text>comments loading!</Text>
-    );
+    if (!haveCommentsLoaded) {
+      return (
+        <>
+          <ActivityIndicator
+            style={styles.ActivityIndicator}
+            size="large"
+            color="blue"
+          />
+          <Text>loading comments...</Text>
+        </>
+      );
+
+      // return <Text>comments loading... please wait!</Text>;
+    } else if (haveCommentsLoaded && comments.length === 0) {
+      return (
+        <Text style={styles.NoComments}>
+          no comments found... be the first to comment!
+        </Text>
+      );
+    } else if (comments.length > 0) {
+      return (
+        <ScrollView style={styles.ScrollView}>
+          {comments.map((comment) => {
+            return <CommentCard key={comment._id} comment={comment} />;
+          })}
+        </ScrollView>
+      );
+    }
   };
 
   return (
@@ -72,7 +98,9 @@ export const ForumCard = ({ route }) => {
           placeholder="enter your comment here"
           value={commentText}
           onSubmitEditing={() => submitComment()}
-          // blurOnSubmit={true}
+          multiline={true}
+          numberOfLines={4} // necessary for android only
+          // blurOnSubmit={true} // unnecessary as taken care of within submitComment via ref
         />
         <Button
           title="POST COMMENT!"
@@ -97,36 +125,6 @@ export const ForumCard = ({ route }) => {
     </View>
   );
 };
-
-//   {comments.length === 0 ? (
-//     <Text>no comments!</Text>
-//   ) : (
-//     comments.map((comment) => {
-//       <ScrollView style={styles.ScrollView}>
-
-//       <Text>There be comments</Text>
-//         {/* <CommentCard key={comment._id} comment={comment} /> */}
-//       </ScrollView>;
-//     })
-//   )}
-
-//   return comments.length === 0 ? (
-//     <View style={styles.screen}>
-//       <Text style={styles.titleText}>
-//         Join the discussion for {fullGigInfo.name} -
-//         {fullGigInfo.dates.start.localDate}
-//       </Text>
-//       <Text>Be the first to comment!</Text>
-//     </View>
-//   ) : (
-//     <View style={styles.screen}>
-//       <Text style={styles.titleText}>
-//         Join the discussion for {fullGigInfo.name} -
-//         {fullGigInfo.dates.start.localDate}
-//       </Text>
-//     </View>
-//   );
-// };
 
 const styles = StyleSheet.create({
   screen: {
@@ -162,7 +160,9 @@ const styles = StyleSheet.create({
     height: 80,
     width: "90%",
     margin: 5,
-    backgroundColor: "green",
+    paddingHorizontal: 15,
+    paddingTop: 15,
+    backgroundColor: "white",
   },
 
   ScrollView: {
@@ -172,5 +172,13 @@ const styles = StyleSheet.create({
     // borderRadius: 15,
     borderStyle: "solid",
     borderWidth: 5,
+  },
+  ActivityIndicator: {
+    justifyContent: "center",
+    paddingTop: "40%",
+  },
+  NoComments: {
+    justifyContent: "center",
+    paddingTop: "40%",
   },
 });
