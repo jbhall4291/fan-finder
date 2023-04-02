@@ -5,23 +5,20 @@ import { Button } from "@rneui/themed";
 export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <View style={styles.layout}>
-      <Text style={styles.title}>Welcome to</Text>
-      <View style={styles.imageContainer}>
-        <Image
-          style={styles.logo}
-          source={require("../assets/fan_finder_logo.png")}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Login"
-          color="primary"
-          size="lg"
-          buttonStyle={{ width: 80 }}
-          onPress={() => setIsLoggedIn(true)}
-          // type="outline"
-        />
-      </View>
+      <Image
+        style={styles.logo}
+        source={require("../assets/fan_finder_logo.png")}
+      />
+
+      <Button
+        style={styles.button}
+        title="Login"
+        color="#4e2e65"
+        size="lg"
+        radius="lg"
+        buttonStyle={{ width: 120 }}
+        onPress={() => setIsLoggedIn(true)}
+      />
     </View>
   );
 };
@@ -29,34 +26,21 @@ export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
 const styles = StyleSheet.create({
   layout: {
     flex: 1,
-    justifyContent: "center",
-    alignItem: "center",
-  },
-  title: {
-    fontSize: 32,
-    marginBottom: 16,
-    textAlign: "center",
-  },
-  imageContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
     alignItems: "center",
-    width: "100%",
-    marginVertical: 20,
   },
+
   logo: {
     resizeMode: "contain",
-    height: 150,
+    height: 350,
     width: 350,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    marginTop: 200,
     justifyContent: "center",
     alignItems: "center",
-    width: "100%",
+    // marginVertical: 20,
+  },
+  button: {
+    justifyContent: "center",
     marginVertical: 20,
-    marginTop: 300,
+    marginTop: 100,
   },
 });
