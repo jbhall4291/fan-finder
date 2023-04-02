@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import { StyleSheet, Text, View, ScrollView, TextInput } from "react-native";
 import { Button } from "@rneui/base";
 
-import { getGigById } from "../utils/api";
 import { getGigComments } from "../utils/api";
 
 import { CommentCard } from "./CommentCard";
@@ -12,6 +11,7 @@ import { postComment } from "../utils/api";
 export const ForumCard = ({ route }) => {
   const id = route.params.msg;
   const fullGigInfo = route.params.infoForGig;
+  
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("");
   const [haveCommentsLoaded, setHaveCommentsLoaded] = useState(false);
@@ -49,6 +49,18 @@ export const ForumCard = ({ route }) => {
     );
   };
 
+  const CommentsDisplayer = () => {
+    return haveCommentsLoaded ? (
+      <ScrollView style={styles.ScrollView}>
+        {comments.map((comment) => {
+          return <CommentCard key={comment._id} comment={comment} />;
+        })}
+      </ScrollView>
+    ) : (
+      <Text>comments loading!</Text>
+    );
+  };
+
   return (
     <View style={styles.screen}>
       <ForumCardHeader />
@@ -81,15 +93,7 @@ export const ForumCard = ({ route }) => {
         />
       </View>
 
-      {haveCommentsLoaded ? (
-        <ScrollView style={styles.ScrollView}>
-          {comments.map((comment) => {
-            return <CommentCard key={comment._id} comment={comment} />;
-          })}
-        </ScrollView>
-      ) : (
-        <Text>comments loading!</Text>
-      )}
+      <CommentsDisplayer />
     </View>
   );
 };
