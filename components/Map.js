@@ -90,7 +90,7 @@ export const Map = ({ navigation }) => {
                 </Callout>
                 <Image
                   source={customMarker}
-                  style={{ height: 35, width: 35 }}
+                  style={{ height: 45, width: 45 }}
                 />
               </Marker>
             );
