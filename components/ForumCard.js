@@ -1,14 +1,6 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  Linking,
-  TextInput,
-} from "react-native";
+import { StyleSheet, Text, View, ScrollView, TextInput } from "react-native";
 import { Button } from "@rneui/base";
 
 import { getGigById } from "../utils/api";
@@ -22,9 +14,9 @@ export const ForumCard = ({ route }) => {
   const fullGigInfo = route.params.infoForGig;
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("");
-  const [text, setText] = useState("");
+  const [haveCommentsLoaded, setHaveCommentsLoaded] = useState(false);
 
-  const commentInputBoxRef = useRef(null);
+  const commentInputBoxRef = useRef(null); // used by the button so it can 'blur' the input and hide the virtual keyboard
 
   const submitComment = () => {
     commentInputBoxRef.current.blur();
@@ -40,6 +32,7 @@ export const ForumCard = ({ route }) => {
   useEffect(() => {
     getGigComments(id).then((data) => {
       setComments(data.reverse());
+      setHaveCommentsLoaded(true);
       console.log(comments);
     });
   }, []);
@@ -76,7 +69,10 @@ export const ForumCard = ({ route }) => {
           }}
           color="primary"
           size="lg"
-          buttonStyle={{ width: 200 }}
+          buttonStyle={{
+            width: 200,
+            // backgroundColor: "blue"
+          }}
           containerStyle={{
             width: 200,
             marginHorizontal: 0,
@@ -84,11 +80,16 @@ export const ForumCard = ({ route }) => {
           }}
         />
       </View>
-      <ScrollView style={styles.ScrollView}>
-        {comments.map((comment) => {
-          return <CommentCard key={comment._id} comment={comment} />;
-        })}
-      </ScrollView>
+
+      {haveCommentsLoaded ? (
+        <ScrollView style={styles.ScrollView}>
+          {comments.map((comment) => {
+            return <CommentCard key={comment._id} comment={comment} />;
+          })}
+        </ScrollView>
+      ) : (
+        <Text>comments loading!</Text>
+      )}
     </View>
   );
 };
@@ -126,8 +127,7 @@ export const ForumCard = ({ route }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    display: "flex",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: "`#000000`",
   },
@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
   },
 
   ForumCardHeader: {
+    alignItems: "center",
     width: "100%",
     justifyContent: "center",
     alignItem: "center",

@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Button } from "@rneui/themed";
 
 export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
@@ -20,7 +19,7 @@ export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
           size="lg"
           buttonStyle={{ width: 80 }}
           onPress={() => setIsLoggedIn(true)}
-          // type="outline" 
+          // type="outline"
         />
       </View>
     </View>
@@ -38,6 +37,19 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     textAlign: "center",
   },
+  imageContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    marginVertical: 20,
+  },
+  logo: {
+    resizeMode: "contain",
+    height: 150,
+    width: 350,
+  },
   buttonContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -46,19 +58,5 @@ const styles = StyleSheet.create({
     width: "100%",
     marginVertical: 20,
     marginTop: 300,
-    
-  },
-  logo: {
-    resizeMode: "contain",
-    height: 150,
-    width: 350,
-  },
-  imageContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    marginVertical: 20,
   },
 });
