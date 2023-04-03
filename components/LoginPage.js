@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     height: 350,
     width: 350,
-    marginTop: 200,
+    marginTop: 50,
     justifyContent: "center",
     alignItems: "center",
     // marginVertical: 20,
