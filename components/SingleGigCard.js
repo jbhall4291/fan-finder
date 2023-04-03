@@ -10,28 +10,40 @@ import {
   Image,
   ScrollView,
   Linking,
-  
 } from "react-native";
 import { getGigById } from "../utils/api";
 import { Button } from "@rneui/themed";
-import { getUserGigs } from "../utils/api";
+import { getUserGigs, patchUserGigs } from "../utils/api";
 
 const SingleGigCard = ({ route, navigation }) => {
   const [gigId, setGigId] = useState("");
   const [gigInfo, setGigInfo] = useState({});
   const [loading, setLoading] = useState(true);
+  const [userAttending, setUserAttending] = useState(false);
+
   const id = route.params.msg;
 
   console.log(gigId + " <<< gigId from state in SingleGigCard");
 
+  const addToUsersGigs = () => {
+    console.log("you clicked the button to add a gig to users gigs");
+    patchUserGigs(gigId).then((res) => {
+      console.log(res + " <<<< from addToUsersGigs");
+      setUserAttending(true);
+    });
+  };
+
   //We got to here - checking if user is attending (before implenting patch request, maybe disable button and say 'hooray you're going' if it is in the array?)
   const checkUserGigs = () => {
-     return getUserGigs().then((res) => {
-        console.log(res, "single card res")
-      })
-    }
+    return getUserGigs().then((res) => {
+      console.log(res, "single card res");
+      if (res.includes(gigId) === true) {
+        setUserAttending(true);
+      }
+    });
+  };
   useEffect(() => {
-    checkUserGigs()
+    checkUserGigs();
     setGigId(id);
     if (gigId !== "") {
       // console.log(route.params.msg)
@@ -48,8 +60,6 @@ const SingleGigCard = ({ route, navigation }) => {
     }
   }, [gigId]);
 
-  
-  
   if (loading) return <Text>Loading...</Text>;
   return (
     // <ScrollView style={styles.screen}>
@@ -72,21 +82,26 @@ const SingleGigCard = ({ route, navigation }) => {
         Buy Tickets
       </Text>
       <View style={styles.buttonContainer}>
-      <Button
-          color="primary"
-          size="lg"
-          buttonStyle={{ width: 150 }}
-          title="I'm going!"
-          onPress={
-            () =>
-              navigation.navigate("ForumCard", {
-                msg: `${gigId}`,
-                infoForGig: gigInfo,
-              })
+        {userAttending ? (
+          <Button
+            color="primary"
+            size="lg"
+            buttonStyle={{ width: 150 }}
+            title="I'm already going!"
+            disabled="true"
+          />
+        ) : (
+          <Button
+            color="primary"
+            size="lg"
+            buttonStyle={{ width: 150 }}
+            title="Mark as going!"
+            onPress={() => {
+              addToUsersGigs();
+            }}
+          />
+        )}
 
-            // msg: `${gig.id}`
-          }
-        />
         <Button
           color="primary"
           size="lg"
@@ -138,6 +153,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     marginVertical: 20,
-    
   },
 });

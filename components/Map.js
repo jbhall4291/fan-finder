@@ -77,16 +77,14 @@ export const Map = ({ navigation }) => {
                 }}
               >
                 <Callout
-                style={{ height: 100, width: 160 }}
+                  // style={{ height: 100, width: 160 }}
+                  style={{ width: 160 }}
                   onPress={() =>
                     navigation.navigate("SingleGigCard", { msg: `${gig.id}` })
                   }
                 >
-                  <Text>{gig.name}</Text>
-                  <Text>Gig id: {gig.id}</Text>
-                  <Text>Start time?</Text>
-                  <Text>Ticket price?</Text>
-                  <Text>Etc etc</Text>
+                  <Text style={styles.GigName}>{gig.name}</Text>
+                  <Text>Start time: {gig.dates.start.localTime}</Text>
                 </Callout>
                 <Image
                   source={customMarker}
@@ -121,5 +119,9 @@ const styles = StyleSheet.create({
   map: {
     width: "100%",
     height: "100%",
+  },
+  GigName: {
+    fontWeight: "bold",
+    justifyContent: "center",
   },
 });

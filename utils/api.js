@@ -85,6 +85,16 @@ export const getUserGigs = () => {
     });
 };
 
+export const patchUserGigs = (gigId) => {
+  console.log("doing a patch to users gigs");
+  return fanfinderAPI
+    .patch("/users/teamexpress/gigs", { gig_id: gigId })
+    .then((result) => {
+      console.log("hi from line 92")
+      return result.data;
+    });
+};
+
 // export const getGigComments = (gigId) => {
 //   let path = `/gigs/${gigId}/comments`;
 //   return fanfinderAPI.get(`/gigs/${gigId}/comments`).then((results) => {
