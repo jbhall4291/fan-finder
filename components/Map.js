@@ -76,6 +76,10 @@ export const Map = ({ navigation }) => {
                   longitude: Number(gig._embedded.venues[0].location.longitude),
                 }}
               >
+                <Image
+                  source={customMarker}
+                  style={{ height: 45, width: 45 }}
+                />
                 <Callout
                   // style={{ height: 100, width: 160 }}
                   style={{ width: 160 }}
@@ -83,13 +87,11 @@ export const Map = ({ navigation }) => {
                     navigation.navigate("SingleGigCard", { msg: `${gig.id}` })
                   }
                 >
-                  <Text style={styles.GigName}>{gig.name}</Text>
-                  <Text>Start time: {gig.dates.start.localTime}</Text>
+                  <View>
+                    <Text style={styles.GigName}>{gig.name}</Text>
+                    <Text>Start time: {gig.dates.start.localTime}</Text>
+                  </View>
                 </Callout>
-                <Image
-                  source={customMarker}
-                  style={{ height: 45, width: 45 }}
-                />
               </Marker>
             );
           })}
