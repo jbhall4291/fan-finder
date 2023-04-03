@@ -79,7 +79,7 @@ export const postMessageToChat = (message, user, chat_id) => {
   return fanFinderAPI
     .post(`/api/users/${user}/${chat_id}`, {"message": message})
     .then((result)=>{
-      console.log(result, "<sent a message?")
+      console.log(result.status, "<sent a message?")
       return result
     })
 

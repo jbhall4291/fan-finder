@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, View, Button, ScrollView } from "react-native";
+import { StyleSheet, Text, TextInput, View, Button, ScrollView, KeyboardAvoidingView } from "react-native";
 import { useState, useEffect } from "react";
 import { getChatHistoryById, postMessageToChat } from "../utils/api";
 import {io} from 'socket.io-client'
@@ -10,16 +10,19 @@ export const SingleChat = ({route}) => {
     const socket = io.connect('http://localhost:4000')
     const chatId = route.params.id
     const room = route.params.room
-    const [text, setText] = useState('Send a message...');
+    const [text, setText] = useState('');
+    const [user, setUser] = useState('Geoff')
 
     const [messages, setMessages] = useState([])
-
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(()=>{
+
         getChatHistoryById(chatId)
         .then((results) => {
             setMessages(results)
+            setLoading(false)
         })
         .catch((err) => {
             console.log(err, "error");
@@ -28,9 +31,9 @@ export const SingleChat = ({route}) => {
     
     const handlePostMessage = () =>{
         console.log("sending message :", text)
-        setMessages([...messages, {message: text, user: "Geoff"}])
+        setMessages([...messages, {message: text, user: user}])
         postMessageToChat(text, 'Geoff', chatId )
-        setText("Send a message...")
+        setText("")
     }
 
     // useEffect(()=>{
@@ -43,23 +46,66 @@ export const SingleChat = ({route}) => {
     // }, [socket])
 
     return (
-        <View>
-            <ScrollView>
-            {messages?.map((msg)=>{
-                return (
-                    <> 
-                    <Text>User: {msg.user}</Text>
-                    <Text >{msg.message}</Text>
-                    </> // android bugs here adding chat id
-                )
+        <KeyboardAvoidingView style={{ flex: 1, flexDirection: 'column',justifyContent: 'center',}} behavior="padding" enabled   keyboardVerticalOffset={120}>
+
+            <ScrollView style={styles.container}
+                
+            >
+            {loading? (<Text>Loading. . . </Text>) :
+            messages.map((msg)=>{
+                if (msg.user === 'Geoff') {
+                    return (
+                        <>
+                        <Text style={styles.user}>{msg.user}</Text>
+                        <Text style={styles.loggedInUser}>{msg.message}</Text>
+                        </> // android bugs here adding chat id
+                    )
+                } else {
+                    return (
+                        <> 
+                        <Text style={styles.user}>{msg.user}</Text>
+                        <Text >{msg.message}</Text>
+                        </>
+                    )
+                }
+                // console.log(msg) 
             })}
-            <TextInput 
-                onChangeText= {(text) => {setText(text)} }
-                value={text}
-                >
-            </TextInput>
-            <Button title={"send"} onPress={handlePostMessage}></Button>
+           <View>
+            </View>
             </ScrollView>
-        </View>
+                <TextInput 
+                    onChangeText= {(text) => {setText(text)} }
+                    value={text}
+                    placeholder={"send a message..."}
+                    onSubmitEditing={handlePostMessage}
+                    style={styles.textInput}
+                    >
+                </TextInput>
+                <Button title={"send"} onPress={handlePostMessage}></Button>
+        </KeyboardAvoidingView>
     )
 }
+
+const styles = StyleSheet.create({
+    textInput: {
+        height: 40
+    },
+    user: {
+        fontWeight: 'bold',
+        textAlign: 'right'
+    },
+    message: {
+        backgroundColor: '#00bfff'
+    },
+    loggedInUser: {
+        fontWeight: 'bold',
+        // backgroundColor: '#00bfff',
+        textAlign: 'right',
+    },
+    container: {
+        paddingLeft: 10,
+        paddingRight: 10,
+        marginLeft: 10,
+        marginRight: 10    
+    }
+})
