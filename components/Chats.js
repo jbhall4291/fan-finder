@@ -2,7 +2,12 @@ import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { useState, useEffect } from "react";
 import { getUserChatIds, getUsersByChatId } from "../utils/api";
-import { socket } from "../App";
+// import {getSocketServerAddress} from './utils/api'
+// const socketAddress = getSocketServerAddress()
+// Make sure socket server is running
+import {io} from 'socket.io-client'
+const socket = io.connect('http://localhost:4000')
+
 
 export const Chats = ({navigation}) => {
     const [user, setUser] = useState("Test User")
@@ -11,11 +16,19 @@ export const Chats = ({navigation}) => {
 
     const allChatIds = getUserChatIds()
 
+    
+
     const joinRoom = (room) => {
         socket.emit('join_room', {"room": room, "user": user})
         console.log("joining room")
+        console.log(socket)
     }
 
+    useEffect(()=>{
+        socket.on('connection', () => {
+            console.log(socket.id)
+        })
+    },[])
 
     return (
         <View>

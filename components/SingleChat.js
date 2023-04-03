@@ -2,13 +2,17 @@ import React from "react";
 import { StyleSheet, Text, TextInput, View, Button } from "react-native";
 import { useState, useEffect } from "react";
 import { getChatHistoryById } from "../utils/api";
-import { socket } from "../App";
+import {io} from 'socket.io-client'
+
+
 
 export const SingleChat = ({route}) => {
-
+    const socket = io.connect('http://localhost:4000')
     const chatId = route.params.id
     const room = route.params.room
     const [text, setText] = useState('Send a message...');
+
+    
 
     const [messages, setMessages] = useState([])
     useEffect(()=>{
@@ -21,6 +25,7 @@ export const SingleChat = ({route}) => {
             setMessages(...messages,data)
             // Add new messages to list of messages
         })
+        console.log(`socket connected? ${socket.connected}`)
     }, [socket])
 
     return (
