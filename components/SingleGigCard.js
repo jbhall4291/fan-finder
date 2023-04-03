@@ -11,6 +11,7 @@ import {
   ScrollView,
   Linking,
   FlatList,
+  ActivityIndicator
 } from "react-native";
 import { getAllAttendees, getGigById } from "../utils/api";
 import { Button } from "@rneui/themed";
@@ -23,6 +24,7 @@ const SingleGigCard = ({ route, navigation }) => {
   const [loading, setLoading] = useState(true);
   const [userAttending, setUserAttending] = useState(false);
   const [allUsersAttending, setAllUsersAttending] = useState([]);
+  const [attendingUsersLoaded, setAttendingUsersLoaded] = useState(false)
 
   const id = route.params.msg;
 
@@ -50,6 +52,7 @@ const SingleGigCard = ({ route, navigation }) => {
     getAllAttendees(gigId).then((results) => {
       console.log(results, "hi from line 48");
       setAllUsersAttending(results);
+      setAttendingUsersLoaded(true)
       // results.map((attendee) => {
       //   console.log(attendee.displayName + " <<<< from singlegig");
       //   setAllUsersAttending((currentUsersAttending) => {
@@ -81,6 +84,19 @@ const SingleGigCard = ({ route, navigation }) => {
   }, [gigId]);
 
   const UsersGoing = () => {
+
+if (!attendingUsersLoaded) {
+  return (
+        <>
+          <ActivityIndicator
+            style={styles.ActivityIndicator}
+            size="large"
+            color="blue"
+          />
+          <Text>loading fans who are going...</Text>
+        </>
+      );
+  }
     // if (!haveCommentsLoaded) {
     //   return (
     //     <>
@@ -95,6 +111,7 @@ const SingleGigCard = ({ route, navigation }) => {
 
     //   // return <Text>comments loading... please wait!</Text>;
     // } else
+
     if (allUsersAttending.length === 0) {
       return (
         <Text style={styles.NoComments}>No users going... be the first!</Text>
@@ -103,19 +120,22 @@ const SingleGigCard = ({ route, navigation }) => {
       console.log(allUsersAttending[0].displayName, "<<<<sgc users");
       console.log(allUsersAttending.length, "arr length");
       return (
-        <ScrollView style={styles.ScrollView}>
-          {allUsersAttending.map((attendee) => {
-            console.log(attendee, "attendee<<<<<");
-            return (
-              <UserCard
-                key={attendee.displayName}
-                username={attendee.displayName}
-                avatar={attendee.avatarUrl}
-              />
-            );
-          })}
-          {console.log(allUsersAttending)}
-        </ScrollView>
+        <>
+          <Text>These users are going, get involved & post a comment</Text>
+          <ScrollView style={styles.ScrollView}>
+            {allUsersAttending.map((attendee) => {
+              console.log(attendee, "attendee<<<<<");
+              return (
+                <UserCard
+                  key={attendee.displayName}
+                  username={attendee.displayName}
+                  avatar={attendee.avatarUrl}
+                />
+              );
+            })}
+            {console.log(allUsersAttending)}
+          </ScrollView>
+        </>
       );
     }
   };
@@ -204,14 +224,15 @@ const styles = StyleSheet.create({
   titleText: {
     color: "#000",
     fontWeight: "700",
-    fontSize: 30,
+    fontSize: 20,
+    textAlign: "center",
   },
   bodyText: {
     color: "#000",
     fontSize: 20,
   },
   gigImage: {
-    height: "40%",
+    height: "30%",
     width: "90%",
   },
   buttonContainer: {
@@ -221,5 +242,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "90%",
     marginVertical: 20,
+  },
+  ActivityIndicator: {
+    justifyContent: "center",
+    paddingTop: "10%",
   },
 });
