@@ -20,6 +20,7 @@ const SingleGigCard = ({ route, navigation }) => {
   const [gigInfo, setGigInfo] = useState({});
   const [loading, setLoading] = useState(true);
   const [userAttending, setUserAttending] = useState(false);
+  const [allUsersAttending, setAllUsersAttending] = useState([]);
 
   const id = route.params.msg;
 
@@ -48,7 +49,9 @@ const SingleGigCard = ({ route, navigation }) => {
     getAllAttendees(gigId).then((results) => {
       results.map((attendee) => {
         console.log(attendee.displayName + " <<<< from singlegig");
+        setAllUsersAttending([...allUsersAttending, attendee.displayName]);
       });
+      console.log(allUsersAttending + " <<< all users attending line 55")
     });
   };
 
@@ -57,6 +60,7 @@ const SingleGigCard = ({ route, navigation }) => {
     if (gigId !== "") {
       checkAllUsersGoing();
       checkUserGigs();
+      console.log(allUsersAttending + " <<< all users attending line 63")
       // console.log(route.params.msg)
       getGigById(id)
         .then((results) => {
@@ -70,6 +74,8 @@ const SingleGigCard = ({ route, navigation }) => {
         });
     }
   }, [gigId]);
+
+// need to check the above dep. array
 
   if (loading) return <Text>Loading...</Text>;
   return (

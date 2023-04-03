@@ -101,7 +101,7 @@ export const getAllAttendees = (gigId) => {
   return fanfinderAPI
     .get(`/gigs/${gigId}/fans`)
     .then((results) => {
-      // console.log(results.data.fans, "these are users going to this gig");
+       console.log(results.data.fans, "these are users going to this gig");
       return results.data.fans;
     })
     .catch((err) => {
