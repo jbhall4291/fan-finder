@@ -86,14 +86,29 @@ export const getUserGigs = () => {
 };
 
 export const patchUserGigs = (gigId) => {
-  console.log("doing a patch to users gigs");
+  // console.log("doing a patch to users gigs");
   return fanfinderAPI
-    .patch("/users/teamexpress/gigs", { gig_id: gigId })
+    .patch("/users/kate/gigs", { gig_id: gigId })
     .then((result) => {
       console.log("hi from line 92")
       return result.data;
     });
 };
+
+
+export const getAllAttendees = (gigId) => {
+  // console.log("getting all attendees");
+  return fanfinderAPI
+    .get(`/gigs/${gigId}/fans`)
+    .then((results) => {
+      // console.log(results.data.fans, "these are users going to this gig");
+      return results.data.fans;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 
 // export const getGigComments = (gigId) => {
 //   let path = `/gigs/${gigId}/comments`;

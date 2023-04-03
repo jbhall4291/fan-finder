@@ -11,7 +11,7 @@ import {
   ScrollView,
   Linking,
 } from "react-native";
-import { getGigById } from "../utils/api";
+import { getAllAttendees, getGigById } from "../utils/api";
 import { Button } from "@rneui/themed";
 import { getUserGigs, patchUserGigs } from "../utils/api";
 
@@ -36,16 +36,27 @@ const SingleGigCard = ({ route, navigation }) => {
   //We got to here - checking if user is attending (before implenting patch request, maybe disable button and say 'hooray you're going' if it is in the array?)
   const checkUserGigs = () => {
     return getUserGigs().then((res) => {
-      console.log(res, "single card res");
+      // console.log(res, "single card res");
       if (res.includes(gigId) === true) {
         setUserAttending(true);
       }
     });
   };
+
+  const checkAllUsersGoing = () => {
+    // api call to check all users going, display them somewhere on page
+    getAllAttendees(gigId).then((results) => {
+      results.map((attendee) => {
+        console.log(attendee.displayName + " <<<< from singlegig");
+      });
+    });
+  };
+
   useEffect(() => {
-    checkUserGigs();
     setGigId(id);
     if (gigId !== "") {
+      checkAllUsersGoing();
+      checkUserGigs();
       // console.log(route.params.msg)
       getGigById(id)
         .then((results) => {
