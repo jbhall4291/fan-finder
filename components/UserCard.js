@@ -1,47 +1,47 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
-import { convertTimeAndDate } from "../utils/functions";
 
 export const UserCard = (props) => {
   console.log(props, "<<<<<props in usercard");
   //   const commentText = props.comment.text;
   return (
-    <View style={styles.commentCard}>
-      <Text style={styles.commentText}>{props.username}</Text>
+    <View style={styles.UserCard}>
       <Image
         style={styles.avatarImg}
-        source={{ uri: `${props.avatar}` }}
-      ></Image>
+        source={require("../assets/avatars/Jagger.png")} // temp hardcode a 'nicer' avatar
+        // source={{ uri: `${props.avatar}` }}
+      />
+      <Text style={styles.Username}>{props.username}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  commentCard: {
-    justifyContent: "center",
-    alignItem: "center",
+  UserCard: {
+    // justifyContent: "flex-start",
+    // alignItem: "",
     backgroundColor: "darkgrey",
     padding: 10,
-    margin: 6,
+    // margin: 6,
     borderColor: "black",
     borderRadius: 15,
     borderStyle: "solid",
     borderWidth: 5,
+    width: "100%",
+    height: 150,
+    flexDirection: "row",
+    alignItems: "center",
   },
-  commentText: {
-    fontSize: 25,
-    textAlign: "center",
+  Username: {
+    fontSize: 50,
+    // textAlign: "center",
+    // justifyContent: "center",
+    // height: 120
+    marginLeft: 25,
   },
-  commentBy: {
-    fontSize: 18,
-    textAlign: "center",
-  },
-  commentTimeDate: {
-    fontSize: 15,
-    textAlign: "center",
-  },
+
   avatarImg: {
-    height: "20%",
-    width: "75%",
-  }
+    height: 100,
+    width: 100,
+  },
 });

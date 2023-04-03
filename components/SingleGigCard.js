@@ -32,7 +32,7 @@ const SingleGigCard = ({ route, navigation }) => {
     console.log("you clicked the button to add a gig to users gigs");
     patchUserGigs(gigId).then((res) => {
       setUserAttending(true);
-      checkAllUsersGoing()
+      checkAllUsersGoing();
     });
   };
 
@@ -49,7 +49,7 @@ const SingleGigCard = ({ route, navigation }) => {
     // api call to check all users going, display them somewhere on page
     getAllAttendees(gigId).then((results) => {
       console.log(results, "hi from line 48");
-      setAllUsersAttending(results)
+      setAllUsersAttending(results);
       // results.map((attendee) => {
       //   console.log(attendee.displayName + " <<<< from singlegig");
       //   setAllUsersAttending((currentUsersAttending) => {
@@ -81,7 +81,6 @@ const SingleGigCard = ({ route, navigation }) => {
   }, [gigId]);
 
   const UsersGoing = () => {
-    
     // if (!haveCommentsLoaded) {
     //   return (
     //     <>
@@ -95,21 +94,25 @@ const SingleGigCard = ({ route, navigation }) => {
     //   );
 
     //   // return <Text>comments loading... please wait!</Text>;
-    // } else 
+    // } else
     if (allUsersAttending.length === 0) {
       return (
-        <Text style={styles.NoComments}>
-          No users going... be the first!
-        </Text>
+        <Text style={styles.NoComments}>No users going... be the first!</Text>
       );
     } else {
-       console.log(allUsersAttending[0].displayName, "<<<<sgc users")
-       console.log(allUsersAttending.length, "arr length")
+      console.log(allUsersAttending[0].displayName, "<<<<sgc users");
+      console.log(allUsersAttending.length, "arr length");
       return (
         <ScrollView style={styles.ScrollView}>
           {allUsersAttending.map((attendee) => {
-            console.log(attendee, "attendee<<<<<")
-            return <UserCard key={attendee.displayName} username={attendee.displayName} avatar={attendee.avatarUrl}/>;
+            console.log(attendee, "attendee<<<<<");
+            return (
+              <UserCard
+                key={attendee.displayName}
+                username={attendee.displayName}
+                avatar={attendee.avatarUrl}
+              />
+            );
           })}
           {console.log(allUsersAttending)}
         </ScrollView>
@@ -147,7 +150,7 @@ const SingleGigCard = ({ route, navigation }) => {
             color="primary"
             size="lg"
             buttonStyle={{ width: 150 }}
-            title="I'm already going!"
+            title="I'm going!"
             disabled="true"
           />
         ) : (
@@ -174,9 +177,8 @@ const SingleGigCard = ({ route, navigation }) => {
             })
           }
         />
-
       </View>
-      <UsersGoing />
+      <UsersGoing style={styles.UsersGoing} />
     </View>
     // </ScrollView>
   );
@@ -188,10 +190,17 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: "`#000000`",
+    marginVertical: 10,
   },
+
+  ScrollView: {
+    width: "90%",
+    backgroundColor: "green",
+  },
+
   titleText: {
     color: "#000",
     fontWeight: "700",
@@ -202,15 +211,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   gigImage: {
-    height: "25%",
-    width: "75%",
+    height: "40%",
+    width: "90%",
   },
   buttonContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     alignItems: "center",
-    width: "100%",
+    width: "90%",
     marginVertical: 20,
   },
 });

@@ -1,23 +1,30 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Image } from "react-native";
 import { convertTimeAndDate } from "../utils/functions";
 
 export const CommentCard = (props) => {
   console.log(props.comment.text);
   const commentText = props.comment.text;
   return (
-    <View style={styles.commentCard}>
-      <Text style={styles.commentText}>{commentText}</Text>
-      <Text style={styles.commentBy}>Comment by: {props.comment.user}</Text>
-      <Text style={styles.commentTimeDate}>
-        Posted: {convertTimeAndDate(props.comment.created_at)}
-      </Text>
+    <View style={styles.CommentCard}>
+      <Image
+        style={styles.avatarImg}
+        source={require("../assets/avatars/Jagger.png")} // temp hardcode a 'nicer' avatar
+        // source={{ uri: `${props.avatar}` }}
+      />
+      <View style={styles.CommentTextContainer}>
+        <Text style={styles.commentText}>{commentText}</Text>
+        <Text style={styles.commentBy}>Comment by: {props.comment.user}</Text>
+        <Text style={styles.commentTimeDate}>
+          Posted: {convertTimeAndDate(props.comment.created_at)}
+        </Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  commentCard: {
+  CommentCard: {
     justifyContent: "center",
     alignItem: "center",
     backgroundColor: "darkgrey",
@@ -27,17 +34,24 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderStyle: "solid",
     borderWidth: 5,
+    flexDirection: "row",
+    alignItems: "center",
   },
   commentText: {
-    fontSize: 25,
-    textAlign: "center",
+    fontSize: 20,
   },
   commentBy: {
-    fontSize: 18,
-    textAlign: "center",
+    fontSize: 15,
   },
   commentTimeDate: {
-    fontSize: 15,
-    textAlign: "center",
+    fontSize: 12,
+  },
+  avatarImg: {
+    height: 100,
+    width: 100,
+  },
+  CommentTextContainer: {
+    textAlign: "justify",
+    marginLeft: 25,
   },
 });
