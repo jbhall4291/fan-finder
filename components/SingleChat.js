@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, View, Button } from "react-native";
+import { StyleSheet, Text, TextInput, View, Button, ScrollView } from "react-native";
 import { useState, useEffect } from "react";
 import { getChatHistoryById, postMessageToChat } from "../utils/api";
 import {io} from 'socket.io-client'
@@ -44,8 +44,7 @@ export const SingleChat = ({route}) => {
 
     return (
         <View>
-            <View>
-
+            <ScrollView>
             {messages?.map((msg)=>{
                 return (
                     <> 
@@ -59,11 +58,8 @@ export const SingleChat = ({route}) => {
                 value={text}
                 >
             </TextInput>
-            
-            </View>
-            <View>
-                <Button title={"send"} onPress={handlePostMessage}></Button>
-            </View>
+            <Button title={"send"} onPress={handlePostMessage}></Button>
+            </ScrollView>
         </View>
     )
 }
