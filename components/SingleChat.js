@@ -12,21 +12,28 @@ export const SingleChat = ({route}) => {
     const room = route.params.room
     const [text, setText] = useState('Send a message...');
 
-    
-
     const [messages, setMessages] = useState([])
+
+
+
     useEffect(()=>{
-        setMessages(getChatHistoryById(chatId))
-    },[])
-    
-    useEffect(()=>{
-        socket.on('send_message', (data) => {
-            console.log('getting message')
-            setMessages(...messages,data)
-            // Add new messages to list of messages
+        getChatHistoryById(chatId)
+        .then((results) => {
+            setMessages(results)
         })
-        console.log(`socket connected? ${socket.connected}`)
-    }, [socket])
+        .catch((err) => {
+            console.log(err, "error");
+        })
+    }, []);
+    
+    // useEffect(()=>{
+    //     socket.on('send_message', (data) => {
+    //         console.log('getting message')
+    //         setMessages(...messages,data)
+    //         // Add new messages to list of messages
+    //     })
+    //     console.log(`socket connected? ${socket.connected}`)
+    // }, [socket])
 
     return (
         <View>
@@ -34,7 +41,10 @@ export const SingleChat = ({route}) => {
 
             {messages?.map((msg)=>{
                 return (
-                    <Text >{msg.msg}</Text> // android bugs here adding chat id
+                    <> 
+                    <Text>User: {msg.user}</Text>
+                    <Text >{msg.message}</Text>
+                    </> // android bugs here adding chat id
                 )
             })}
             <TextInput 
