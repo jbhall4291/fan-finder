@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, View, Button } from "react-native";
 import { useState, useEffect } from "react";
-import { getChatHistoryById } from "../utils/api";
+import { getChatHistoryById, postMessageToChat } from "../utils/api";
 import {io} from 'socket.io-client'
 
 
@@ -24,8 +24,15 @@ export const SingleChat = ({route}) => {
         .catch((err) => {
             console.log(err, "error");
         })
-    }, []);
+    }, [messages, handlePostMessage]);
     
+    const handlePostMessage = () =>{
+        console.log("sending message :", text)
+        setMessages([...messages, {message: text, user: "Geoff"}])
+        postMessageToChat(text, 'Geoff', chatId )
+        setText("Send a message...")
+    }
+
     // useEffect(()=>{
     //     socket.on('send_message', (data) => {
     //         console.log('getting message')
@@ -55,13 +62,7 @@ export const SingleChat = ({route}) => {
             
             </View>
             <View>
-                <Button title={"send"} onPress={()=>{
-                    socket.emit('send_message', {msg: text})
-                    setMessages([...messages, {msg: text}])
-                    console.log("sending message")
-                    setText("Send a message...")
-
-                }}></Button>
+                <Button title={"send"} onPress={handlePostMessage}></Button>
             </View>
         </View>
     )

@@ -42,13 +42,14 @@ export const getGigById = (gig_id) => {
 
 // fanfinder api
 
-export const getUserChatIds = (user = "geoff") => {
-// user.toLowerCase()
+export const getUserChatIds = (user = "Geoff") => {
+
   return fanFinderAPI
-  .get(`api/users/${user}/chats`).then((results => {
-console.log(results.data.chats, "api results")
-    return results.data.chats
-  }))
+    .get(`api/users/${user}/chats`)
+    .then((results => {
+      console.log(results.data.chats, "api results")
+      return results.data.chats
+    }))
 
   // return ["chat-1", "chat-2", "chat-3"];
 }
@@ -65,172 +66,22 @@ export const getUsersByChatId = (id = "chat-1") => {
 }
 
 export const getChatHistoryById = (id = "chat-1") => {
-
-
+  
   return fanFinderAPI
   .get(`/api/users/Geoff/${id}`)
   .then((results) => {
-    console.log(results.data.chat_history)
     return results.data.chat_history
   })
-
-  // const chatHistories = {
-  //   "chat-1": [
-  //       {
-  //           message: "Hello",
-  //           room: "chat-1",
-  //           user: "Geoff",
-  //           created_at: new Date ("2023-03-28")
-  //       },
-  //       {
-  //           message: "Hola",
-  //           room: "chat-1",
-  //           user: "Geoff",
-  //           created_at: new Date ("2023-03-27")
-  //       },
-  //       {
-  //           message: "Bonjour",
-  //           room: "chat-1",
-  //           user: "Geoff",
-  //           created_at: new Date ("2023-03-26")
-  //       },
-  //       {
-  //           message: "Howdy",
-  //           room: "chat-1",
-  //           user: "Geoff",
-  //           created_at: new Date ("2023-03-25")
-  //       },
-  //       {
-  //           message: "Epic gig tonight",
-  //           room: "chat-1",
-  //           user: "Geoff",
-  //           created_at: new Date ("2023-03-24")
-  //       },
-  //       {
-  //           message: "Whatsup?",
-  //           room: "chat-1",
-  //           user: "Geoff",
-  //           created_at: new Date ("2023-03-23")
-  //       },
-  //       {
-  //           message: "Hiya",
-  //           room: "chat-1",
-  //           user: "Geoff",
-  //           created_at: new Date ("2023-03-22")
-  //       },
-  //       {
-  //           message: "How are you?",
-  //           room: "chat-1",
-  //           user: "Geoff",
-  //           created_at: new Date ("2023-03-21")
-  //       }],
-  //   "chat-2": [
-  //     {
-  //       message: "Hello",
-  //       room: "chat-2",
-  //       user: "Kate",
-  //       created_at: new Date ("2023-02-28")
-  //   },
-  //   {
-  //       message: "Hola",
-  //       room: "chat-2",
-  //       user: "Kate",
-  //       created_at: new Date ("2023-02-27")
-  //   },
-  //   {
-  //       message: "Bonjour",
-  //       room: "chat-2",
-  //       user: "Kate",
-  //       created_at: new Date ("2023-02-26")
-  //   },
-  //   {
-  //       message: "Howdy",
-  //       room: "chat-2",
-  //       user: "Kate",
-  //       created_at: new Date ("2023-02-25")
-  //   },
-  //   {
-  //       message: "Epic gig tonight",
-  //       room: "chat-2",
-  //       user: "Kate",
-  //       created_at: new Date ("2023-02-24")
-  //   },
-  //   {
-  //       message: "Whatsup?",
-  //       room: "chat-2",
-  //       user: "Kate",
-  //       created_at: new Date ("2023-02-23")
-  //   },
-  //   {
-  //       message: "Hiya",
-  //       room: "chat-2",
-  //       user: "Kate",
-  //       created_at: new Date ("2023-02-22")
-  //   },
-  //   {
-  //       message: "How are you?",
-  //       room: "chat-2",
-  //       user: "Kate",
-  //       created_at: new Date ("2023-02-21")
-  //   }
-  //   ],
-  //   "chat-3": [
-  //     {
-  //       message: "Hello",
-  //       room: "chat-3",
-  //       user: "BlueShoes",
-  //       created_at: new Date ("2023-01-28")
-  //   },
-  //   {
-  //       message: "Hola",
-  //       room: "chat-3",
-  //       user: "BlueShoes",
-  //       created_at: new Date ("2023-01-27")
-  //   },
-  //   {
-  //       message: "Bonjour",
-  //       room: "chat-3",
-  //       user: "BlueShoes",
-  //       created_at: new Date ("2023-01-26")
-  //   },
-  //   {
-  //       message: "Howdy",
-  //       room: "chat-3",
-  //       user: "BlueShoes",
-  //       created_at: new Date ("2023-01-25")
-  //   },
-  //   {
-  //       message: "Epic gig tonight",
-  //       room: "chat-3",
-  //       user: "BlueShoes",
-  //       created_at: new Date ("2023-01-24")
-  //   },
-  //   {
-  //       message: "Whatsup?",
-  //       room: "chat-3",
-  //       user: "BlueShoes",
-  //       created_at: new Date ("2023-01-23")
-  //   },
-  //   {
-  //       message: "Hiya",
-  //       room: "chat-3",
-  //       user: "BlueShoes",
-  //       created_at: new Date ("2023-01-22")
-  //   },
-  //   {
-  //       message: "How are you?",
-  //       room: "chat-3",
-  //       user: "BlueShoes",
-  //       created_at: new Date ("2023-01-21")
-  //   }
-  //   ]
-  // }
-
-  // return chatHistories[id]
 }
 
 export const postMessageToChat = (message, user, chat_id) => {
-  return fanFinderAPI(`/api/users/:user_id/:chat_id`)
+  console.log('trying to post message : ', message, user, chat_id )
+  return fanFinderAPI
+    .post(`/api/users/${user}/${chat_id}`, {"message": message})
+    .then((result)=>{
+      console.log(result, "<sent a message?")
+      return result
+    })
 
 }
 
