@@ -75,9 +75,9 @@ export const postComment = ({ id, commentText }) => {
 export const getUserGigs = () => {
   console.log("gigs");
   return fanfinderAPI
-    .get(`/users/teamexpress/gigs`)
+    .get(`/users/Kate/gigs`)
     .then((results) => {
-      console.log(results.data.gigs, "these are the users gigs");
+      // console.log(results.data.gigs, "these are the users gigs");
       return results.data.gigs;
     })
     .catch((err) => {
@@ -88,9 +88,9 @@ export const getUserGigs = () => {
 export const patchUserGigs = (gigId) => {
   // console.log("doing a patch to users gigs");
   return fanfinderAPI
-    .patch("/users/kate/gigs", { gig_id: gigId })
+    .patch("/users/Kate/gigs", { gig_id: gigId })
     .then((result) => {
-      console.log("hi from line 92")
+      // console.log("hi from line 92")
       return result.data;
     });
 };
@@ -101,7 +101,7 @@ export const getAllAttendees = (gigId) => {
   return fanfinderAPI
     .get(`/gigs/${gigId}/fans`)
     .then((results) => {
-       console.log(results.data.fans, "these are users going to this gig");
+      //  console.log(results.data.fans, "these are users going to this gig");
       return results.data.fans;
     })
     .catch((err) => {

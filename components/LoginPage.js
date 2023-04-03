@@ -9,14 +9,18 @@ export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
         style={styles.logo}
         source={require("../assets/fan_finder_logo.png")}
       />
-
+      <Image
+        style={styles.expressLogo}
+        source={require("../assets/team-express-logo.jpg")}
+      />
+  
       <Button
         style={styles.button}
-        title="Login"
+        title="Continue as teamexpress"
         color="#4e2e65"
         size="lg"
         radius="lg"
-        buttonStyle={{ width: 120 }}
+        buttonStyle={{ width: 250 }}
         onPress={() => setIsLoggedIn(true)}
       />
     </View>
@@ -38,9 +42,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     // marginVertical: 20,
   },
+  expressLogo: {
+    resizeMode: "contain",
+    height: 100,
+    width: 100,
+    marginTop: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    // marginVertical: 20,
+  },
   button: {
     justifyContent: "center",
     marginVertical: 20,
-    marginTop: 100,
+    marginTop: 10,
   },
 });

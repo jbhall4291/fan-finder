@@ -10,10 +10,12 @@ import {
   Image,
   ScrollView,
   Linking,
+  FlatList,
 } from "react-native";
 import { getAllAttendees, getGigById } from "../utils/api";
 import { Button } from "@rneui/themed";
 import { getUserGigs, patchUserGigs } from "../utils/api";
+import { UserCard } from "./UserCard";
 
 const SingleGigCard = ({ route, navigation }) => {
   const [gigId, setGigId] = useState("");
@@ -29,15 +31,14 @@ const SingleGigCard = ({ route, navigation }) => {
   const addToUsersGigs = () => {
     console.log("you clicked the button to add a gig to users gigs");
     patchUserGigs(gigId).then((res) => {
-      console.log(res + " <<<< from addToUsersGigs");
       setUserAttending(true);
+      checkAllUsersGoing()
     });
   };
 
-  //We got to here - checking if user is attending (before implenting patch request, maybe disable button and say 'hooray you're going' if it is in the array?)
   const checkUserGigs = () => {
     return getUserGigs().then((res) => {
-      // console.log(res, "single card res");
+      console.log(res, "single card res");
       if (res.includes(gigId) === true) {
         setUserAttending(true);
       }
@@ -47,11 +48,15 @@ const SingleGigCard = ({ route, navigation }) => {
   const checkAllUsersGoing = () => {
     // api call to check all users going, display them somewhere on page
     getAllAttendees(gigId).then((results) => {
-      results.map((attendee) => {
-        console.log(attendee.displayName + " <<<< from singlegig");
-        setAllUsersAttending([...allUsersAttending, attendee.displayName]);
-      });
-      console.log(allUsersAttending + " <<< all users attending line 55")
+      console.log(results, "hi from line 48");
+      setAllUsersAttending(results)
+      // results.map((attendee) => {
+      //   console.log(attendee.displayName + " <<<< from singlegig");
+      //   setAllUsersAttending((currentUsersAttending) => {
+      //     console.log(allUsersAttending, "line 54");
+      //     return [attendee.displayName, ...currentUsersAttending];
+      //   });
+      // });
     });
   };
 
@@ -60,7 +65,7 @@ const SingleGigCard = ({ route, navigation }) => {
     if (gigId !== "") {
       checkAllUsersGoing();
       checkUserGigs();
-      console.log(allUsersAttending + " <<< all users attending line 63")
+      console.log(allUsersAttending + " <<< all users attending line 63");
       // console.log(route.params.msg)
       getGigById(id)
         .then((results) => {
@@ -75,7 +80,44 @@ const SingleGigCard = ({ route, navigation }) => {
     }
   }, [gigId]);
 
-// need to check the above dep. array
+  const UsersGoing = () => {
+    
+    // if (!haveCommentsLoaded) {
+    //   return (
+    //     <>
+    //       <ActivityIndicator
+    //         style={styles.ActivityIndicator}
+    //         size="large"
+    //         color="blue"
+    //       />
+    //       <Text>loading comments...</Text>
+    //     </>
+    //   );
+
+    //   // return <Text>comments loading... please wait!</Text>;
+    // } else 
+    if (allUsersAttending.length === 0) {
+      return (
+        <Text style={styles.NoComments}>
+          No users going... be the first!
+        </Text>
+      );
+    } else {
+       console.log(allUsersAttending[0].displayName, "<<<<sgc users")
+       console.log(allUsersAttending.length, "arr length")
+      return (
+        <ScrollView style={styles.ScrollView}>
+          {allUsersAttending.map((attendee) => {
+            console.log(attendee, "attendee<<<<<")
+            return <UserCard key={attendee.displayName} username={attendee.displayName} avatar={attendee.avatarUrl}/>;
+          })}
+          {console.log(allUsersAttending)}
+        </ScrollView>
+      );
+    }
+  };
+
+  // need to check the above dep. array
 
   if (loading) return <Text>Loading...</Text>;
   return (
@@ -98,6 +140,7 @@ const SingleGigCard = ({ route, navigation }) => {
       >
         Buy Tickets
       </Text>
+      {/* <Text>{allUsersAttending}</Text> */}
       <View style={styles.buttonContainer}>
         {userAttending ? (
           <Button
@@ -124,17 +167,16 @@ const SingleGigCard = ({ route, navigation }) => {
           size="lg"
           buttonStyle={{ width: 150 }}
           title="Go To Forum"
-          onPress={
-            () =>
-              navigation.navigate("ForumCard", {
-                msg: `${gigId}`,
-                infoForGig: gigInfo,
-              })
-
-            // msg: `${gig.id}`
+          onPress={() =>
+            navigation.navigate("ForumCard", {
+              msg: `${gigId}`,
+              infoForGig: gigInfo,
+            })
           }
         />
+
       </View>
+      <UsersGoing />
     </View>
     // </ScrollView>
   );
