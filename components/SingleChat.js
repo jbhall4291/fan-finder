@@ -11,7 +11,7 @@ export const SingleChat = ({route}) => {
     const chatId = route.params.id
     const room = route.params.room
     const [text, setText] = useState('');
-    const [user, setUser] = useState('Geoff')
+    const [user, setUser] = useState('Team Express')
 
     const [messages, setMessages] = useState([])
     const [loading, setLoading] = useState(true);
@@ -32,7 +32,7 @@ export const SingleChat = ({route}) => {
     const handlePostMessage = () =>{
         console.log("sending message :", text)
         setMessages([...messages, {message: text, user: user}])
-        postMessageToChat(text, 'Geoff', chatId )
+        postMessageToChat(text, user, chatId )
         setText("")
     }
 
@@ -46,14 +46,14 @@ export const SingleChat = ({route}) => {
     // }, [socket])
 
     return (
-        <KeyboardAvoidingView style={{ flex: 1, flexDirection: 'column',justifyContent: 'center',}} behavior="padding" enabled   keyboardVerticalOffset={120}>
+        <KeyboardAvoidingView style={{ flex: 1, flexDirection: 'column',justifyContent: 'center',}} behavior="padding" enabled   keyboardVerticalOffset={100}>
 
             <ScrollView style={styles.container}
                 
             >
             {loading? (<Text>Loading. . . </Text>) :
             messages.map((msg)=>{
-                if (msg.user === 'Geoff') {
+                if (msg.user === user) {
                     return (
                         <>
                         <Text style={styles.user}>{msg.user}</Text>
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     },
     user: {
         fontWeight: 'bold',
-        textAlign: 'right'
+        // textAlign: 'right'
     },
     message: {
         backgroundColor: '#00bfff'
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     loggedInUser: {
         fontWeight: 'bold',
         // backgroundColor: '#00bfff',
-        textAlign: 'right',
+        // textAlign: 'right',
     },
     container: {
         paddingLeft: 10,
