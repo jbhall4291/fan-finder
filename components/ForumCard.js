@@ -47,11 +47,15 @@ export const ForumCard = ({ route }) => {
   const ForumCardHeader = () => {
     return (
       <View style={styles.ForumCardHeader}>
-        <Text>This is the forum for</Text>
-        <Text>{fullGigInfo.name}</Text>
-        <Text>At: {fullGigInfo._embedded.venues[0].name}</Text>
-        <Text>On: {fullGigInfo.dates.start.localDate}</Text>
-        <Text>Join the discussion!</Text>
+        <Text style={styles.ForumCardHeaderText}>This is the forum for</Text>
+        <Text style={styles.ForumCardHeaderText}>{fullGigInfo.name}</Text>
+        <Text style={styles.ForumCardHeaderText}>
+          At: {fullGigInfo._embedded.venues[0].name}
+        </Text>
+        <Text style={styles.ForumCardHeaderText}>
+          On: {fullGigInfo.dates.start.localDate}
+        </Text>
+        <Text style={styles.ForumCardHeaderText}>Join the discussion!</Text>
       </View>
     );
   };
@@ -92,6 +96,7 @@ export const ForumCard = ({ route }) => {
       <ForumCardHeader />
       <View style={styles.CommentAdder}>
         <TextInput
+          styles={styles.CommentAdderText}
           ref={commentInputBoxRef}
           style={styles.CommentTextInput}
           onChangeText={setCommentText}
@@ -104,10 +109,11 @@ export const ForumCard = ({ route }) => {
         />
         <Button
           title="POST COMMENT!"
+          color="#4e2e65"
           onPress={() => {
             submitComment();
           }}
-          color="primary"
+          
           size="lg"
           buttonStyle={{
             width: 200,
@@ -131,17 +137,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "`#000000`",
+    backgroundColor: "#271A31",
+    color: "#FBFFF1",
   },
 
   CommentAdder: {
-    backgroundColor: "red",
+    backgroundColor: "#271A31",
     borderColor: "black",
     // borderRadius: 15,
     borderStyle: "solid",
     borderWidth: 5,
     width: "100%",
     alignItems: "center",
+    color: "#FBFFF1",
   },
 
   ForumCardHeader: {
@@ -156,13 +164,18 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderWidth: 5,
   },
+
+  ForumCardHeaderText: {
+    color: "#FBFFF1",
+  },
   CommentTextInput: {
     height: 80,
     width: "90%",
     margin: 5,
     paddingHorizontal: 15,
     paddingTop: 15,
-    backgroundColor: "white",
+    backgroundColor: "#271A31",
+    color: "#FBFFF1",
   },
 
   ScrollView: {
@@ -180,5 +193,9 @@ const styles = StyleSheet.create({
   NoComments: {
     justifyContent: "center",
     paddingTop: "40%",
+    color: "#FBFFF1",
   },
+  CommentAdderText: {
+    color: "#FBFFF1"
+  }
 });

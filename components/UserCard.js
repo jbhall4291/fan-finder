@@ -20,28 +20,28 @@ const styles = StyleSheet.create({
   UserCard: {
     // justifyContent: "flex-start",
     // alignItem: "",
-    backgroundColor: "darkgrey",
+    backgroundColor: "#FBFFF1",
     padding: 10,
     // margin: 6,
-    borderColor: "black",
+    borderColor: "#271A31",
     borderRadius: 15,
     borderStyle: "solid",
     borderWidth: 5,
     width: "100%",
-    height: 150,
+    height: 75,
     flexDirection: "row",
     alignItems: "center",
   },
   Username: {
-    fontSize: 50,
+    fontSize: 40,
     // textAlign: "center",
     // justifyContent: "center",
     // height: 120
-    marginLeft: 25,
+    marginLeft: 15,
   },
 
   avatarImg: {
-    height: 100,
-    width: 100,
+    height: 50,
+    width: 50,
   },
 });

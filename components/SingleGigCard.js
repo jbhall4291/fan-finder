@@ -7,11 +7,11 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   ScrollView,
   Linking,
   FlatList,
   ActivityIndicator,
+  Image,
 } from "react-native";
 import { getAllAttendees, getGigById } from "../utils/api";
 import { Button } from "@rneui/themed";
@@ -92,7 +92,7 @@ const SingleGigCard = ({ route, navigation }) => {
             size="large"
             color="#FBFFF1"
           />
-          <Text>loading fans who are going...</Text>
+          <Text style={styles.LoadingText}>loading fans who are going...</Text>
         </>
       );
     }
@@ -113,14 +113,14 @@ const SingleGigCard = ({ route, navigation }) => {
 
     if (allUsersAttending.length === 0) {
       return (
-        <Text style={styles.NoComments}>No users going... be the first!</Text>
+        <Text>No users going... be the first!</Text>
       );
     } else {
       console.log(allUsersAttending[0].displayName, "<<<<sgc users");
       console.log(allUsersAttending.length, "arr length");
       return (
         <>
-          <Text>These users are going, get involved & post a comment</Text>
+          <Text style={styles.NoUsersText}>These users are going, get involved & post a comment</Text>
           <ScrollView style={styles.ScrollView}>
             {allUsersAttending.map((attendee) => {
               console.log(attendee, "attendee<<<<<");
@@ -147,28 +147,44 @@ const SingleGigCard = ({ route, navigation }) => {
     <View style={styles.screen}>
       <Text style={styles.titleText}>{gigInfo.name}</Text>
       <Text style={styles.bodyText}>Date: {gigInfo.dates.start.localDate}</Text>
-      <Text style={styles.bodyText}>Time: {gigInfo.dates.start.localTime.slice(0,5)}</Text>
+      <Text style={styles.bodyText}>Time: {gigInfo.dates.start.localTime}</Text>
       <Image
         style={styles.gigImage}
         source={{
           uri: `${gigInfo.images[0].url}`, //index 0 has the majority most relevant band image at highest resolution
         }}
       ></Image>
-      <Text></Text>
-      <Text>Info: {gigInfo.pleaseNote}</Text>
-      <Text
+
+      <Text style={styles.GigInfo}>Info: {gigInfo.pleaseNote}</Text>
+
+      <Button
+        size="lg"
+        titleStyle={{ color: "#FBFFF1" }}
+        buttonStyle={{
+          width: "100%",
+          borderColor: "#271A31",
+          backgroundColor: "#4e2e65",
+          borderWidth: 3,
+        }}
+        title="Buy Tickets"
+        disabledTitleStyle={{ color: "#271A31" }}
+        disabledStyle={{ backgroundColor: "white" }}
+        onPress={() => Linking.openURL(`${gigInfo.url}`)}
+      />
+
+      {/* <Text
         style={{ color: "blue" }}
         onPress={() => Linking.openURL(`${gigInfo.url}`)}
       >
         Buy Tickets
-      </Text>
+      </Text> */}
       {/* <Text>{allUsersAttending}</Text> */}
       <View style={styles.buttonContainer}>
         {userAttending ? (
           <Button
             color="red"
             size="lg"
-            buttonStyle={{ width: 150 }}
+            buttonStyle={{ width: 150, borderColor: "271A31", borderWidth: 3 }}
             title="I'm going!"
             disabled="true"
             disabledTitleStyle={{ color: "#271A31" }}
@@ -176,11 +192,16 @@ const SingleGigCard = ({ route, navigation }) => {
           />
         ) : (
           <Button
-            color="#271A31"
+            color="#4e2e65"
             size="lg"
             titleStyle={{ color: "#FBFFF1" }}
-            buttonStyle={{ width: 150 }}
-            title="Mark as going!"
+            buttonStyle={{
+              width: 150,
+              borderColor: "#271A31",
+              backgroundColor: "#4e2e65",
+              borderWidth: 3,
+            }}
+            title="I'll be going"
             onPress={() => {
               addToUsersGigs();
             }}
@@ -188,10 +209,15 @@ const SingleGigCard = ({ route, navigation }) => {
         )}
 
         <Button
-          color="#271A31"
+          
           size="lg"
           titleStyle={{ color: "#FBFFF1" }}
-          buttonStyle={{ width: 150 }}
+          buttonStyle={{
+            width: 150,
+            borderColor: "#271A31",
+            backgroundColor: "#4e2e65",
+            borderWidth: 3,
+          }}
           title="Go To Forum"
           onPress={() =>
             navigation.navigate("ForumCard", {
@@ -215,14 +241,14 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#753c9e",
+    backgroundColor: "#271A31",
     color: "#FBFFF1",
-    padding: 10
+    padding: 20,
   },
 
   ScrollView: {
-    width: "90%",
-    backgroundColor: "753c9e",
+    width: "100%",
+    backgroundColor: "4e2e65",
   },
 
   titleText: {
@@ -236,11 +262,16 @@ const styles = StyleSheet.create({
     color: "#FBFFF1",
     fontSize: 20,
   },
+  GigInfo: {
+    color: "#FBFFF1",
+  },
   gigImage: {
     height: "30%",
     width: "100%",
     borderRadius: 5,
-    
+    borderWidth: 3,
+    borderColor: "#271A31",
+    margin: 10,
   },
   buttonContainer: {
     flexDirection: "row",
@@ -253,9 +284,16 @@ const styles = StyleSheet.create({
   ActivityIndicator: {
     justifyContent: "center",
     paddingTop: "10%",
+    
+  },
+  LoadingText: {
+    paddingTop: "10%",
+    color: "#FBFFF1",
+    fontSize: 25,
+  },
+  NoUsersText: {
+    paddingTop: "10%",
+    color: "#FBFFF1",
+    fontSize: 25,
   },
 });
-
-
-
-// comment!
