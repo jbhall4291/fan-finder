@@ -3,6 +3,8 @@ import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { LoginPage } from "./components/LoginPage";
 import { Navigation } from "./components/Navigation";
+import {io} from 'socket.io-client'
+
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

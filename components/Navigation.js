@@ -5,6 +5,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Map } from "./Map";
 import { MapPinNavigator } from "../InnerStackNavigation";
+import { Chats } from './Chats'
+import { ChatsStackNavigation } from '../ChatsStackNavigation'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -23,6 +25,10 @@ export const Navigation = () => {
         <Tab.Screen 
         name="Home" 
         component={MapPinNavigator} />
+         <Tab.Screen 
+        name="ChatsScreen" 
+        component={ChatsStackNavigation} />
+
       </Tab.Navigator>
     </NavigationContainer>
   );
