@@ -174,3 +174,11 @@ export const postMessageToChat = (message, user, chat_id) => {
 export const getSocketServerAddress = () => {
   return 'https://fanfinder-api.onrender.com/'
 }
+
+export const getUserDetails = (user_id) => {
+  return fanFinderAPI
+    .get(`/api/users/${user_id}`)
+    .then((result)=>{
+      return result
+    })
+}

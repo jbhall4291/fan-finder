@@ -25,7 +25,12 @@ export const SingleChat = ({ route }) => {
   useEffect(() => {
     getChatHistoryById(chatId)
       .then((results) => {
+        console.log(results)
+        // results.forEach((result)=>{
+        //     parseInt(result._id)
+        // })
         setMessages(results);
+        console.log(loading)
         setLoading(false);
       })
       .catch((err) => {
@@ -56,36 +61,34 @@ export const SingleChat = ({ route }) => {
       enabled
       keyboardVerticalOffset={100}
     >
-      <ScrollView style={styles.container}>
+      <ScrollView key={1} style={styles.container}>
         {loading ? (
           <Text>Loading. . . </Text>
         ) : (
           messages.map((msg) => {
             if (msg.user === user) {
               return (
-                <>
-                  <Text style={styles.loggedInUser}>{msg.user}</Text>
-                  <View>
-                    <Text style={styles.loggedInUserMessage}>
+                  <View key={msg._id}>
+                  <Text  style={styles.loggedInUser}>{msg.user}</Text>
+                    <Text  style={styles.loggedInUserMessage}>
                       {msg.message}
                     </Text>
                   </View>
-                </> // android bugs here adding chat id
               );
             } else {
               return (
-                <>
-                  <Text style={styles.otherUser}>{msg.user}</Text>
-                  <Text style={styles.otherUserMessage}>{msg.message}</Text>
-                </>
+                <View msg={msg._id}>
+                  <Text  style={styles.otherUser}>{msg.user}</Text>
+                  <Text  style={styles.otherUserMessage}>{msg.message}</Text>
+                </ View>
               );
             }
             // console.log(msg)
           })
         )}
-        <View></View>
       </ScrollView>
       <TextInput
+        key={2}
         onChangeText={(text) => {
           setText(text);
         }}
@@ -94,14 +97,33 @@ export const SingleChat = ({ route }) => {
         onSubmitEditing={handlePostMessage}
         style={styles.textInput}
       ></TextInput>
-      <Button title={"send"} onPress={handlePostMessage}></Button>
+      <Button
+        key={3}
+        style={styles.sendButton} 
+        title={"send"} 
+        onPress={handlePostMessage}
+        color="#4e2e65"
+        size="lg"
+        radius="lg"
+        buttonStyle={{ width: 250 }}
+        ></Button>
     </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   textInput: {
-    height: 40,
+    height: 65,
+    padding: 15,
+    lineHeight: 15,
+    fontSize: 16,
+    backgroundColor: 'white'
+  },
+  sendButton: {
+    backgroundColor: "#7121AB",
+    borderRadius: 15,
+    borderWidth: 2,
+    borderColor: 'purple'
   },
   otherUser: {
     fontWeight: "bold",
@@ -128,7 +150,7 @@ const styles = StyleSheet.create({
   loggedInUser: {
     fontWeight: "bold",
     // backgroundColor: '#00bfff',
-    textAlign: "right",
+    alignSelf: "flex-end",
     marginTop: 10,
     fontSize: 11,
   },
