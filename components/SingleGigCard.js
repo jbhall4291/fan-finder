@@ -11,7 +11,7 @@ import {
   ScrollView,
   Linking,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import { getAllAttendees, getGigById } from "../utils/api";
 import { Button } from "@rneui/themed";
@@ -24,7 +24,7 @@ const SingleGigCard = ({ route, navigation }) => {
   const [loading, setLoading] = useState(true);
   const [userAttending, setUserAttending] = useState(false);
   const [allUsersAttending, setAllUsersAttending] = useState([]);
-  const [attendingUsersLoaded, setAttendingUsersLoaded] = useState(false)
+  const [attendingUsersLoaded, setAttendingUsersLoaded] = useState(false);
 
   const id = route.params.msg;
 
@@ -52,7 +52,7 @@ const SingleGigCard = ({ route, navigation }) => {
     getAllAttendees(gigId).then((results) => {
       console.log(results, "hi from line 48");
       setAllUsersAttending(results);
-      setAttendingUsersLoaded(true)
+      setAttendingUsersLoaded(true);
       // results.map((attendee) => {
       //   console.log(attendee.displayName + " <<<< from singlegig");
       //   setAllUsersAttending((currentUsersAttending) => {
@@ -84,19 +84,18 @@ const SingleGigCard = ({ route, navigation }) => {
   }, [gigId]);
 
   const UsersGoing = () => {
-
-if (!attendingUsersLoaded) {
-  return (
+    if (!attendingUsersLoaded) {
+      return (
         <>
           <ActivityIndicator
             style={styles.ActivityIndicator}
             size="large"
-            color="blue"
+            color="#FBFFF1"
           />
           <Text>loading fans who are going...</Text>
         </>
       );
-  }
+    }
     // if (!haveCommentsLoaded) {
     //   return (
     //     <>
@@ -148,7 +147,7 @@ if (!attendingUsersLoaded) {
     <View style={styles.screen}>
       <Text style={styles.titleText}>{gigInfo.name}</Text>
       <Text style={styles.bodyText}>Date: {gigInfo.dates.start.localDate}</Text>
-      <Text style={styles.bodyText}>Time: {gigInfo.dates.start.localTime}</Text>
+      <Text style={styles.bodyText}>Time: {gigInfo.dates.start.localTime.slice(0,5)}</Text>
       <Image
         style={styles.gigImage}
         source={{
@@ -167,16 +166,19 @@ if (!attendingUsersLoaded) {
       <View style={styles.buttonContainer}>
         {userAttending ? (
           <Button
-            color="primary"
+            color="red"
             size="lg"
             buttonStyle={{ width: 150 }}
             title="I'm going!"
             disabled="true"
+            disabledTitleStyle={{ color: "#271A31" }}
+            disabledStyle={{ backgroundColor: "white" }}
           />
         ) : (
           <Button
-            color="primary"
+            color="#271A31"
             size="lg"
+            titleStyle={{ color: "#FBFFF1" }}
             buttonStyle={{ width: 150 }}
             title="Mark as going!"
             onPress={() => {
@@ -186,8 +188,9 @@ if (!attendingUsersLoaded) {
         )}
 
         <Button
-          color="primary"
+          color="#271A31"
           size="lg"
+          titleStyle={{ color: "#FBFFF1" }}
           buttonStyle={{ width: 150 }}
           title="Go To Forum"
           onPress={() =>
@@ -212,35 +215,39 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "`#000000`",
-    marginVertical: 10,
+    backgroundColor: "#753c9e",
+    color: "#FBFFF1",
+    padding: 10
   },
 
   ScrollView: {
     width: "90%",
-    backgroundColor: "green",
+    backgroundColor: "753c9e",
   },
 
   titleText: {
-    color: "#000",
+    marginTop: 10,
+    color: "#FBFFF1",
     fontWeight: "700",
     fontSize: 20,
     textAlign: "center",
   },
   bodyText: {
-    color: "#000",
+    color: "#FBFFF1",
     fontSize: 20,
   },
   gigImage: {
     height: "30%",
-    width: "90%",
+    width: "100%",
+    borderRadius: 5,
+    
   },
   buttonContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     alignItems: "center",
-    width: "90%",
+    width: "100%",
     marginVertical: 20,
   },
   ActivityIndicator: {
