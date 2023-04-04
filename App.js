@@ -9,11 +9,11 @@ import {io} from 'socket.io-client'
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({
-    username: "testUser",
+    displayName: "testexpress",
     avatar_img_url: "https://cdn.onlinewebfonts.com/svg/img_365985.png",
   });
 
-  return isLoggedIn ? <Navigation /> : <LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>;
+  return isLoggedIn ? <Navigation /> : <LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} user={user} setUser={setUser} />;
 }
 
 const styles = StyleSheet.create({

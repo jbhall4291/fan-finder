@@ -1,16 +1,27 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { StyleSheet, Text, View, Image } from "react-native";
+import { Button } from "@rneui/themed";
 
 export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
-
   return (
     <View style={styles.layout}>
-      <Text style={styles.title}>Welcome to FanFinder!</Text>
+      <Image
+        style={styles.logo}
+        source={require("../assets/fan_finder_logo.png")}
+      />
+      <Image
+        style={styles.expressLogo}
+        source={require("../assets/team-express-logo.jpg")}
+      />
+  
       <Button
-        title="Login"
-        color="#841584"
-        onPress={() => (setIsLoggedIn(true))}
+        style={styles.button}
+        title="Continue as teamexpress"
+        color="#4e2e65"
+        size="lg"
+        radius="lg"
+        buttonStyle={{ width: 250 }}
+        onPress={() => setIsLoggedIn(true)}
       />
     </View>
   );
@@ -19,11 +30,30 @@ export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
 const styles = StyleSheet.create({
   layout: {
     flex: 1,
-    justifyContent: "center",
-    alignItem: "center",
+    alignItems: "center",
   },
-  title: {
-    fontSize: 32,
-    marginBottom: 16,
+
+  logo: {
+    resizeMode: "contain",
+    height: 350,
+    width: 350,
+    marginTop: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    // marginVertical: 20,
+  },
+  expressLogo: {
+    resizeMode: "contain",
+    height: 100,
+    width: 100,
+    marginTop: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    // marginVertical: 20,
+  },
+  button: {
+    justifyContent: "center",
+    marginVertical: 20,
+    marginTop: 10,
   },
 });

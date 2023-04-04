@@ -1,12 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Image } from "react-native";
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import { useState, useEffect } from "react";
 import { getGigs } from "../utils/api";
 
+const customMarker = require("../assets/custom_marker.png");
 
-export const Map = ({navigation}) => {
+export const Map = ({ navigation }) => {
   // check if we have the users location, so we don't immediately make the ticketmaster API call
   const [haveUserLocation, setHaveUserLocation] = useState(false);
 
@@ -75,12 +76,21 @@ export const Map = ({navigation}) => {
                   longitude: Number(gig._embedded.venues[0].location.longitude),
                 }}
               >
-                <Callout onPress={()=>navigation.navigate('SingleGigCard',{msg:`${gig.id}`})} >
-                  <Text>{gig.name}</Text>
-                  <Text>Gig id: {gig.id}</Text>
-                  <Text>Start time?</Text>
-                  <Text>Ticket price?</Text>
-                  <Text>Etc etc</Text>
+                <Image
+                  source={customMarker}
+                  style={{ height: 45, width: 45 }}
+                />
+                <Callout
+                  // style={{ height: 100, width: 160 }}
+                  style={{ width: 160 }}
+                  onPress={() =>
+                    navigation.navigate("SingleGigCard", { msg: `${gig.id}` })
+                  }
+                >
+                  <View>
+                    <Text style={styles.GigName}>{gig.name}</Text>
+                    <Text>Start time: {gig.dates.start.localTime}</Text>
+                  </View>
                 </Callout>
               </Marker>
             );
@@ -111,5 +121,9 @@ const styles = StyleSheet.create({
   map: {
     width: "100%",
     height: "100%",
+  },
+  GigName: {
+    fontWeight: "bold",
+    justifyContent: "center",
   },
 });
