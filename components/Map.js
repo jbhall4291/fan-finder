@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import { useState, useEffect } from "react";
@@ -103,7 +110,12 @@ export const Map = ({ navigation }) => {
 
   // whilst waiting for the user location to get set, display a loading message
   return (
-    <View style={styles.container}>
+    <View style={styles.LoadingContainer}>
+      <ActivityIndicator
+        style={styles.ActivityIndicator}
+        size="large"
+        color="#4e2e65"
+      />
       <Text>loading map...</Text>
     </View>
   );
@@ -128,10 +140,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   Callout: {
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    backgroundColor: '#fff',
+    flexDirection: "row",
+    alignSelf: "flex-start",
+    backgroundColor: "#fff",
     borderRadius: 6,
-    borderColor:'#ccc'
-  }
+    borderColor: "#ccc",
+  },
+  ActivityIndicator: {
+    justifyContent: "center",
+    paddingTop: "40%",
+    alignContent: "center",
+    textAlign: "center",
+    alignSelf: "center",
+  },
+  LoadingContainer: {
+    justifyContent: "center",
+    textAlign: "center",
+    alignSelf: "center",
+  },
 });

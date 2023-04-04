@@ -48,13 +48,7 @@ export const ForumCard = ({ route }) => {
     return (
       <View style={styles.ForumCardHeader}>
         <Text style={styles.ForumCardHeaderText}>This is the forum for</Text>
-        <Text style={styles.ForumCardHeaderText}>{fullGigInfo.name}</Text>
-        <Text style={styles.ForumCardHeaderText}>
-          At: {fullGigInfo._embedded.venues[0].name}
-        </Text>
-        <Text style={styles.ForumCardHeaderText}>
-          On: {fullGigInfo.dates.start.localDate}
-        </Text>
+        <Text style={styles.ForumCardHeaderTextName}>{fullGigInfo.name}</Text>
         <Text style={styles.ForumCardHeaderText}>Join the discussion!</Text>
       </View>
     );
@@ -67,7 +61,7 @@ export const ForumCard = ({ route }) => {
           <ActivityIndicator
             style={styles.ActivityIndicator}
             size="large"
-            color="blue"
+            color="#4e2e65"
           />
           <Text>loading comments...</Text>
         </>
@@ -101,10 +95,12 @@ export const ForumCard = ({ route }) => {
           style={styles.CommentTextInput}
           onChangeText={setCommentText}
           placeholder="enter your comment here"
+          placeholderTextColor="darkgrey"
           value={commentText}
           onSubmitEditing={() => submitComment()}
-          multiline={true}
-          numberOfLines={4} // necessary for android only
+
+          // multiline={true}
+          // numberOfLines={4} // necessary for android only
           // blurOnSubmit={true} // unnecessary as taken care of within submitComment via ref
         />
         <Button
@@ -113,7 +109,6 @@ export const ForumCard = ({ route }) => {
           onPress={() => {
             submitComment();
           }}
-          
           size="lg"
           buttonStyle={{
             width: 200,
@@ -137,19 +132,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#271A31",
-    color: "#FBFFF1",
+    backgroundColor: "#FBFFF1",
+    color: "black",
+    padding: 10,
   },
 
   CommentAdder: {
     backgroundColor: "#271A31",
-    borderColor: "black",
-    // borderRadius: 15,
+    // borderColor: "black",
+    borderRadius: 15,
     borderStyle: "solid",
-    borderWidth: 5,
+    // borderWidth: 5,
     width: "100%",
     alignItems: "center",
-    color: "#FBFFF1",
+    color: "black",
   },
 
   ForumCardHeader: {
@@ -159,17 +155,19 @@ const styles = StyleSheet.create({
     alignItem: "center",
     // backgroundColor: "darkgrey",
     padding: 10,
-    borderColor: "black",
-    // borderRadius: 15,
-    borderStyle: "solid",
-    borderWidth: 5,
+    // borderColor: "black",
+    borderRadius: 15,
+    backgroundColor: "#271A31",
+    marginVertical: 5,
+    // borderStyle: "solid",
+    // borderWidth: 5,
   },
 
   ForumCardHeaderText: {
     color: "#FBFFF1",
   },
   CommentTextInput: {
-    height: 80,
+    height: 40,
     width: "90%",
     margin: 5,
     paddingHorizontal: 15,
@@ -179,12 +177,13 @@ const styles = StyleSheet.create({
   },
 
   ScrollView: {
-    backgroundColor: "grey",
+    backgroundColor: "#271A31",
     width: "100%",
-    borderColor: "black",
-    // borderRadius: 15,
-    borderStyle: "solid",
-    borderWidth: 5,
+    // borderColor: "black",
+    borderRadius: 15,
+    // borderStyle: "solid",
+    // borderWidth: 5,
+    marginVertical: 5
   },
   ActivityIndicator: {
     justifyContent: "center",
@@ -193,9 +192,13 @@ const styles = StyleSheet.create({
   NoComments: {
     justifyContent: "center",
     paddingTop: "40%",
-    color: "#FBFFF1",
+    color: "#4e2e65",
   },
   CommentAdderText: {
+    color: "#FBFFF1",
+  },
+  ForumCardHeaderTextName: {
+    fontWeight: "bold",
     color: "#FBFFF1"
   }
 });

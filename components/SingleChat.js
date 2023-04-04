@@ -7,6 +7,7 @@ import {
   Button,
   ScrollView,
   KeyboardAvoidingView,
+  ActivityIndicator,
 } from "react-native";
 import { useState, useEffect } from "react";
 import { getChatHistoryById, postMessageToChat } from "../utils/api";
@@ -17,7 +18,7 @@ export const SingleChat = ({ route }) => {
   const chatId = route.params.id;
   const room = route.params.room;
   const [text, setText] = useState("");
-  const [user, setUser] = useState("Team Express");
+  const [user, setUser] = useState("Team_Express");
 
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,12 +26,12 @@ export const SingleChat = ({ route }) => {
   useEffect(() => {
     getChatHistoryById(chatId)
       .then((results) => {
-        console.log(results)
+        console.log(results);
         // results.forEach((result)=>{
         //     parseInt(result._id)
         // })
         setMessages(results);
-        console.log(loading)
+        console.log(loading);
         setLoading(false);
       })
       .catch((err) => {
@@ -63,24 +64,29 @@ export const SingleChat = ({ route }) => {
     >
       <ScrollView key={1} style={styles.container}>
         {loading ? (
-          <Text>Loading. . . </Text>
+          <View style={styles.LoadingContainer}>
+            <ActivityIndicator
+              style={styles.ActivityIndicator}
+              size="large"
+              color="#4e2e65"
+            />
+            <Text>loading conversations...</Text>
+          </View>
         ) : (
           messages.map((msg) => {
             if (msg.user === user) {
               return (
-                  <View key={msg._id}>
-                  <Text  style={styles.loggedInUser}>{msg.user}</Text>
-                    <Text  style={styles.loggedInUserMessage}>
-                      {msg.message}
-                    </Text>
-                  </View>
+                <View key={msg._id}>
+                  <Text style={styles.loggedInUser}>{msg.user}</Text>
+                  <Text style={styles.loggedInUserMessage}>{msg.message}</Text>
+                </View>
               );
             } else {
               return (
                 <View msg={msg._id}>
-                  <Text  style={styles.otherUser}>{msg.user}</Text>
-                  <Text  style={styles.otherUserMessage}>{msg.message}</Text>
-                </ View>
+                  <Text style={styles.otherUser}>{msg.user}</Text>
+                  <Text style={styles.otherUserMessage}>{msg.message}</Text>
+                </View>
               );
             }
             // console.log(msg)
@@ -99,14 +105,14 @@ export const SingleChat = ({ route }) => {
       ></TextInput>
       <Button
         key={3}
-        style={styles.sendButton} 
-        title={"send"} 
+        style={styles.sendButton}
+        title={"send"}
         onPress={handlePostMessage}
         color="#4e2e65"
         size="lg"
         radius="lg"
         buttonStyle={{ width: 250 }}
-        ></Button>
+      ></Button>
     </KeyboardAvoidingView>
   );
 };
@@ -117,13 +123,13 @@ const styles = StyleSheet.create({
     padding: 15,
     lineHeight: 15,
     fontSize: 16,
-    backgroundColor: 'white'
+    backgroundColor: "white",
   },
   sendButton: {
     backgroundColor: "#7121AB",
     borderRadius: 15,
     borderWidth: 2,
-    borderColor: 'purple'
+    borderColor: "purple",
   },
   otherUser: {
     fontWeight: "bold",
@@ -167,7 +173,7 @@ const styles = StyleSheet.create({
     borderColor: "#7121AB",
     lineHeight: 20,
     fontSize: 16,
-    shadowOffset: {width: 5, height: 5},
+    shadowOffset: { width: 5, height: 5 },
     shadowColor: "black",
   },
   container: {
@@ -176,5 +182,17 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     // backgroundColor: "#F2F1F0"
+  },
+  ActivityIndicator: {
+    justifyContent: "center",
+    paddingTop: "40%",
+    alignContent: "center",
+    textAlign: "center",
+    alignSelf: "center",
+  },
+  LoadingContainer: {
+    justifyContent: "center",
+    textAlign: "center",
+    alignSelf: "center",
   },
 });

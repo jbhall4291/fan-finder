@@ -9,7 +9,7 @@ import {io} from 'socket.io-client'
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({
-    displayName: "testexpress",
+    displayName: "Team_Express",
     avatar_img_url: "https://cdn.onlinewebfonts.com/svg/img_365985.png",
   });
 

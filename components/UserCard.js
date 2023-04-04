@@ -8,7 +8,7 @@ export const UserCard = (props) => {
     <View style={styles.UserCard}>
       <Image
         style={styles.avatarImg}
-        source={require("../assets/avatars/Jagger.png")} // temp hardcode a 'nicer' avatar
+        source={require("../assets/avatars/purpleDefault.png")} // temp hardcode a 'nicer' avatar
         // source={{ uri: `${props.avatar}` }}
       />
       <Text style={styles.Username}>{props.username}</Text>
@@ -23,17 +23,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#FBFFF1",
     padding: 10,
     // margin: 6,
-    borderColor: "#271A31",
+    // borderColor: "#271A31",
+alignSelf: "center",
     borderRadius: 15,
-    borderStyle: "solid",
-    borderWidth: 5,
-    width: "100%",
-    height: 75,
+    // borderStyle: "solid",
+    // borderWidth: 5,
+    width: "80%",
+    height: 50,
     flexDirection: "row",
     alignItems: "center",
   },
   Username: {
-    fontSize: 40,
+    fontSize: 15,
     // textAlign: "center",
     // justifyContent: "center",
     // height: 120
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
   },
 
   avatarImg: {
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
   },
 });

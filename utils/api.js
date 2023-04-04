@@ -63,7 +63,7 @@ export const postComment = ({ id, commentText }) => {
   return fanfinderAPI
     .post(`/gigs/${id}/comments`, {
       gig_id: id,
-      user: "teamexpress",
+      user: "Team_Express",
       text: commentText,
       created_at: new Date(),
     })
@@ -79,7 +79,7 @@ export const postComment = ({ id, commentText }) => {
 export const getUserGigs = () => {
   console.log("gigs");
   return fanfinderAPI
-    .get(`/users/Kate/gigs`)
+    .get(`/users/Team_Express/gigs`)
     .then((results) => {
       // console.log(results.data.gigs, "these are the users gigs");
       return results.data.gigs;
@@ -92,7 +92,7 @@ export const getUserGigs = () => {
 export const patchUserGigs = (gigId) => {
   // console.log("doing a patch to users gigs");
   return fanfinderAPI
-    .patch("/users/Kate/gigs", { gig_id: gigId })
+    .patch("/users/Team_Express/gigs", { gig_id: gigId })
     .then((result) => {
       // console.log("hi from line 92")
       return result.data;
@@ -128,7 +128,7 @@ export const getAllAttendees = (gigId) => {
 
 // fanfinder api
 
-export const getUserChatIds = (user = "Geoff") => {
+export const getUserChatIds = (user = "Team_Express") => {
 
   return fanFinderAPI
     .get(`api/users/${user}/chats`)
@@ -154,7 +154,7 @@ export const getUsersByChatId = (id = "chat-1") => {
 export const getChatHistoryById = (id = "chat-1") => {
   
   return fanFinderAPI
-  .get(`/api/users/Geoff/${id}`)
+  .get(`/api/users/Team_Express/${id}`)
   .then((results) => {
     return results.data.chat_history
   })

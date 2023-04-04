@@ -17,11 +17,19 @@ const MapPinNavigator = () => {
         component={SingleGigCard}
         options={{
           headerTitleStyle: {
-            color: "white",
+            color: "#FBFFF1",
           },
         }}
       />
-      <Stack.Screen name="ForumCard" component={ForumCard} />
+      <Stack.Screen
+        name="ForumCard"
+        component={ForumCard}
+        options={{
+          headerTitleStyle: {
+            color: "#FBFFF1",
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 };

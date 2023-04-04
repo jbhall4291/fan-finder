@@ -9,7 +9,7 @@ export const CommentCard = (props) => {
     <View style={styles.CommentCard}>
       <Image
         style={styles.avatarImg}
-        source={require("../assets/avatars/Jagger.png")} // temp hardcode a 'nicer' avatar
+        source={require("../assets/avatars/purpleDefault.png")} // temp hardcode a 'nicer' avatar
         // source={{ uri: `${props.avatar}` }}
       />
       <View style={styles.CommentTextContainer}>
@@ -27,31 +27,35 @@ const styles = StyleSheet.create({
   CommentCard: {
     justifyContent: "center",
     alignItem: "center",
-    backgroundColor: "darkgrey",
-    padding: 10,
-    margin: 6,
-    borderColor: "black",
+    backgroundColor: "#4e2e65",
+    // paddingTop: 5,
+    marginTop: 5,
+    marginHorizontal: 5,
+
     borderRadius: 15,
-    borderStyle: "solid",
-    borderWidth: 5,
     flexDirection: "row",
     alignItems: "center",
   },
   commentText: {
     fontSize: 20,
+    color: "#FBFFF1",
   },
   commentBy: {
     fontSize: 15,
+    color: "#FBFFF1",
   },
   commentTimeDate: {
     fontSize: 12,
+    color: "#FBFFF1",
   },
   avatarImg: {
-    height: 100,
-    width: 100,
+    height: 60,
+    width: 60,
+    marginVertical: 5
   },
   CommentTextContainer: {
     textAlign: "justify",
     marginLeft: 25,
+    color: "#FBFFF1"
   },
 });

@@ -11,12 +11,12 @@ export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
       />
       <Image
         style={styles.expressLogo}
-        source={require("../assets/team-express-logo.jpg")}
+        source={require("../assets/avatars/purpleDefault.png")}
       />
   
       <Button
         style={styles.button}
-        title="Continue as teamexpress"
+        title="Continue as Team_Express"
         color="#4e2e65"
         size="lg"
         radius="lg"
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     height: 350,
     width: 350,
-    marginTop: 50,
+    marginTop: 10,
     justifyContent: "center",
     alignItems: "center",
     // marginVertical: 20,
@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     height: 100,
     width: 100,
-    marginTop: 20,
+    marginTop: 40,
+    marginBottom: 25,
     justifyContent: "center",
     alignItems: "center",
     // marginVertical: 20,

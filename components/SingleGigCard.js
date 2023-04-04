@@ -53,13 +53,6 @@ const SingleGigCard = ({ route, navigation }) => {
       console.log(results, "hi from line 48");
       setAllUsersAttending(results);
       setAttendingUsersLoaded(true);
-      // results.map((attendee) => {
-      //   console.log(attendee.displayName + " <<<< from singlegig");
-      //   setAllUsersAttending((currentUsersAttending) => {
-      //     console.log(allUsersAttending, "line 54");
-      //     return [attendee.displayName, ...currentUsersAttending];
-      //   });
-      // });
     });
   };
 
@@ -96,31 +89,19 @@ const SingleGigCard = ({ route, navigation }) => {
         </>
       );
     }
-    // if (!haveCommentsLoaded) {
-    //   return (
-    //     <>
-    //       <ActivityIndicator
-    //         style={styles.ActivityIndicator}
-    //         size="large"
-    //         color="blue"
-    //       />
-    //       <Text>loading comments...</Text>
-    //     </>
-    //   );
-
-    //   // return <Text>comments loading... please wait!</Text>;
-    // } else
 
     if (allUsersAttending.length === 0) {
       return (
-        <Text>No users going... be the first!</Text>
+        <Text style={styles.NoUsersGoingText}>
+          No users going... be the first!
+        </Text>
       );
     } else {
       console.log(allUsersAttending[0].displayName, "<<<<sgc users");
       console.log(allUsersAttending.length, "arr length");
       return (
         <>
-          <Text style={styles.NoUsersText}>These users are going, get involved & post a comment</Text>
+          <Text style={styles.NoUsersText}>These fans have confirmed:</Text>
           <ScrollView style={styles.ScrollView}>
             {allUsersAttending.map((attendee) => {
               console.log(attendee, "attendee<<<<<");
@@ -155,7 +136,7 @@ const SingleGigCard = ({ route, navigation }) => {
         }}
       ></Image>
 
-      <Text style={styles.GigInfo}>Info: {gigInfo.pleaseNote}</Text>
+      <Text style={styles.GigInfo}>Interested? Then get involved!</Text>
 
       <Button
         size="lg"
@@ -172,13 +153,6 @@ const SingleGigCard = ({ route, navigation }) => {
         onPress={() => Linking.openURL(`${gigInfo.url}`)}
       />
 
-      {/* <Text
-        style={{ color: "blue" }}
-        onPress={() => Linking.openURL(`${gigInfo.url}`)}
-      >
-        Buy Tickets
-      </Text> */}
-      {/* <Text>{allUsersAttending}</Text> */}
       <View style={styles.buttonContainer}>
         {userAttending ? (
           <Button
@@ -209,7 +183,6 @@ const SingleGigCard = ({ route, navigation }) => {
         )}
 
         <Button
-          
           size="lg"
           titleStyle={{ color: "#FBFFF1" }}
           buttonStyle={{
@@ -229,7 +202,6 @@ const SingleGigCard = ({ route, navigation }) => {
       </View>
       <UsersGoing style={styles.UsersGoing} />
     </View>
-    // </ScrollView>
   );
 };
 
@@ -249,6 +221,10 @@ const styles = StyleSheet.create({
   ScrollView: {
     width: "100%",
     backgroundColor: "4e2e65",
+  },
+
+  ScrollViewGigInfo: {
+    height: 4,
   },
 
   titleText: {
@@ -279,21 +255,30 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
     width: "100%",
-    marginVertical: 20,
+    marginVertical: 10,
   },
   ActivityIndicator: {
     justifyContent: "center",
     paddingTop: "10%",
-    
   },
   LoadingText: {
     paddingTop: "10%",
     color: "#FBFFF1",
-    fontSize: 25,
+    fontSize: 15,
   },
   NoUsersText: {
-    paddingTop: "10%",
     color: "#FBFFF1",
-    fontSize: 25,
+    fontSize: 15,
+    marginTop: 20,
+    marginBottom: 10
+  },
+  NoUsersGoingText: {
+    color: "#FBFFF1",
+  },
+  GigInfoText: {
+    color: "#FBFFF1",
+  },
+  GigInfoContainer: {
+    // marginVertical: 10,
   },
 });
