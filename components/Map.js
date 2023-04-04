@@ -4,7 +4,7 @@ import MapView, { Marker, Callout, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import { useState, useEffect } from "react";
 import { getGigs } from "../utils/api";
-
+import { mapStyle } from "../mapstyles";
 const customMarker = require("../assets/custom_marker.png");
 
 export const Map = ({ navigation }) => {
@@ -59,6 +59,7 @@ export const Map = ({ navigation }) => {
           showsMyLocationButton={true}
           showsUserLocation={true}
           style={styles.map}
+          customMapStyle={mapStyle}
           initialRegion={{
             //delta values - the higher the number, the more zoomed out
             latitude: userLat,
@@ -82,7 +83,7 @@ export const Map = ({ navigation }) => {
                 />
                 <Callout
                   // style={{ height: 100, width: 160 }}
-                  style={{ width: 160 }}
+                  style={{ width: 200 }}
                   onPress={() =>
                     navigation.navigate("SingleGigCard", { msg: `${gig.id}` })
                   }
@@ -126,4 +127,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     justifyContent: "center",
   },
+  Callout: {
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    backgroundColor: '#fff',
+    borderRadius: 6,
+    borderColor:'#ccc'
+  }
 });
