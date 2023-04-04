@@ -7,11 +7,11 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   ScrollView,
   Linking,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  Image,
 } from "react-native";
 import { getAllAttendees, getGigById } from "../utils/api";
 import { Button } from "@rneui/themed";
@@ -24,7 +24,7 @@ const SingleGigCard = ({ route, navigation }) => {
   const [loading, setLoading] = useState(true);
   const [userAttending, setUserAttending] = useState(false);
   const [allUsersAttending, setAllUsersAttending] = useState([]);
-  const [attendingUsersLoaded, setAttendingUsersLoaded] = useState(false)
+  const [attendingUsersLoaded, setAttendingUsersLoaded] = useState(false);
 
   const id = route.params.msg;
 
@@ -52,7 +52,7 @@ const SingleGigCard = ({ route, navigation }) => {
     getAllAttendees(gigId).then((results) => {
       console.log(results, "hi from line 48");
       setAllUsersAttending(results);
-      setAttendingUsersLoaded(true)
+      setAttendingUsersLoaded(true);
       // results.map((attendee) => {
       //   console.log(attendee.displayName + " <<<< from singlegig");
       //   setAllUsersAttending((currentUsersAttending) => {
@@ -84,19 +84,18 @@ const SingleGigCard = ({ route, navigation }) => {
   }, [gigId]);
 
   const UsersGoing = () => {
-
-if (!attendingUsersLoaded) {
-  return (
+    if (!attendingUsersLoaded) {
+      return (
         <>
           <ActivityIndicator
             style={styles.ActivityIndicator}
             size="large"
-            color="blue"
+            color="#FBFFF1"
           />
-          <Text>loading fans who are going...</Text>
+          <Text style={styles.LoadingText}>loading fans who are going...</Text>
         </>
       );
-  }
+    }
     // if (!haveCommentsLoaded) {
     //   return (
     //     <>
@@ -114,14 +113,14 @@ if (!attendingUsersLoaded) {
 
     if (allUsersAttending.length === 0) {
       return (
-        <Text style={styles.NoComments}>No users going... be the first!</Text>
+        <Text>No users going... be the first!</Text>
       );
     } else {
       console.log(allUsersAttending[0].displayName, "<<<<sgc users");
       console.log(allUsersAttending.length, "arr length");
       return (
         <>
-          <Text>These users are going, get involved & post a comment</Text>
+          <Text style={styles.NoUsersText}>These users are going, get involved & post a comment</Text>
           <ScrollView style={styles.ScrollView}>
             {allUsersAttending.map((attendee) => {
               console.log(attendee, "attendee<<<<<");
@@ -155,30 +154,54 @@ if (!attendingUsersLoaded) {
           uri: `${gigInfo.images[0].url}`, //index 0 has the majority most relevant band image at highest resolution
         }}
       ></Image>
-      <Text></Text>
-      <Text>Info: {gigInfo.pleaseNote}</Text>
-      <Text
+
+      <Text style={styles.GigInfo}>Info: {gigInfo.pleaseNote}</Text>
+
+      <Button
+        size="lg"
+        titleStyle={{ color: "#FBFFF1" }}
+        buttonStyle={{
+          width: "100%",
+          borderColor: "#271A31",
+          backgroundColor: "#4e2e65",
+          borderWidth: 3,
+        }}
+        title="Buy Tickets"
+        disabledTitleStyle={{ color: "#271A31" }}
+        disabledStyle={{ backgroundColor: "white" }}
+        onPress={() => Linking.openURL(`${gigInfo.url}`)}
+      />
+
+      {/* <Text
         style={{ color: "blue" }}
         onPress={() => Linking.openURL(`${gigInfo.url}`)}
       >
         Buy Tickets
-      </Text>
+      </Text> */}
       {/* <Text>{allUsersAttending}</Text> */}
       <View style={styles.buttonContainer}>
         {userAttending ? (
           <Button
-            color="primary"
+            color="red"
             size="lg"
-            buttonStyle={{ width: 150 }}
+            buttonStyle={{ width: 150, borderColor: "271A31", borderWidth: 3 }}
             title="I'm going!"
             disabled="true"
+            disabledTitleStyle={{ color: "#271A31" }}
+            disabledStyle={{ backgroundColor: "white" }}
           />
         ) : (
           <Button
-            color="primary"
+            color="#4e2e65"
             size="lg"
-            buttonStyle={{ width: 150 }}
-            title="Mark as going!"
+            titleStyle={{ color: "#FBFFF1" }}
+            buttonStyle={{
+              width: 150,
+              borderColor: "#271A31",
+              backgroundColor: "#4e2e65",
+              borderWidth: 3,
+            }}
+            title="I'll be going"
             onPress={() => {
               addToUsersGigs();
             }}
@@ -186,9 +209,15 @@ if (!attendingUsersLoaded) {
         )}
 
         <Button
-          color="primary"
+          
           size="lg"
-          buttonStyle={{ width: 150 }}
+          titleStyle={{ color: "#FBFFF1" }}
+          buttonStyle={{
+            width: 150,
+            borderColor: "#271A31",
+            backgroundColor: "#4e2e65",
+            borderWidth: 3,
+          }}
           title="Go To Forum"
           onPress={() =>
             navigation.navigate("ForumCard", {
@@ -212,39 +241,59 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "`#000000`",
-    marginVertical: 10,
+    backgroundColor: "#271A31",
+    color: "#FBFFF1",
+    padding: 20,
   },
 
   ScrollView: {
-    width: "90%",
-    backgroundColor: "green",
+    width: "100%",
+    backgroundColor: "4e2e65",
   },
 
   titleText: {
-    color: "#000",
+    marginTop: 10,
+    color: "#FBFFF1",
     fontWeight: "700",
     fontSize: 20,
     textAlign: "center",
   },
   bodyText: {
-    color: "#000",
+    color: "#FBFFF1",
     fontSize: 20,
+  },
+  GigInfo: {
+    color: "#FBFFF1",
   },
   gigImage: {
     height: "30%",
-    width: "90%",
+    width: "100%",
+    borderRadius: 5,
+    borderWidth: 3,
+    borderColor: "#271A31",
+    margin: 10,
   },
   buttonContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     alignItems: "center",
-    width: "90%",
+    width: "100%",
     marginVertical: 20,
   },
   ActivityIndicator: {
     justifyContent: "center",
     paddingTop: "10%",
+    
+  },
+  LoadingText: {
+    paddingTop: "10%",
+    color: "#FBFFF1",
+    fontSize: 25,
+  },
+  NoUsersText: {
+    paddingTop: "10%",
+    color: "#FBFFF1",
+    fontSize: 25,
   },
 });

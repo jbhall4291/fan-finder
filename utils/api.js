@@ -23,7 +23,7 @@ export const getGigs = (lat, long) => {
       params: {
         apikey: apiKey,
         latlong: `${lat},${long}`,
-        radius: 150, // defaults to 25miles if not queried
+        radius: 30, // defaults to 25miles if not queried
         locale: "*",
         segmentName: "Music",
 

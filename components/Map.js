@@ -85,7 +85,7 @@ export const Map = ({ navigation }) => {
                   // style={{ height: 100, width: 160 }}
                   style={{ width: 200 }}
                   onPress={() =>
-                    navigation.navigate("SingleGigCard", { msg: `${gig.id}` })
+                    navigation.navigate("Current Gig", { msg: `${gig.id}` })
                   }
                 >
                   <View>
