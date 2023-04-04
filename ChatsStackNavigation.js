@@ -19,6 +19,11 @@ const ChatsStackNavigation = () => {
          <Stack.Screen
           name="SingleChat"
           component={SingleChat}
+          options={{
+            headerTitleStyle: {
+              color: "white",
+            },
+          }}
         />
       </Stack.Navigator>
     );

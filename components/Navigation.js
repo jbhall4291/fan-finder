@@ -5,30 +5,35 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Map } from "./Map";
 import { MapPinNavigator } from "../InnerStackNavigation";
-import { Chats } from './Chats'
-import { ChatsStackNavigation } from '../ChatsStackNavigation'
+import { Chats } from "./Chats";
+import { ChatsStackNavigation } from "../ChatsStackNavigation";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
 
 // Here is the bottom tab navigation
 
 export const Navigation = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator 
-      screenOptions={{
-        headerShown: false,
-    }}
-    initialRouteName="Home">
-        <Tab.Screen 
-        name="Home" 
-        component={MapPinNavigator} />
-         <Tab.Screen 
-        name="ChatsScreen" 
-        component={ChatsStackNavigation} />
-
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <MaterialCommunityIcons
+                name="map-search"
+                size={28}
+                color="black"
+              />
+            );
+          },
+        }}
+        initialRouteName="Home"
+      >
+        <Tab.Screen name="Home" component={MapPinNavigator} />
+        <Tab.Screen name="My Chats" component={ChatsStackNavigation} />
       </Tab.Navigator>
     </NavigationContainer>
   );
