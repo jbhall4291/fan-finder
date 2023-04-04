@@ -5,6 +5,10 @@ const ticketMasterAPI = axios.create({
   baseURL: "https://app.ticketmaster.com/discovery/v2/events",
 });
 
+const fanFinderAPI = axios.create({
+  baseURL: "https://fanfinder-api.onrender.com"
+})
+
 export const getGigs = (lat, long) => {
   // just queries with getGigs, no path
   let path = "";
@@ -36,8 +40,51 @@ export const getGigById = (gig_id) => {
     })
   }
 
-  // path, {
-  //   params: {
-  //     apiKey : {apiKey},
-  //   }
-  // }
+// fanfinder api
+
+export const getUserChatIds = (user = "Geoff") => {
+
+  return fanFinderAPI
+    .get(`api/users/${user}/chats`)
+    .then((results => {
+      console.log(results.data.chats, "api results")
+      return results.data.chats
+    }))
+
+  // return ["chat-1", "chat-2", "chat-3"];
+}
+
+export const getUsersByChatId = (id = "chat-1") => {
+// need  to stop using this endpoint
+  const chats = {
+    "chat-1": ["testUser", "Geoff"],
+    "chat-2": ["testUser", "Kate"],
+    "chat-3": ["testUser", "BlueShoes"]
+  }
+
+  return chats[id]
+}
+
+export const getChatHistoryById = (id = "chat-1") => {
+  
+  return fanFinderAPI
+  .get(`/api/users/Geoff/${id}`)
+  .then((results) => {
+    return results.data.chat_history
+  })
+}
+
+export const postMessageToChat = (message, user, chat_id) => {
+  console.log('trying to post message : ', message, user, chat_id )
+  return fanFinderAPI
+    .post(`/api/users/${user}/${chat_id}`, {"message": message})
+    .then((result)=>{
+      console.log(result.status, "<sent a message?")
+      return result
+    })
+
+}
+
+export const getSocketServerAddress = () => {
+  return 'https://fanfinder-api.onrender.com/'
+}
