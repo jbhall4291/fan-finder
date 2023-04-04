@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { useState, useEffect } from "react";
-import { getUserChatIds, getUsersByChatId } from "../utils/api";
+import { getUserChatIds, getUsersByChatId, getUserDetails } from "../utils/api";
 // import {getSocketServerAddress} from './utils/api'
 // const socketAddress = getSocketServerAddress()
 // Make sure socket server is running
@@ -32,7 +32,6 @@ export const Chats = ({navigation}) => {
     // },[])
 
     useEffect(() => {
-        console.log("use effect running")
         getUserChatIds()
         .then((results) => {
             console.log(results, "<-- results")
@@ -43,17 +42,29 @@ export const Chats = ({navigation}) => {
         })
     }, []);
 
+    useEffect(()=>{
+        if (userChatIds.length > 0) {
 
+            userChatIds.forEach((chat)=>{
+                getUsersByChatId(chat)
+                
+            })
+            
+        }
+    }, [userChatIds])
 
 
     return (
         <View>
             {
                 userChatIds.map((chat) => {
+                    
                     return (
-                        <Button 
+                        <Button
+                            key={chat} 
                             id={chat}
                             title={getUsersByChatId(chat)[1]}
+                            style={styles.chat}
                             onPress={()=>{
                                 // setRoom(chat)
                                 // joinRoom(room)
@@ -66,3 +77,9 @@ export const Chats = ({navigation}) => {
         </View>
     )
 }
+
+
+const styles = StyleSheet.create({
+    
+  });
+  
