@@ -90,14 +90,14 @@ export const Map = ({ navigation }) => {
                 />
                 <Callout
                   // style={{ height: 100, width: 160 }}
-                  style={{ width: 200 }}
+                  style={{ width: 150, backgroundColor: "#FBFFF1" }}
                   onPress={() =>
                     navigation.navigate("Current Gig", { msg: `${gig.id}` })
                   }
                 >
                   <View>
                     <Text style={styles.GigName}>{gig.name}</Text>
-                    <Text>Start time: {gig.dates.start.localTime}</Text>
+                    <Text style={styles.GigStart}>Start time: {gig.dates.start.localTime.slice(0,5)}</Text>
                   </View>
                 </Callout>
               </Marker>
@@ -138,12 +138,20 @@ const styles = StyleSheet.create({
   GigName: {
     fontWeight: "bold",
     justifyContent: "center",
+    textAlign: "center",
+    color: "#271A31"
   },
+  GigStart: {
+    justifyContent: "center",
+    textAlign: "center",
+    color: "#271A31"
+  },
+
   Callout: {
     flexDirection: "row",
     alignSelf: "flex-start",
     backgroundColor: "#fff",
-    borderRadius: 6,
+    borderRadius: 10,
     borderColor: "#ccc",
   },
   ActivityIndicator: {

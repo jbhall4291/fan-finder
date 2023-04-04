@@ -92,16 +92,13 @@ const SingleGigCard = ({ route, navigation }) => {
 
     if (allUsersAttending.length === 0) {
       return (
-        <Text style={styles.NoUsersGoingText}>
-          No users going... be the first!
-        </Text>
+        <Text style={styles.NoUsersGoingText}>None yet... be the first!</Text>
       );
     } else {
       console.log(allUsersAttending[0].displayName, "<<<<sgc users");
       console.log(allUsersAttending.length, "arr length");
       return (
         <>
-          <Text style={styles.NoUsersText}>These fans have confirmed:</Text>
           <ScrollView style={styles.ScrollView}>
             {allUsersAttending.map((attendee) => {
               console.log(attendee, "attendee<<<<<");
@@ -127,29 +124,29 @@ const SingleGigCard = ({ route, navigation }) => {
     // <ScrollView style={styles.screen}>
     <View style={styles.screen}>
       <Text style={styles.titleText}>{gigInfo.name}</Text>
-      <Text style={styles.bodyText}>Date: {gigInfo.dates.start.localDate}</Text>
-      <Text style={styles.bodyText}>Time: {gigInfo.dates.start.localTime}</Text>
+      <Text style={styles.bodyText}>On: {gigInfo.dates.start.localDate}</Text>
+      <Text style={styles.bodyText}>
+        Starts At: {gigInfo.dates.start.localTime.slice(0, 5)}
+      </Text>
       <Image
         style={styles.gigImage}
         source={{
           uri: `${gigInfo.images[0].url}`, //index 0 has the majority most relevant band image at highest resolution
         }}
       ></Image>
-
       <Text style={styles.GigInfo}>Interested? Then get involved!</Text>
 
       <Button
         size="lg"
         titleStyle={{ color: "#FBFFF1" }}
         buttonStyle={{
-          width: "100%",
+          width: 325,
           borderColor: "#271A31",
           backgroundColor: "#4e2e65",
           borderWidth: 3,
+          borderRadius: 10,
         }}
         title="Buy Tickets"
-        disabledTitleStyle={{ color: "#271A31" }}
-        disabledStyle={{ backgroundColor: "white" }}
         onPress={() => Linking.openURL(`${gigInfo.url}`)}
       />
 
@@ -158,7 +155,12 @@ const SingleGigCard = ({ route, navigation }) => {
           <Button
             color="red"
             size="lg"
-            buttonStyle={{ width: 150, borderColor: "271A31", borderWidth: 3 }}
+            buttonStyle={{
+              width: 150,
+              borderColor: "271A31",
+              borderWidth: 3,
+              borderRadius: 10,
+            }}
             title="I'm going!"
             disabled="true"
             disabledTitleStyle={{ color: "#271A31" }}
@@ -174,6 +176,7 @@ const SingleGigCard = ({ route, navigation }) => {
               borderColor: "#271A31",
               backgroundColor: "#4e2e65",
               borderWidth: 3,
+              borderRadius: 10,
             }}
             title="I'll be going"
             onPress={() => {
@@ -190,6 +193,7 @@ const SingleGigCard = ({ route, navigation }) => {
             borderColor: "#271A31",
             backgroundColor: "#4e2e65",
             borderWidth: 3,
+            borderRadius: 10,
           }}
           title="Go To Forum"
           onPress={() =>
@@ -200,6 +204,7 @@ const SingleGigCard = ({ route, navigation }) => {
           }
         />
       </View>
+      <Text style={styles.ConfirmedText}>These fans have confirmed:</Text>
       <UsersGoing style={styles.UsersGoing} />
     </View>
   );
@@ -215,7 +220,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#271A31",
     color: "#FBFFF1",
-    padding: 20,
+    padding: 10,
   },
 
   ScrollView: {
@@ -240,14 +245,13 @@ const styles = StyleSheet.create({
   },
   GigInfo: {
     color: "#FBFFF1",
+    marginBottom: 10
   },
   gigImage: {
     height: "30%",
     width: "100%",
-    borderRadius: 5,
-    borderWidth: 3,
-    borderColor: "#271A31",
-    margin: 10,
+    borderRadius: 10,
+    marginVertical: 10,
   },
   buttonContainer: {
     flexDirection: "row",
@@ -255,7 +259,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
     width: "100%",
-    marginVertical: 10,
+    marginTop: 10,
+    marginBottom: 20
   },
   ActivityIndicator: {
     justifyContent: "center",
@@ -270,13 +275,20 @@ const styles = StyleSheet.create({
     color: "#FBFFF1",
     fontSize: 15,
     marginTop: 20,
-    marginBottom: 10
+    marginBottom: 10,
   },
   NoUsersGoingText: {
     color: "#FBFFF1",
+    marginTop: 20,
+    fontStyle: "italic"
   },
   GigInfoText: {
     color: "#FBFFF1",
+  },
+  ConfirmedText: {
+    color: "#FBFFF1",
+    marginTop: 10,
+    marginBottom: 5,
   },
   GigInfoContainer: {
     // marginVertical: 10,
