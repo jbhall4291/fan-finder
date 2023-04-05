@@ -11,7 +11,11 @@ const Stack = createStackNavigator(); // creates object for Stack Navigator
 
 const ChatsStackNavigation = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{
+      headerStyle: {
+        backgroundColor: "#FBFFF1",
+      },
+    }}>
       <Stack.Screen
         name="My Chats"
         component={Chats}

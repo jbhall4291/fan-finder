@@ -164,7 +164,7 @@ const SingleGigCard = ({ route, navigation }) => {
             title="I'm going!"
             disabled="true"
             disabledTitleStyle={{ color: "#271A31" }}
-            disabledStyle={{ backgroundColor: "white" }}
+            disabledStyle={{ backgroundColor: "#FBFFF1" }}
           />
         ) : (
           <Button

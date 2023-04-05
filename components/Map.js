@@ -90,7 +90,7 @@ export const Map = ({ navigation }) => {
                 />
                 <Callout
                   // style={{ height: 100, width: 160 }}
-                  style={{ width: 150, backgroundColor: "#FBFFF1" }}
+                  style={{ width: 150, backgroundColor: "white" }}
                   onPress={() =>
                     navigation.navigate("Current Gig", { msg: `${gig.id}` })
                   }
