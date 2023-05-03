@@ -90,7 +90,7 @@ const SingleGigCard = ({ route, navigation }) => {
       );
     }
 
-    else if (allUsersAttending.length === 0) {
+    else if (allUsersAttending?.length === 0) {
       return (
         <Text style={styles.NoUsersGoingText}>None yet... be the first!</Text>
       );
