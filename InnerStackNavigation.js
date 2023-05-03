@@ -10,8 +10,30 @@ const Stack = createStackNavigator(); // creates object for Stack Navigator
 
 const MapPinNavigator = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Map" component={Map} />
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#FBFFF1",
+        },
+      }}
+    >
+      <Stack.Screen
+        name="Select A Gig"
+        component={Map}
+        options={{
+          headerTitleStyle: {
+            color: "#4e2e65",
+            fontWeight: "bold",
+            fontSize: 18,
+          },
+          headerBackTitleStyle: {
+            fontWeight: "bold",
+            fontSize: 18,
+            color: "#4e2e65",
+          },
+          headerTintColor: "#4e2e65",
+        }}
+      />
       <Stack.Screen
         name="Current Gig"
         component={SingleGigCard}
@@ -19,6 +41,12 @@ const MapPinNavigator = () => {
           headerTitleStyle: {
             color: "#FBFFF1",
           },
+          headerBackTitleStyle: {
+            fontWeight: "bold",
+            fontSize: 18,
+            color: "#4e2e65",
+          },
+          headerTintColor: "#4e2e65",
         }}
       />
       <Stack.Screen
@@ -28,8 +56,15 @@ const MapPinNavigator = () => {
           headerTitleStyle: {
             color: "#FBFFF1",
           },
+          headerBackTitleStyle: {
+            fontWeight: "bold",
+            fontSize: 18,
+            color: "#4e2e65",
+          },
+          headerTintColor: "#4e2e65",
         }}
       />
+      
     </Stack.Navigator>
   );
 };

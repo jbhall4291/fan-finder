@@ -27,26 +27,26 @@ const styles = StyleSheet.create({
   CommentCard: {
     justifyContent: "center",
     alignItem: "center",
-    backgroundColor: "#4e2e65",
+    backgroundColor: "#FBFFF1",
     // paddingTop: 5,
     marginTop: 5,
     marginHorizontal: 5,
 
-    borderRadius: 15,
+    borderRadius: 10,
     flexDirection: "row",
     alignItems: "center",
   },
   commentText: {
     fontSize: 20,
-    color: "#FBFFF1",
+    color: "#271A31",
   },
   commentBy: {
     fontSize: 15,
-    color: "#FBFFF1",
+    color: "#271A31",
   },
   commentTimeDate: {
     fontSize: 12,
-    color: "#FBFFF1",
+    color: "#271A31",
   },
   avatarImg: {
     height: 60,

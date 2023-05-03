@@ -61,7 +61,7 @@ export const ForumCard = ({ route }) => {
           <ActivityIndicator
             style={styles.ActivityIndicator}
             size="large"
-            color="#4e2e65"
+            color="#FBFFF1"
           />
           <Text>loading comments...</Text>
         </>
@@ -88,39 +88,37 @@ export const ForumCard = ({ route }) => {
   return (
     <View style={styles.screen}>
       <ForumCardHeader />
-      <View style={styles.CommentAdder}>
-        <TextInput
-          styles={styles.CommentAdderText}
-          ref={commentInputBoxRef}
-          style={styles.CommentTextInput}
-          onChangeText={setCommentText}
-          placeholder="enter your comment here"
-          placeholderTextColor="darkgrey"
-          value={commentText}
-          onSubmitEditing={() => submitComment()}
 
-          // multiline={true}
-          // numberOfLines={4} // necessary for android only
-          // blurOnSubmit={true} // unnecessary as taken care of within submitComment via ref
-        />
-        <Button
-          title="POST COMMENT!"
-          color="#4e2e65"
-          onPress={() => {
-            submitComment();
-          }}
-          size="lg"
-          buttonStyle={{
-            width: 200,
-            // backgroundColor: "blue"
-          }}
-          containerStyle={{
-            width: 200,
-            marginHorizontal: 0,
-            marginVertical: 10,
-          }}
-        />
-      </View>
+      <TextInput
+        style={styles.CommentAdderText}
+        ref={commentInputBoxRef}
+        onChangeText={setCommentText}
+        placeholder="enter your comment here"
+        placeholderTextColor="#271A31"
+        value={commentText}
+        onSubmitEditing={() => submitComment()}
+        // multiline={true}
+        // numberOfLines={4} // necessary for android only
+        // blurOnSubmit={true} // unnecessary as taken care of within submitComment via ref
+      />
+      <Button
+        title="POST COMMENT!"
+        color="#4e2e65"
+        onPress={() => {
+          submitComment();
+        }}
+        size="lg"
+        buttonStyle={{
+          width: 200,
+          height: 60
+          // backgroundColor: "blue"
+        }}
+        containerStyle={{
+          width: 200,
+          marginHorizontal: 0,
+          marginVertical: 10,
+        }}
+      />
 
       <CommentsDisplayer />
     </View>
@@ -132,20 +130,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#FBFFF1",
-    color: "black",
+    backgroundColor: "#271A31",
     padding: 10,
   },
 
   CommentAdder: {
-    backgroundColor: "#271A31",
-    // borderColor: "black",
-    borderRadius: 15,
-    borderStyle: "solid",
-    // borderWidth: 5,
+    backgroundColor: "green",
     width: "100%",
     alignItems: "center",
-    color: "black",
   },
 
   ForumCardHeader: {
@@ -156,34 +148,34 @@ const styles = StyleSheet.create({
     // backgroundColor: "darkgrey",
     padding: 10,
     // borderColor: "black",
-    borderRadius: 15,
+    borderRadius: 10,
     backgroundColor: "#271A31",
     marginVertical: 5,
     // borderStyle: "solid",
     // borderWidth: 5,
+    
   },
 
   ForumCardHeaderText: {
     color: "#FBFFF1",
+    
+    fontSize: 20,
   },
-  CommentTextInput: {
-    height: 40,
-    width: "90%",
-    margin: 5,
-    paddingHorizontal: 15,
-    paddingTop: 15,
-    backgroundColor: "#271A31",
+
+  ForumCardHeaderTextName: {
+    fontWeight: "bold",
     color: "#FBFFF1",
+    fontSize: 28,
   },
 
   ScrollView: {
     backgroundColor: "#271A31",
     width: "100%",
     // borderColor: "black",
-    borderRadius: 15,
+    borderRadius: 10,
     // borderStyle: "solid",
     // borderWidth: 5,
-    marginVertical: 5
+    marginVertical: 5,
   },
   ActivityIndicator: {
     justifyContent: "center",
@@ -192,13 +184,14 @@ const styles = StyleSheet.create({
   NoComments: {
     justifyContent: "center",
     paddingTop: "40%",
-    color: "#4e2e65",
+    color: "#FBFFF1",
+    fontStyle: "italic",
   },
   CommentAdderText: {
-    color: "#FBFFF1",
+    backgroundColor: "#FBFFF1",
+    padding: 10,
+    width: "90%",
+    borderRadius: 5,
   },
-  ForumCardHeaderTextName: {
-    fontWeight: "bold",
-    color: "#FBFFF1"
-  }
+
 });
