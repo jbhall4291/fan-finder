@@ -117,7 +117,7 @@ export const Map = ({ navigation }) => {
         size="large"
         color="#4b006e"
       />
-      <Text>loading map...</Text>
+      <Text style={styles.LoadingText}>loading map...</Text>
     </View>
   );
 };
@@ -166,5 +166,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
     alignSelf: "center",
+    
   },
+  LoadingText: {
+    color: "#4b006e"
+  }
 });

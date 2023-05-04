@@ -14,7 +14,7 @@ const ChatsStackNavigation = () => {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ffffff",
+          backgroundColor: "#4b006e",
         },
       }}
     >
@@ -23,16 +23,16 @@ const ChatsStackNavigation = () => {
         component={Chats}
         options={{
           headerTitleStyle: {
-            color: "#4b006e",
+            color: "white",
             fontWeight: "bold",
             fontSize: 18,
           },
           headerBackTitleStyle: {
             fontWeight: "bold",
             fontSize: 18,
-            color: "#4b006e",
+            color: "white",
           },
-          headerTintColor: "#4b006e",
+          headerTintColor: "white",
         }}
       />
       <Stack.Screen
@@ -45,9 +45,9 @@ const ChatsStackNavigation = () => {
           headerBackTitleStyle: {
             fontWeight: "bold",
             fontSize: 18,
-            color: "#4b006e",
+            color: "white",
           },
-          headerTintColor: "#4b006e",
+          headerTintColor: "white",
         }}
       />
     </Stack.Navigator>

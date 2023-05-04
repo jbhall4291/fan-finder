@@ -61,7 +61,7 @@ export const ForumCard = ({ route }) => {
           <ActivityIndicator
             style={styles.ActivityIndicator}
             size="large"
-            color="#ffffff"
+            color="4b006e"
           />
           <Text>loading comments...</Text>
         </>
@@ -130,8 +130,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#4b006e",
+    backgroundColor: "white",
     padding: 10,
+    color: "#4b006e"
   },
 
   CommentAdder: {
@@ -145,26 +146,29 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItem: "center",
-    // backgroundColor: "darkgrey",
+    
     padding: 10,
-    // borderColor: "black",
+    borderColor: "#4b006e",
     borderRadius: 10,
-    backgroundColor: "#4b006e",
+    backgroundColor: "white",
     marginVertical: 5,
-    // borderStyle: "solid",
-    // borderWidth: 5,
+    borderStyle: "solid",
+    borderWidth: 2,
   },
 
   ForumCardHeaderText: {
-    color: "#ffffff",
+    color: "#4b006e",
 
     fontSize: 20,
   },
 
   ForumCardHeaderTextName: {
     fontWeight: "bold",
-    color: "#ffffff",
-    fontSize: 28,
+    color: "#4b006e",
+    fontSize: 24,
+    // justifyContent: "center",
+    // alignItem: "center",
+
   },
 
   ScrollView: {
@@ -183,11 +187,11 @@ const styles = StyleSheet.create({
   NoComments: {
     justifyContent: "center",
     paddingTop: "40%",
-    color: "#ffffff",
+    color: "#4b006e",
     fontStyle: "italic",
   },
   CommentAdderText: {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#4b006efff",
     padding: 10,
     width: "90%",
     borderRadius: 5,

@@ -63,7 +63,7 @@ export const Chats = ({ navigation }) => {
               id={chat}
               title={getUsersByChatId(chat)[1]}
               style={styles.chatButtonInner}
-              color="#ffffff"
+              color="white"
               titleStyle={{
                 color: "#4b006e",
               }}
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     color: "#4b006e",
   },
   chatContainer: {
-    backgroundColor: "#4b006e",
+    backgroundColor: "white",
     height: "100%",
   },
   chatButtonInner: {
