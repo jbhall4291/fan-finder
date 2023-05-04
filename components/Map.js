@@ -66,7 +66,7 @@ export const Map = ({ navigation }) => {
           showsMyLocationButton={true}
           showsUserLocation={true}
           style={styles.map}
-          customMapStyle={mapStyle}
+          // customMapStyle={mapStyle}
           initialRegion={{
             //delta values - the higher the number, the more zoomed out
             latitude: userLat,
