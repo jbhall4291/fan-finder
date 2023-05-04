@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
   UserCard: {
     // justifyContent: "flex-start",
     // alignItem: "",
-    backgroundColor: "#FBFFF1",
+    backgroundColor: "#ffffff",
     padding: 10,
     // margin: 6,
     // borderColor: "#271A31",
-alignSelf: "center",
+    alignSelf: "center",
     borderRadius: 10,
     // borderStyle: "solid",
     // borderWidth: 5,

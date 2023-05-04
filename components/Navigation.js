@@ -23,14 +23,14 @@ export const Navigation = () => {
         screenOptions={({ route }) => ({
           tabBarLabel: route.name,
           tabBarStyle: {
-            backgroundColor: "#FBFFF1",
+            backgroundColor: "#ffffff",
             height: 85,
           },
           tabBarLabelStyle: {
             fontSize: 18,
             fontWeight: "bold",
             color: "#4e2e65",
-            backgroundColor: "#FBFFF1",
+            backgroundColor: "#ffffff",
           },
         })}
 

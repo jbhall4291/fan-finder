@@ -83,14 +83,12 @@ const SingleGigCard = ({ route, navigation }) => {
           <ActivityIndicator
             style={styles.ActivityIndicator}
             size="large"
-            color="#FBFFF1"
+            color="#ffffff"
           />
           <Text style={styles.LoadingText}>loading fans who are going...</Text>
         </>
       );
-    }
-
-    else if (allUsersAttending?.length === 0) {
+    } else if (allUsersAttending?.length === 0) {
       return (
         <Text style={styles.NoUsersGoingText}>None yet... be the first!</Text>
       );
@@ -138,7 +136,7 @@ const SingleGigCard = ({ route, navigation }) => {
 
       <Button
         size="lg"
-        titleStyle={{ color: "#FBFFF1" }}
+        titleStyle={{ color: "#ffffff" }}
         buttonStyle={{
           width: 325,
           borderColor: "#271A31",
@@ -164,13 +162,13 @@ const SingleGigCard = ({ route, navigation }) => {
             title="I'm going!"
             disabled="true"
             disabledTitleStyle={{ color: "#271A31" }}
-            disabledStyle={{ backgroundColor: "#FBFFF1" }}
+            disabledStyle={{ backgroundColor: "#ffffff" }}
           />
         ) : (
           <Button
             color="#4e2e65"
             size="lg"
-            titleStyle={{ color: "#FBFFF1" }}
+            titleStyle={{ color: "#ffffff" }}
             buttonStyle={{
               width: 150,
               borderColor: "#271A31",
@@ -187,7 +185,7 @@ const SingleGigCard = ({ route, navigation }) => {
 
         <Button
           size="lg"
-          titleStyle={{ color: "#FBFFF1" }}
+          titleStyle={{ color: "#ffffff" }}
           buttonStyle={{
             width: 150,
             borderColor: "#271A31",
@@ -219,7 +217,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: "#271A31",
-    color: "#FBFFF1",
+    color: "#ffffff",
     padding: 10,
   },
 
@@ -234,18 +232,18 @@ const styles = StyleSheet.create({
 
   titleText: {
     marginTop: 10,
-    color: "#FBFFF1",
+    color: "#ffffff",
     fontWeight: "700",
     fontSize: 20,
     textAlign: "center",
   },
   bodyText: {
-    color: "#FBFFF1",
+    color: "#ffffff",
     fontSize: 20,
   },
   GigInfo: {
-    color: "#FBFFF1",
-    marginBottom: 10
+    color: "#ffffff",
+    marginBottom: 10,
   },
   gigImage: {
     height: "30%",
@@ -260,7 +258,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     marginTop: 10,
-    marginBottom: 20
+    marginBottom: 20,
   },
   ActivityIndicator: {
     justifyContent: "center",
@@ -268,25 +266,25 @@ const styles = StyleSheet.create({
   },
   LoadingText: {
     paddingTop: "10%",
-    color: "#FBFFF1",
+    color: "#ffffff",
     fontSize: 15,
   },
   NoUsersText: {
-    color: "#FBFFF1",
+    color: "#ffffff",
     fontSize: 15,
     marginTop: 20,
     marginBottom: 10,
   },
   NoUsersGoingText: {
-    color: "#FBFFF1",
+    color: "#ffffff",
     marginTop: 20,
-    fontStyle: "italic"
+    fontStyle: "italic",
   },
   GigInfoText: {
-    color: "#FBFFF1",
+    color: "#ffffff",
   },
   ConfirmedText: {
-    color: "#FBFFF1",
+    color: "#ffffff",
     marginTop: 10,
     marginBottom: 5,
   },

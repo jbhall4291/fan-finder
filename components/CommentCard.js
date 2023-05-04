@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   CommentCard: {
     justifyContent: "center",
     alignItem: "center",
-    backgroundColor: "#FBFFF1",
+    backgroundColor: "#ffffff",
     // paddingTop: 5,
     marginTop: 5,
     marginHorizontal: 5,
@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
   avatarImg: {
     height: 60,
     width: 60,
-    marginVertical: 5
+    marginVertical: 5,
   },
   CommentTextContainer: {
     textAlign: "justify",
     marginLeft: 25,
-    color: "#FBFFF1"
+    color: "#ffffff",
   },
 });

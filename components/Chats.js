@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, Image} from "react-native";
-import { Button } from "@rneui/base"
+import { StyleSheet, Text, View, Image } from "react-native";
+import { Button } from "@rneui/base";
 import { useState, useEffect } from "react";
 import { getUserChatIds, getUsersByChatId, getUserDetails } from "../utils/api";
 // import {getSocketServerAddress} from './utils/api'
@@ -63,9 +63,9 @@ export const Chats = ({ navigation }) => {
               id={chat}
               title={getUsersByChatId(chat)[1]}
               style={styles.chatButtonInner}
-              color="#FBFFF1"
+              color="#ffffff"
               titleStyle={{
-                color: "#4e2e65"
+                color: "#4e2e65",
               }}
               onPress={() => {
                 // setRoom(chat)
@@ -81,29 +81,29 @@ export const Chats = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    avatarImg: {
-        height: 50,
-        width: 50,
-      },
-    chatButton: {
-        display: "flex",
-        flexDirection: "row",
-        marginTop: 20,
-        marginLeft: 15,
-        marginRight: 15,
-        borderWidth: 1,
-        paddingLeft: 10,
-        paddingTop: 10,
-        paddingBottom:10,
-        backgroundColor: "#FBFFF1",
-        borderRadius: 10,
-        color: "#4e2e65"
-    },
-    chatContainer: {
-        backgroundColor: "#271A31",
-        height: "100%"
-    },
-    chatButtonInner: {
-        color: "#4e2e65"
-    }
+  avatarImg: {
+    height: 50,
+    width: 50,
+  },
+  chatButton: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: 20,
+    marginLeft: 15,
+    marginRight: 15,
+    borderWidth: 1,
+    paddingLeft: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: "#ffffff",
+    borderRadius: 10,
+    color: "#4e2e65",
+  },
+  chatContainer: {
+    backgroundColor: "#271A31",
+    height: "100%",
+  },
+  chatButtonInner: {
+    color: "#4e2e65",
+  },
 });

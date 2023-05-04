@@ -61,7 +61,7 @@ export const ForumCard = ({ route }) => {
           <ActivityIndicator
             style={styles.ActivityIndicator}
             size="large"
-            color="#FBFFF1"
+            color="#ffffff"
           />
           <Text>loading comments...</Text>
         </>
@@ -110,7 +110,7 @@ export const ForumCard = ({ route }) => {
         size="lg"
         buttonStyle={{
           width: 200,
-          height: 60
+          height: 60,
           // backgroundColor: "blue"
         }}
         containerStyle={{
@@ -153,18 +153,17 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     // borderStyle: "solid",
     // borderWidth: 5,
-    
   },
 
   ForumCardHeaderText: {
-    color: "#FBFFF1",
-    
+    color: "#ffffff",
+
     fontSize: 20,
   },
 
   ForumCardHeaderTextName: {
     fontWeight: "bold",
-    color: "#FBFFF1",
+    color: "#ffffff",
     fontSize: 28,
   },
 
@@ -184,14 +183,13 @@ const styles = StyleSheet.create({
   NoComments: {
     justifyContent: "center",
     paddingTop: "40%",
-    color: "#FBFFF1",
+    color: "#ffffff",
     fontStyle: "italic",
   },
   CommentAdderText: {
-    backgroundColor: "#FBFFF1",
+    backgroundColor: "#ffffff",
     padding: 10,
     width: "90%",
     borderRadius: 5,
   },
-
 });

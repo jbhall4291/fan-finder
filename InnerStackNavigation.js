@@ -13,7 +13,7 @@ const MapPinNavigator = () => {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#FBFFF1",
+          backgroundColor: "#ffffff",
         },
       }}
     >
@@ -39,7 +39,7 @@ const MapPinNavigator = () => {
         component={SingleGigCard}
         options={{
           headerTitleStyle: {
-            color: "#FBFFF1",
+            color: "#ffffff",
           },
           headerBackTitleStyle: {
             fontWeight: "bold",
@@ -54,7 +54,7 @@ const MapPinNavigator = () => {
         component={ForumCard}
         options={{
           headerTitleStyle: {
-            color: "#FBFFF1",
+            color: "#ffffff",
           },
           headerBackTitleStyle: {
             fontWeight: "bold",
@@ -64,7 +64,6 @@ const MapPinNavigator = () => {
           headerTintColor: "#4e2e65",
         }}
       />
-      
     </Stack.Navigator>
   );
 };
