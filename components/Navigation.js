@@ -23,14 +23,14 @@ export const Navigation = () => {
         screenOptions={({ route }) => ({
           tabBarLabel: route.name,
           tabBarStyle: {
-            backgroundColor: "#ffffff",
+            backgroundColor: "#4b006e",
             height: 85,
           },
           tabBarLabelStyle: {
             fontSize: 18,
             fontWeight: "bold",
-            color: "#4b006e",
-            backgroundColor: "#ffffff",
+            color: "white",
+            backgroundColor: "#4b006e",
           },
         })}
 
@@ -58,7 +58,7 @@ export const Navigation = () => {
                 <MaterialCommunityIcons
                   name="map-search"
                   size={28}
-                  color="#4b006e"
+                  color="white"
                 />
               );
             },
@@ -71,7 +71,8 @@ export const Navigation = () => {
             headerShown: false,
             tabBarIcon: ({ focused, color, size }) => {
               return (
-                <FontAwesome5 name="rocketchat" size={26} color="#4b006e" />
+                // <FontAwesome5 name="rocketchat" size={26} color="#4b006e" />
+                <FontAwesome5 name="rocketchat" size={26} color="white" />
               );
             },
           }}
@@ -83,7 +84,8 @@ export const Navigation = () => {
             headerShown: false,
             tabBarIcon: ({ focused, color, size }) => {
               return (
-                <FontAwesome name="user-circle-o" size={28} color="#4b006e" />
+                // <FontAwesome name="user-circle-o" size={28} color="#4b006e" />
+                <FontAwesome name="user-circle-o" size={28} color="white" />
               );
             },
           }}

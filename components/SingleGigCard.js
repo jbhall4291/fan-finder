@@ -83,7 +83,7 @@ const SingleGigCard = ({ route, navigation }) => {
           <ActivityIndicator
             style={styles.ActivityIndicator}
             size="large"
-            color="#ffffff"
+            color="#4b006e"
           />
           <Text style={styles.LoadingText}>loading fans who are going...</Text>
         </>
@@ -136,8 +136,9 @@ const SingleGigCard = ({ route, navigation }) => {
 
       <Button
         size="lg"
-        titleStyle={{ color: "#ffffff" }}
+        titleStyle={{ color: "white" }}
         buttonStyle={{
+          
           width: 325,
           borderColor: "#4b006e",
           backgroundColor: "#4b006e",
@@ -166,7 +167,7 @@ const SingleGigCard = ({ route, navigation }) => {
           />
         ) : (
           <Button
-            color="#4b006e"
+            color="white"
             size="lg"
             titleStyle={{ color: "#ffffff" }}
             buttonStyle={{
@@ -185,7 +186,7 @@ const SingleGigCard = ({ route, navigation }) => {
 
         <Button
           size="lg"
-          titleStyle={{ color: "#ffffff" }}
+          titleStyle={{ color: "white" }}
           buttonStyle={{
             width: 150,
             borderColor: "#4b006e",
@@ -216,8 +217,8 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#4b006e",
-    color: "#ffffff",
+    backgroundColor: "white",
+    color: "#4b006e",
     padding: 10,
   },
 
@@ -232,17 +233,17 @@ const styles = StyleSheet.create({
 
   titleText: {
     marginTop: 10,
-    color: "#ffffff",
+    color: "#4b006e",
     fontWeight: "700",
     fontSize: 20,
     textAlign: "center",
   },
   bodyText: {
-    color: "#ffffff",
+    color: "#4b006e",
     fontSize: 20,
   },
   GigInfo: {
-    color: "#ffffff",
+    color: "#4b006e",
     marginBottom: 10,
   },
   gigImage: {
@@ -266,25 +267,25 @@ const styles = StyleSheet.create({
   },
   LoadingText: {
     paddingTop: "10%",
-    color: "#ffffff",
+    color: "#4b006e",
     fontSize: 15,
   },
   NoUsersText: {
-    color: "#ffffff",
+    color: "#4b006e",
     fontSize: 15,
     marginTop: 20,
     marginBottom: 10,
   },
   NoUsersGoingText: {
-    color: "#ffffff",
+    color: "#4b006e",
     marginTop: 20,
     fontStyle: "italic",
   },
   GigInfoText: {
-    color: "#ffffff",
+    color: "#4b006e",
   },
   ConfirmedText: {
-    color: "#ffffff",
+    color: "#4b006e",
     marginTop: 10,
     marginBottom: 5,
   },
