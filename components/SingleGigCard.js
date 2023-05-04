@@ -139,8 +139,8 @@ const SingleGigCard = ({ route, navigation }) => {
         titleStyle={{ color: "#ffffff" }}
         buttonStyle={{
           width: 325,
-          borderColor: "#271A31",
-          backgroundColor: "#4e2e65",
+          borderColor: "#4b006e",
+          backgroundColor: "#4b006e",
           borderWidth: 3,
           borderRadius: 10,
         }}
@@ -155,24 +155,24 @@ const SingleGigCard = ({ route, navigation }) => {
             size="lg"
             buttonStyle={{
               width: 150,
-              borderColor: "271A31",
+              borderColor: "4b006e",
               borderWidth: 3,
               borderRadius: 10,
             }}
             title="I'm going!"
             disabled="true"
-            disabledTitleStyle={{ color: "#271A31" }}
+            disabledTitleStyle={{ color: "#4b006e" }}
             disabledStyle={{ backgroundColor: "#ffffff" }}
           />
         ) : (
           <Button
-            color="#4e2e65"
+            color="#4b006e"
             size="lg"
             titleStyle={{ color: "#ffffff" }}
             buttonStyle={{
               width: 150,
-              borderColor: "#271A31",
-              backgroundColor: "#4e2e65",
+              borderColor: "#4b006e",
+              backgroundColor: "#4b006e",
               borderWidth: 3,
               borderRadius: 10,
             }}
@@ -188,8 +188,8 @@ const SingleGigCard = ({ route, navigation }) => {
           titleStyle={{ color: "#ffffff" }}
           buttonStyle={{
             width: 150,
-            borderColor: "#271A31",
-            backgroundColor: "#4e2e65",
+            borderColor: "#4b006e",
+            backgroundColor: "#4b006e",
             borderWidth: 3,
             borderRadius: 10,
           }}
@@ -216,14 +216,14 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#271A31",
+    backgroundColor: "#4b006e",
     color: "#ffffff",
     padding: 10,
   },
 
   ScrollView: {
     width: "100%",
-    backgroundColor: "4e2e65",
+    backgroundColor: "4b006e",
   },
 
   ScrollViewGigInfo: {

@@ -68,7 +68,7 @@ export const SingleChat = ({ route }) => {
             <ActivityIndicator
               style={styles.ActivityIndicator}
               size="large"
-              color="#4e2e65"
+              color="#4b006e"
             />
             <Text>loading conversations...</Text>
           </View>
@@ -108,7 +108,7 @@ export const SingleChat = ({ route }) => {
         style={styles.sendButton}
         title={"send"}
         onPress={handlePostMessage}
-        color="#4e2e65"
+        color="#4b006e"
         size="lg"
         radius="lg"
         buttonStyle={{ width: 250 }}
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   sendButton: {
-    backgroundColor: "#7121AB",
+    backgroundColor: "#4b006e",
     borderRadius: 10,
     borderWidth: 2,
     borderColor: "purple",
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#7121AB",
+    borderColor: "#4b006e",
     lineHeight: 20,
     fontSize: 16,
     shadowOffset: { width: 5, height: 5 },

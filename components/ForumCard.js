@@ -94,7 +94,7 @@ export const ForumCard = ({ route }) => {
         ref={commentInputBoxRef}
         onChangeText={setCommentText}
         placeholder="enter your comment here"
-        placeholderTextColor="#271A31"
+        placeholderTextColor="#4b006e"
         value={commentText}
         onSubmitEditing={() => submitComment()}
         // multiline={true}
@@ -103,7 +103,7 @@ export const ForumCard = ({ route }) => {
       />
       <Button
         title="POST COMMENT!"
-        color="#4e2e65"
+        color="#4b006e"
         onPress={() => {
           submitComment();
         }}
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#271A31",
+    backgroundColor: "#4b006e",
     padding: 10,
   },
 
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     padding: 10,
     // borderColor: "black",
     borderRadius: 10,
-    backgroundColor: "#271A31",
+    backgroundColor: "#4b006e",
     marginVertical: 5,
     // borderStyle: "solid",
     // borderWidth: 5,
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   },
 
   ScrollView: {
-    backgroundColor: "#271A31",
+    backgroundColor: "#4b006e",
     width: "100%",
     // borderColor: "black",
     borderRadius: 10,

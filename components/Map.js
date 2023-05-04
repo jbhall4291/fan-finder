@@ -96,7 +96,9 @@ export const Map = ({ navigation }) => {
                 >
                   <View>
                     <Text style={styles.GigName}>{gig.name}</Text>
-                    <Text style={styles.GigStart}>Start time: {gig.dates.start.localTime.slice(0,5)}</Text>
+                    <Text style={styles.GigStart}>
+                      Start time: {gig.dates.start.localTime.slice(0, 5)}
+                    </Text>
                   </View>
                 </Callout>
               </Marker>
@@ -113,7 +115,7 @@ export const Map = ({ navigation }) => {
       <ActivityIndicator
         style={styles.ActivityIndicator}
         size="large"
-        color="#4e2e65"
+        color="#4b006e"
       />
       <Text>loading map...</Text>
     </View>
@@ -138,18 +140,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     justifyContent: "center",
     textAlign: "center",
-    color: "#271A31"
+    color: "#4b006e",
   },
   GigStart: {
     justifyContent: "center",
     textAlign: "center",
-    color: "#271A31"
+    color: "#4b006e",
   },
 
   Callout: {
     flexDirection: "row",
     alignSelf: "flex-start",
-    backgroundColor: "#fff",
+    backgroundColor: "#ffffff",
     borderRadius: 10,
     borderColor: "#ccc",
   },

@@ -13,11 +13,11 @@ export const LoginPage = ({ isLoggedIn, setIsLoggedIn }) => {
         style={styles.expressLogo}
         source={require("../assets/avatars/purpleDefault.png")}
       />
-  
+
       <Button
         style={styles.button}
         title="Continue as Team_Express"
-        color="#4e2e65"
+        color="#4b006e"
         size="lg"
         radius="lg"
         buttonStyle={{ width: 250 }}

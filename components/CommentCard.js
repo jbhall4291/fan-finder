@@ -38,15 +38,15 @@ const styles = StyleSheet.create({
   },
   commentText: {
     fontSize: 20,
-    color: "#271A31",
+    color: "#4b006e",
   },
   commentBy: {
     fontSize: 15,
-    color: "#271A31",
+    color: "#4b006e",
   },
   commentTimeDate: {
     fontSize: 12,
-    color: "#271A31",
+    color: "#4b006e",
   },
   avatarImg: {
     height: 60,

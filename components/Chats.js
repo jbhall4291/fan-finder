@@ -65,7 +65,7 @@ export const Chats = ({ navigation }) => {
               style={styles.chatButtonInner}
               color="#ffffff"
               titleStyle={{
-                color: "#4e2e65",
+                color: "#4b006e",
               }}
               onPress={() => {
                 // setRoom(chat)
@@ -97,13 +97,13 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     backgroundColor: "#ffffff",
     borderRadius: 10,
-    color: "#4e2e65",
+    color: "#4b006e",
   },
   chatContainer: {
-    backgroundColor: "#271A31",
+    backgroundColor: "#4b006e",
     height: "100%",
   },
   chatButtonInner: {
-    color: "#4e2e65",
+    color: "#4b006e",
   },
 });
