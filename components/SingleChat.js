@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Button } from "@rneui/base";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getChatHistoryById, postMessageToChat } from "../utils/api";
 import { io } from "socket.io-client";
 
@@ -22,6 +22,8 @@ export const SingleChat = ({ route }) => {
 
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const scrollViewRef = useRef();
 
   useEffect(() => {
     getChatHistoryById(chatId)
@@ -44,7 +46,11 @@ export const SingleChat = ({ route }) => {
     setMessages([...messages, { message: text, user: user }]);
     postMessageToChat(text, user, chatId);
     setText("");
+    setTimeout(() => {
+      scrollViewRef.current.scrollToEnd({ animated: true });
+    }, 200);
   };
+  
 
   // useEffect(()=>{
   //     socket.on('send_message', (data) => {
@@ -67,7 +73,7 @@ export const SingleChat = ({ route }) => {
       enabled
       keyboardVerticalOffset={100}
     >
-      <ScrollView key={1} style={styles.container}>
+      <ScrollView key={1} ref={scrollViewRef} style={styles.container}>
         {loading ? (
           <View style={styles.LoadingContainer}>
             <ActivityIndicator
