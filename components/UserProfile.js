@@ -2,6 +2,8 @@ import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { Button } from "@rneui/base";
 
+
+
 export const UserProfile = () => {
   return (
     <View style={styles.UserProfile}>
@@ -32,7 +34,7 @@ export const UserProfile = () => {
           style={styles.SignOutButton}
           title="SIGN OUT"
           // onPress={handlePostMessage}
-          color="#4b006e"
+          color="red"
           // size="lg"
           radius="lg"
           marginRight="40"
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     fontFamily: "San Francisco",
   },
   Text: {
-    fontSize: 30,
+    fontSize: 25,
     textAlign: "center",
     color: "#4b006e",
   },
@@ -85,9 +87,11 @@ const styles = StyleSheet.create({
   },
   ForumRank: {
     marginTop: 70,
+    fontWeight: 900
   },
   SignOutButton: {
     marginTop: 100,
-    marginHorizontal: 100
+    marginHorizontal: 100,
+    
   }
 });
