@@ -73,17 +73,17 @@ export const SingleChat = ({ route }) => {
             <Text>loading conversations...</Text>
           </View>
         ) : (
-          messages.map((msg) => {
+          messages.map((msg, index) => {
             if (msg.user === user) {
               return (
-                <View key={msg._id}>
+                <View key={index}>
                   <Text style={styles.loggedInUser}>{msg.user}</Text>
                   <Text style={styles.loggedInUserMessage}>{msg.message}</Text>
                 </View>
               );
             } else {
               return (
-                <View msg={msg._id}>
+                <View msg={msg._id} key={msg._id}>
                   <Text style={styles.otherUser}>{msg.user}</Text>
                   <Text style={styles.otherUserMessage}>{msg.message}</Text>
                 </View>

@@ -50,16 +50,16 @@ export const Chats = ({ navigation }) => {
 
   return (
     <View style={styles.chatContainer}>
-      {userChatIds.map((chat) => {
+      {userChatIds.map((chat, index) => {
         return (
-          <View style={styles.chatButton}>
+          <View style={styles.chatButton} key={index}>
             <Image
               style={styles.avatarImg}
               source={require("../assets/avatars/purpleDefault.png")} // temp hardcode a 'nicer' avatar
               // source={{ uri: `${props.avatar}` }}
             />
             <Button
-              key={chat}
+              key={index}
               id={chat}
               title={getUsersByChatId(chat)[1]}
               style={styles.chatButtonInner}
