@@ -10,6 +10,7 @@ import { ChatsStackNavigation } from "../ChatsStackNavigation";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import { UserProfile } from "./UserProfile";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -79,7 +80,7 @@ export const Navigation = () => {
         />
         <Tab.Screen
           name="Profile"
-          component={ChatsStackNavigation}
+          component={UserProfile}
           options={{
             headerShown: false,
             tabBarIcon: ({ focused, color, size }) => {

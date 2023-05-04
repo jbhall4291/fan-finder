@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
   },
   CommentAdderText: {
-    backgroundColor: "#4b006efff",
+    backgroundColor: "#4b006e",
     padding: 10,
     width: "90%",
     borderRadius: 5,
