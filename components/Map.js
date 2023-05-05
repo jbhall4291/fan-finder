@@ -69,9 +69,9 @@ export const Map = ({ navigation }) => {
           initialRegion={{
             //delta values - the higher the number, the more zoomed out
             latitude: userLat,
-            latitudeDelta: 0.10408435934594706,
+            latitudeDelta: 1.10408435934594706,
             longitude: userLong,
-            longitudeDelta: 0.08552860468626022,
+            longitudeDelta: 1.08552860468626022,
           }}
         >
           {fetchedGigs.map((gig, index) => {
