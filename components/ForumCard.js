@@ -93,7 +93,7 @@ export const ForumCard = ({ route }) => {
           
           ref={commentInputBoxRef}
           onChangeText={setCommentText}
-          placeholder="enter your comment here"
+          placeholder="type your comment here..."
           placeholderTextColor="#4b006e"
           value={commentText}
           onSubmitEditing={() => submitComment()}
@@ -218,6 +218,7 @@ const styles = StyleSheet.create({
     borderColor: "#4b006e",
     borderRadius: 10,
     borderStyle: "solid",
-    borderWidth: 2
+    borderWidth: 2,
+    
   },
 });
