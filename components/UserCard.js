@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     // height: 120
     marginLeft: 15,
+    color: "#4b006e"
   },
 
   avatarImg: {
