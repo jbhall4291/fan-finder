@@ -35,6 +35,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flexDirection: "row",
     alignItems: "center",
+
+    borderColor: "#4b006e",
+    borderRadius: 10,
+    borderStyle: "solid",
+    borderWidth: 2
   },
   commentText: {
     fontSize: 20,

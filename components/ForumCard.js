@@ -61,7 +61,7 @@ export const ForumCard = ({ route }) => {
           <ActivityIndicator
             style={styles.ActivityIndicator}
             size="large"
-            color="4b006e"
+            color="#4b006e"
           />
           <Text>loading comments...</Text>
         </>
@@ -88,37 +88,34 @@ export const ForumCard = ({ route }) => {
   return (
     <View style={styles.screen}>
       <ForumCardHeader />
+      <View style={styles.SendContainer}>
+        <TextInput
+          
+          ref={commentInputBoxRef}
+          onChangeText={setCommentText}
+          placeholder="enter your comment here"
+          placeholderTextColor="#4b006e"
+          value={commentText}
+          onSubmitEditing={() => submitComment()}
+          style={styles.textInput}
+          // multiline={true}
+          // numberOfLines={4} // necessary for android only
+          // blurOnSubmit={true} // unnecessary as taken care of within submitComment via ref
+        />
+        <Button
+          style={styles.sendButton}
+          title="post"
+          color="#4b006e"
+          onPress={() => {
+            submitComment();
+          }}
+          radius="lg"
+          // size="lg"
+          
+          
 
-      <TextInput
-        style={styles.CommentAdderText}
-        ref={commentInputBoxRef}
-        onChangeText={setCommentText}
-        placeholder="enter your comment here"
-        placeholderTextColor="#4b006e"
-        value={commentText}
-        onSubmitEditing={() => submitComment()}
-        // multiline={true}
-        // numberOfLines={4} // necessary for android only
-        // blurOnSubmit={true} // unnecessary as taken care of within submitComment via ref
-      />
-      <Button
-        title="POST COMMENT!"
-        color="#4b006e"
-        onPress={() => {
-          submitComment();
-        }}
-        size="lg"
-        buttonStyle={{
-          width: 200,
-          height: 60,
-          // backgroundColor: "blue"
-        }}
-        containerStyle={{
-          width: 200,
-          marginHorizontal: 0,
-          marginVertical: 10,
-        }}
-      />
+        />
+      </View>
 
       <CommentsDisplayer />
     </View>
@@ -132,7 +129,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     padding: 10,
-    color: "#4b006e"
   },
 
   CommentAdder: {
@@ -146,7 +142,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItem: "center",
-    
+
     padding: 10,
     borderColor: "#4b006e",
     borderRadius: 10,
@@ -168,11 +164,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     // justifyContent: "center",
     // alignItem: "center",
-
   },
 
   ScrollView: {
-    backgroundColor: "#4b006e",
+    backgroundColor: "white",
     width: "100%",
     // borderColor: "black",
     borderRadius: 10,
@@ -195,5 +190,34 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "90%",
     borderRadius: 5,
+  },
+
+  SendContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    // backgroundColor: "#4b006e",
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginTop: 5,
+    
+    
+  },
+  sendButton: {
+    marginLeft: 10
+
+  },
+  textInput: {
+    // marginTop: 5,
+    width: "80%",
+    height: 40,
+    padding: 7,
+    marginLeft: 4,
+    lineHeight: 15,
+    fontSize: 16,
+    backgroundColor: "white",
+    borderColor: "#4b006e",
+    borderRadius: 10,
+    borderStyle: "solid",
+    borderWidth: 2
   },
 });
