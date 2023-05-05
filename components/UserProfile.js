@@ -1,10 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { Button } from "@rneui/base";
-
-
+import { useFonts } from "expo-font";
 
 export const UserProfile = () => {
+  const [fontsLoaded] = useFonts({
+    "Inter-SemiBoldItalic":
+      "https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12",
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.UserProfile}>
       <View style={styles.UserContainer}>
@@ -19,28 +27,28 @@ export const UserProfile = () => {
 
       <View style={styles.UpcomingGigs}>
         <View style={styles.Text}>
-          <Text style={styles.Text}>You have</Text>
+          <Text style={[styles.Text, styles.FontItalic]}>You have</Text>
           <Text style={[styles.Text, styles.Large]}>7</Text>
-          <Text style={styles.Text}>upcoming gigs</Text>
+          <Text style={[styles.Text, styles.FontItalic]}>upcoming gigs</Text>
         </View>
         <View style={styles.ForumRank}>
-          <Text style={styles.Text}>Your forum rank is</Text>
+          <Text style={[styles.Text, styles.FontItalic]}>Your forum rank is</Text>
+
           <Text style={[styles.Text, styles.Large]}>Rock Legend</Text>
         </View>
       </View>
 
       <Button
-          key={3}
-          style={styles.SignOutButton}
-          title="SIGN OUT"
-          // onPress={handlePostMessage}
-          color="red"
-          // size="lg"
-          radius="lg"
-          marginRight="40"
-          // buttonStyle={{ width: 250 }}
-        ></Button>
-      
+        key={3}
+        style={styles.SignOutButton}
+        title="SIGN OUT"
+        // onPress={handlePostMessage}
+        color="red"
+        // size="lg"
+        radius="lg"
+        marginRight="40"
+        // buttonStyle={{ width: 250 }}
+      ></Button>
     </View>
   );
 };
@@ -87,11 +95,13 @@ const styles = StyleSheet.create({
   },
   ForumRank: {
     marginTop: 70,
-    fontWeight: 900
+    fontWeight: 900,
   },
   SignOutButton: {
     marginTop: 100,
     marginHorizontal: 100,
-    
-  }
+  },
+  FontItalic: {
+    fontFamily: "Inter-SemiBoldItalic",
+  },
 });

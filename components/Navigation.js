@@ -11,6 +11,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { UserProfile } from "./UserProfile";
+import { withTheme } from "@rneui/themed";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -25,13 +26,14 @@ export const Navigation = () => {
           tabBarLabel: route.name,
           tabBarStyle: {
             backgroundColor: "#4b006e",
-            height: 85,
+            height: 95,
           },
           tabBarLabelStyle: {
             fontSize: 18,
             fontWeight: "bold",
             color: "white",
-            backgroundColor: "#4b006e",
+            // backgroundColor: "grey",
+            marginTop: -10,
           },
         })}
 
@@ -73,7 +75,7 @@ export const Navigation = () => {
             tabBarIcon: ({ focused, color, size }) => {
               return (
                 // <FontAwesome5 name="rocketchat" size={26} color="#4b006e" />
-                <FontAwesome5 name="rocketchat" size={26} color="white" />
+                <FontAwesome5 name="comments" size={28} color="white" />
               );
             },
           }}
@@ -82,11 +84,25 @@ export const Navigation = () => {
           name="Profile"
           component={UserProfile}
           options={{
-            headerShown: false,
+            headerStyle: {
+              backgroundColor: "#4b006e",
+            },
+            headerTitleStyle: {
+            color: "white",
+            fontWeight: "bold",
+            fontSize: 18,
+          },
+          headerBackTitleStyle: {
+            fontWeight: "bold",
+            fontSize: 18,
+            color: "white",
+          },
+          headerTintColor: "white",
+            headerShown: true,
             tabBarIcon: ({ focused, color, size }) => {
               return (
                 // <FontAwesome name="user-circle-o" size={28} color="#4b006e" />
-                <FontAwesome name="user-circle-o" size={28} color="white" />
+                <FontAwesome name="user" size={28} color="white" />
               );
             },
           }}
@@ -95,6 +111,12 @@ export const Navigation = () => {
     </NavigationContainer>
   );
 };
+
+// screenOptions={{
+//   headerStyle: {
+//     backgroundColor: "#4b006e",
+//   },
+// }}
 
 const styles = StyleSheet.create({
   layout: {
