@@ -63,7 +63,7 @@ export const ForumCard = ({ route }) => {
             size="large"
             color="#4b006e"
           />
-          <Text>loading comments...</Text>
+          <Text style={styles.LoadingComments}>loading comments...</Text>
         </>
       );
 
@@ -90,7 +90,6 @@ export const ForumCard = ({ route }) => {
       <ForumCardHeader />
       <View style={styles.SendContainer}>
         <TextInput
-          
           ref={commentInputBoxRef}
           onChangeText={setCommentText}
           placeholder="type your comment here..."
@@ -111,9 +110,6 @@ export const ForumCard = ({ route }) => {
           }}
           radius="lg"
           // size="lg"
-          
-          
-
         />
       </View>
 
@@ -199,12 +195,9 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     marginTop: 5,
-    
-    
   },
   sendButton: {
-    marginLeft: 10
-
+    marginLeft: 10,
   },
   textInput: {
     // marginTop: 5,
@@ -219,6 +212,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderStyle: "solid",
     borderWidth: 2,
-    color: "#4b006e"
+    color: "#4b006e",
+  },
+  LoadingComments: {
+    color: "#4b006e",
   },
 });

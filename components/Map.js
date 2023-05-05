@@ -12,6 +12,7 @@ import * as Location from "expo-location";
 import { useState, useEffect } from "react";
 import { getGigs } from "../utils/api";
 const customMarker = require("../assets/custom_marker.png");
+import { convertToFriendlyDate } from "../utils/functions";
 
 export const Map = ({ navigation }) => {
   // check if we have the users location, so we don't immediately make the ticketmaster API call
@@ -65,7 +66,6 @@ export const Map = ({ navigation }) => {
           showsMyLocationButton={true}
           showsUserLocation={true}
           style={styles.map}
-          // customMapStyle={mapStyle}
           initialRegion={{
             //delta values - the higher the number, the more zoomed out
             latitude: userLat,
@@ -97,7 +97,10 @@ export const Map = ({ navigation }) => {
                   <View>
                     <Text style={styles.GigName}>{gig.name}</Text>
                     <Text style={styles.GigStart}>
-                      Start time: {gig.dates.start.localTime.slice(0, 5)}
+                      On: {convertToFriendlyDate(gig.dates.start.localDate)}
+                    </Text>
+                    <Text style={styles.GigStart}>
+                      At: {gig.dates.start.localTime?.slice(0, 5)}
                     </Text>
                   </View>
                 </Callout>
@@ -166,9 +169,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
     alignSelf: "center",
-    
   },
   LoadingText: {
-    color: "#4b006e"
-  }
+    color: "#4b006e",
+  },
 });

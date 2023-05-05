@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
-import { convertTimeAndDate } from "../utils/functions";
+import { relativeTimeAndDate } from "../utils/functions";
 
 export const CommentCard = (props) => {
   console.log(props.comment.text);
@@ -16,7 +16,7 @@ export const CommentCard = (props) => {
         <Text style={styles.commentText}>{commentText}</Text>
         <Text style={styles.commentBy}>Comment by: {props.comment.user}</Text>
         <Text style={styles.commentTimeDate}>
-          Posted: {convertTimeAndDate(props.comment.created_at)}
+          Posted: {relativeTimeAndDate(props.comment.created_at)}
         </Text>
       </View>
     </View>
