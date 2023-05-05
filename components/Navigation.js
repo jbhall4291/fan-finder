@@ -88,16 +88,16 @@ export const Navigation = () => {
               backgroundColor: "#4b006e",
             },
             headerTitleStyle: {
-            color: "white",
-            fontWeight: "bold",
-            fontSize: 18,
-          },
-          headerBackTitleStyle: {
-            fontWeight: "bold",
-            fontSize: 18,
-            color: "white",
-          },
-          headerTintColor: "white",
+              color: "white",
+              fontWeight: "bold",
+              fontSize: 18,
+            },
+            headerBackTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 18,
+              color: "white",
+            },
+            headerTintColor: "white",
             headerShown: true,
             tabBarIcon: ({ focused, color, size }) => {
               return (
