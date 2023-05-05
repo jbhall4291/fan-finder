@@ -18,7 +18,7 @@ const Stack = createStackNavigator();
 
 // Here is the bottom tab navigation
 
-export const Navigation = () => {
+export const Navigation = ({ user }) => {
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -81,6 +81,7 @@ export const Navigation = () => {
           }}
         />
         <Tab.Screen
+          initialParams={{ user }}
           name="Profile"
           component={UserProfile}
           options={{

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { Button } from "@rneui/base";
 import { useFonts } from "expo-font";
 
-export const UserProfile = () => {
+export const UserProfile = ({ route }) => {
   const [fontsLoaded] = useFonts({
     "Inter-SemiBoldItalic":
       "https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12",
@@ -22,7 +22,7 @@ export const UserProfile = () => {
           // source={{ uri: `${props.avatar}` }}
         />
 
-        <Text style={styles.Username}>Team_Express</Text>
+        <Text style={styles.Username}>{route.params.user.displayName}</Text>
       </View>
 
       <View style={styles.UpcomingGigs}>
@@ -32,7 +32,9 @@ export const UserProfile = () => {
           <Text style={[styles.Text, styles.FontItalic]}>upcoming gigs</Text>
         </View>
         <View style={styles.ForumRank}>
-          <Text style={[styles.Text, styles.FontItalic]}>Your forum rank is</Text>
+          <Text style={[styles.Text, styles.FontItalic]}>
+            Your forum rank is
+          </Text>
 
           <Text style={[styles.Text, styles.Large]}>Rock Legend</Text>
         </View>

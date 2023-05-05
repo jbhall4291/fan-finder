@@ -13,7 +13,7 @@ export default function App() {
   });
 
   return isLoggedIn ? (
-    <Navigation />
+    <Navigation user={user}/>
   ) : (
     <LoginPage
       isLoggedIn={isLoggedIn}
