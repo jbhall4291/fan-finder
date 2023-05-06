@@ -28,7 +28,7 @@ export const UserProfile = ({ route }) => {
       <View style={styles.UpcomingGigs}>
         <View style={styles.Text}>
           <Text style={[styles.Text, styles.FontItalic]}>You have</Text>
-          <Text style={[styles.Text, styles.Large]}>7</Text>
+          <Text style={[styles.Text, styles.Large]}>8</Text>
           <Text style={[styles.Text, styles.FontItalic]}>upcoming gigs</Text>
         </View>
         <View style={styles.ForumRank}>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     color: "#4b006e",
   },
   Large: {
-    fontSize: 50,
+    fontSize: 40,
   },
   ForumRank: {
     marginTop: 70,
