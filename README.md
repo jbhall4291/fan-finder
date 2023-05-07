@@ -17,20 +17,28 @@ This project was initially built as part of a team of 4 (big shout out to Team E
 ## Features
 
 * View all upcoming gigs within a 30 mile radius of the users current location
-* View a specific gig's details inc. a direct link to buy tickets
-* Comment on a specific gig for other users to see
-* Chat with other users of the app
-* View user profile inc. upcoming gigs & forum rank
+* View details of a a specific gig, with a direct link to buy tickets
+* Access a forum for each gig to view/add comments for all users to see
+* Chat directly with other users of the app
+* View users profile, including upcoming gigs & forum rank
 
 ## Using Fan Finder
 
-The app has not been published to the Apple / Google Play store, but there are two options to see the app in action.
+The app has not been published to the Apple / Google Play store, however there are two options to see the app in action:
 
-Option One (android users only!)
+Option One - android users only!
+
+Simply [download the Expo Go app](https://expo.dev/expo-go) and scan the QR code below. The app will then build to your device within 20 seconds or so, but please bear in mind the backend is hosted on the free tier of Render so you may have to be patient with the forum/chat features until the server wakes up!
+
+<img src="https://qr.expo.dev/expo-go?owner=jbhall4291&slug=fan-finder&releaseChannel=default&host=exp.host" width="200" />
 
 https://expo.dev/@jbhall4291/fan-finder?serviceType=classic&distribution=expo-go
 
-Due to a change in Apple policy this option is only available to Android smart phone users.
+Due to a change in Apple policy this option is now only available to Android smart phone users.
+Simply download the Expo Go app https://play.google.com/store/apps/details?id=host.exp.exponent
+
+https://qr.expo.dev/expo-go?owner=jbhall4291&slug=fan-finder&releaseChannel=default&host=exp.host
+
 
 https://expo.dev/@jbhall4291/fan-finder?serviceType=classic&distribution=expo-go
 
