@@ -26,7 +26,7 @@ This project was initially built as part of a team of 4 (big shout out to Team E
 
 The app has not been published to the Apple / Google Play store, however there are two options to see the app in action:
 
-Option One - android users only!
+#Option One - android users only!
 
 Simply [download the Expo Go app](https://expo.dev/expo-go) and scan the QR code below. The app will then build to your device within 20 seconds or so, but please bear in mind the backend is hosted on the free tier of Render so you may have to be patient with the forum/chat features until the server wakes up!
 
@@ -35,7 +35,7 @@ Simply [download the Expo Go app](https://expo.dev/expo-go) and scan the QR code
 Due to a change in Apple policy this option is now only available to Android smart phone users.
 
 
-Option Two
+#Option Two
 
 run this with npx expo start, add an apikey from ticketmaster, scan qr code having download expo go app.
 
