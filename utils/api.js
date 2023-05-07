@@ -6,7 +6,8 @@ const ticketMasterAPI = axios.create({
 });
 
 const fanFinderAPI = axios.create({
-  baseURL: "https://fanfinder-api.onrender.com"
+  baseURL: "https://fanfinder-api-tzm2.onrender.com"
+  
 })
 
 export const getGigs = (lat, long) => {
@@ -47,7 +48,7 @@ export const getGigById = (gig_id) => {
 };
 
 const fanfinderAPI = axios.create({
-  baseURL: "https://fanfinder-api.onrender.com/api",
+  baseURL: "https://fanfinder-api-tzm2.onrender.com/api",
 });
 
 export const getGigComments = (gigId) => {
@@ -172,7 +173,8 @@ export const postMessageToChat = (message, user, chat_id) => {
 }
 
 export const getSocketServerAddress = () => {
-  return 'https://fanfinder-api.onrender.com/'
+  return 'https://fanfinder-api-tzm2.onrender.com'
+  
 }
 
 export const getUserDetails = (user_id) => {
