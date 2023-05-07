@@ -53,12 +53,12 @@ To run a local copy please ensure you are running node (minimum version 19.5.0) 
    npm install
    ```
 
-4. Create the following files in the main project folder:
+4. Create the following files in the project root:
    ```
    apikey.js
    ```
 
-5.   Into this file, add a ticketmaster api key which you can receieve instantly & free of charge [once registered for a Ticketmaster Developer account here](https://developer-acct.ticketmaster.com/user/register).
+5.   Into this file, add the below line inserting your your ticketmaster API key which you can receieve instantly & free of charge [once registered for a Ticketmaster Developer account here](https://developer-acct.ticketmaster.com/user/register).
    ```
    export const apiKey = "YOUR_TICKETMASTER_API_KEY_HERE"
    ```
@@ -68,7 +68,7 @@ To run a local copy please ensure you are running node (minimum version 19.5.0) 
    npx expo start
    ```
    
-7. [Download the Expo Go app](https://expo.dev/expo-go) and scan the generated QR code with your either your Camera app on iOS / directly within the Expo Go app on Andoid. The app will build to your device within 20 seconds or so, but please bear in mind the backend is hosted on a free tier of Render so may take a few seconds to wake up on using the forum or chat features.
+7. [Download the Expo Go app](https://expo.dev/expo-go) and scan the generated QR code with your either your Camera app on iOS / directly within the Expo Go app on Andoid. The app will build to your device within 20 seconds or so, but please bear in mind the backend is hosted on a free tier of Render so may take a few seconds to wake up on first use of the forum or chat features.
 
 8. Enjoy! 🎉
 
