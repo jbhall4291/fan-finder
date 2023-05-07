@@ -32,15 +32,8 @@ Simply [download the Expo Go app](https://expo.dev/expo-go) and scan the QR code
 
 <img src="https://qr.expo.dev/expo-go?owner=jbhall4291&slug=fan-finder&releaseChannel=default&host=exp.host" width="200" />
 
-https://expo.dev/@jbhall4291/fan-finder?serviceType=classic&distribution=expo-go
-
 Due to a change in Apple policy this option is now only available to Android smart phone users.
-Simply download the Expo Go app https://play.google.com/store/apps/details?id=host.exp.exponent
 
-https://qr.expo.dev/expo-go?owner=jbhall4291&slug=fan-finder&releaseChannel=default&host=exp.host
-
-
-https://expo.dev/@jbhall4291/fan-finder?serviceType=classic&distribution=expo-go
 
 Option Two
 
