@@ -26,7 +26,7 @@ This project was initially built as part of a team of 4 (big shout out to Team E
 
 The app has not been published to the Apple / Google Play store, however there are two options to see the app in action:
 
-### Option One - android users only!
+### Option One - Android users only!
 
 Due to a change in Apple policy this option is now only available to Android smart phone users.
 
@@ -53,12 +53,12 @@ To run a local copy please ensure you are running node (minimum version 19.5.0) 
    npm install
    ```
 
-4. Create the following files in the project root:
+4. Create the following file in the project root:
    ```
    apikey.js
    ```
 
-5.   Into this file, add the below line inserting your your ticketmaster API key which you can receieve instantly & free of charge [once registered for a Ticketmaster Developer account here](https://developer-acct.ticketmaster.com/user/register).
+5.  Into this file, add the below line which includes your own Ticketmaster API key, which you can receieve instantly & free of charge [once registered for a Ticketmaster Developer account](https://developer-acct.ticketmaster.com/user/register).
    ```
    export const apiKey = "YOUR_TICKETMASTER_API_KEY_HERE"
    ```
@@ -71,15 +71,3 @@ To run a local copy please ensure you are running node (minimum version 19.5.0) 
 7. [Download the Expo Go app](https://expo.dev/expo-go) and scan the generated QR code with your either your Camera app on iOS / directly within the Expo Go app on Andoid. The app will build to your device within 20 seconds or so, but please bear in mind the backend is hosted on a free tier of Render so may take a few seconds to wake up on first use of the forum or chat features.
 
 8. Enjoy! 🎉
-
-
-
-
-
-
-
-
-
-
-
-
