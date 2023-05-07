@@ -26,36 +26,26 @@ This project was initially built as part of a team of 4 (big shout out to Team E
 
 The app has not been published to the Apple / Google Play store, however there are two options to see the app in action:
 
-#Option One - android users only!
+### Option One - android users only!
+
+Due to a change in Apple policy this option is now only available to Android smart phone users.
 
 Simply [download the Expo Go app](https://expo.dev/expo-go) and scan the QR code below. The app will then build to your device within 20 seconds or so, but please bear in mind the backend is hosted on the free tier of Render so you may have to be patient with the forum/chat features until the server wakes up!
 
 <img src="https://qr.expo.dev/expo-go?owner=jbhall4291&slug=fan-finder&releaseChannel=default&host=exp.host" width="200" />
 
-Due to a change in Apple policy this option is now only available to Android smart phone users.
+### Option Two
 
-
-#Option Two
-
-run this with npx expo start, add an apikey from ticketmaster, scan qr code having download expo go app.
-
-
-A live version of this API can be found here:
-
-https://backend-project-nc-news-49l4.onrender.com/
-
-Please bear in mind this is hosted on a free tier of Render so may take a few seconds to start.
-
-Alternatively, to run a local copy please ensure you are running node (minimum version 19.5.0) and postgreSQL (minimum version 14.6), then follow these steps:
+To run a local copy please ensure you are running node (minimum version 19.5.0) then follow these steps:
 
 1. Clone this repository:
    ```
-   git clone https://github.com/jbhall4291/backend-nc-news
+   git clone https://github.com/jbhall4291/fan-finder-fe
    ```
 
 2. Change into this repos directory:
    ```
-   cd backend-nc-news
+   cd fan-finder-fe
    ```
 
 3. Install dependencies
@@ -63,33 +53,24 @@ Alternatively, to run a local copy please ensure you are running node (minimum v
    npm install
    ```
 
-4. Use the provided scripts to set up and seed the dev and test databases.
+4. Create the following files in the main project folder:
    ```
-   npm run setup-dbs && npm run seed
-   ```
-
-5. Create the following two .env files in the main project folder:
-   ```
-   .env.test
-   .env.development
+   apikey.js
    ```
 
-   Into each of these files, add the single line *PGDATABASE=<database_name_placeholder>*, replacing the placeholder text with the corresponding database name for each environment. Please see `/db/setup.sql` for what each database should be. Double check that these .env files are in `.gitignored`!
-
-6. Start the express server and the app will start listening on 
-port 9090 of your localhost
+5.   Into this file, add a ticketmaster api key which you can receieve instantly & free of charge [once registered for a Ticketmaster Developer account here](https://developer-acct.ticketmaster.com/user/register).
    ```
-   npm start
-   ```
-7. Point your browser at `localhost:9090/api` to see a list of all the endpoints, how to interact with them, and example responses.
-
-8. This app has been fully tested with the use of Jest and the Supertest library. To install the necessary dependencies and run the test suite use:
-   ```
-   npm install -D jest jest-sorted supertest
-   npm test
+   export const apiKey = "YOUR_TICKETMASTER_API_KEY_HERE"
    ```
 
-9. Enjoy! 🎉
+6. Start the Metro Bundler
+   ```
+   npx expo start
+   ```
+   
+7. [Download the Expo Go app](https://expo.dev/expo-go) and scan the generated QR code with your either your Camera app on iOS / directly within the Expo Go app on Andoid. The app will build to your device within 20 seconds or so, but please bear in mind the backend is hosted on a free tier of Render so may take a few seconds to wake up on using the forum or chat features.
+
+8. Enjoy! 🎉
 
 
 
