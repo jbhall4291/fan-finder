@@ -6,7 +6,7 @@ const ticketMasterAPI = axios.create({
 });
 
 const fanFinderAPI = axios.create({
-  baseURL: "https://fanfinder-api-tzm2.onrender.com"
+  baseURL: "https://fanfinder-api-tzm2.onrender.com/api"
   
 })
 
@@ -47,13 +47,9 @@ export const getGigById = (gig_id) => {
   });
 };
 
-const fanfinderAPI = axios.create({
-  baseURL: "https://fanfinder-api-tzm2.onrender.com/api",
-});
-
 export const getGigComments = (gigId) => {
   let path = `/gigs/${gigId}/comments`;
-  return fanfinderAPI.get(`/gigs/${gigId}/comments`).then((results) => {
+  return fanFinderAPI.get(`/gigs/${gigId}/comments`).then((results) => {
     return results.data.comments;
   });
 };
@@ -61,7 +57,7 @@ export const getGigComments = (gigId) => {
 export const postComment = ({ id, commentText }) => {
   console.log(id, "id from api");
   console.log(commentText, "comment from api");
-  return fanfinderAPI
+  return fanFinderAPI
     .post(`/gigs/${id}/comments`, {
       gig_id: id,
       user: "Team_Express",
@@ -79,7 +75,7 @@ export const postComment = ({ id, commentText }) => {
 
 export const getUserGigs = () => {
   console.log("gigs");
-  return fanfinderAPI
+  return fanFinderAPI
     .get(`/users/Team_Express/gigs`)
     .then((results) => {
       // console.log(results.data.gigs, "these are the users gigs");
@@ -92,7 +88,7 @@ export const getUserGigs = () => {
 
 export const patchUserGigs = (gigId) => {
   // console.log("doing a patch to users gigs");
-  return fanfinderAPI
+  return fanFinderAPI
     .patch("/users/Team_Express/gigs", { gig_id: gigId })
     .then((result) => {
       // console.log("hi from line 92")
@@ -103,7 +99,7 @@ export const patchUserGigs = (gigId) => {
 
 export const getAllAttendees = (gigId) => {
   // console.log("getting all attendees");
-  return fanfinderAPI
+  return fanFinderAPI
     .get(`/gigs/${gigId}/fans`)
     .then((results) => {
       //  console.log(results.data.fans, "these are users going to this gig");
@@ -116,7 +112,7 @@ export const getAllAttendees = (gigId) => {
 
 // export const getGigComments = (gigId) => {
 //   let path = `/gigs/${gigId}/comments`;
-//   return fanfinderAPI.get(`/gigs/${gigId}/comments`).then((results) => {
+//   return fanFinderAPI.get(`/gigs/${gigId}/comments`).then((results) => {
 //     return results.data.comments;
 //   });
 // };
@@ -132,7 +128,7 @@ export const getAllAttendees = (gigId) => {
 export const getUserChatIds = (user = "Team_Express") => {
 
   return fanFinderAPI
-    .get(`api/users/${user}/chats`)
+    .get(`/users/${user}/chats`)
     .then((results => {
       console.log(results.data.chats, "api results")
       return results.data.chats
@@ -155,7 +151,7 @@ export const getUsersByChatId = (id = "chat-1") => {
 export const getChatHistoryById = (id = "chat-1") => {
   
   return fanFinderAPI
-  .get(`/api/users/Team_Express/${id}`)
+  .get(`/users/Team_Express/${id}`)
   .then((results) => {
     return results.data.chat_history
   })
@@ -164,7 +160,7 @@ export const getChatHistoryById = (id = "chat-1") => {
 export const postMessageToChat = (message, user, chat_id) => {
   console.log('trying to post message : ', message, user, chat_id )
   return fanFinderAPI
-    .post(`/api/users/${user}/${chat_id}`, {"message": message})
+    .post(`/users/${user}/${chat_id}`, {"message": message})
     .then((result)=>{
       console.log(result.status, "<sent a message?")
       return result
@@ -179,7 +175,7 @@ export const getSocketServerAddress = () => {
 
 export const getUserDetails = (user_id) => {
   return fanFinderAPI
-    .get(`/api/users/${user_id}`)
+    .get(`/users/${user_id}`)
     .then((result)=>{
       return result
     })
