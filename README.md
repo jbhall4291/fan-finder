@@ -1,5 +1,9 @@
 # :guitar: Fan Finder
 
+
+<img src="https://github.com/jbhall4291/fan-finder/blob/main/fanfinder_screenshots.png" />
+
+
 ## Welcome to Fan Finder!
 
 Fan Finder is a location-based social networking app based on live music gigs, allowing users to find gigs in their area and interact with other music fans.
