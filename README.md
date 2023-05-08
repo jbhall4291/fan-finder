@@ -6,13 +6,16 @@ Fan Finder is a location-based social networking app based on live music gigs, a
 
 This project was initially built as part of a team of 4 (big shout out to Team Express!) during the amazing [Northcoders Full-Stack Software Developer Bootcamp](https://northcoders.com/) with the aim of demonstrating & developing the following skills:
 
-* Spiking our own choice of new technologies
+* Spiking our own choice of technologies
 * Building a React Native mobile app
-* Building a RESTful Web API
-* Interacting with Mongo databases
-* Developing using TDD, pair programming and remote working as part of a small team
+* Developing using pair programming & remote working as part of a small team
 * Use of Agile methodologies, inc. Kanban boards and daily Stand Ups
 * Implementing the Software Development Lifecycle framework
+
+The corresponding backend for this project can [be found here](https://github.com/jbhall4291/fan-finder-backend), which utilised the following skills:
+* Building a RESTful Web API
+* Interacting with Mongo databases
+* Developing using TDD 
 
 ## Features
 
