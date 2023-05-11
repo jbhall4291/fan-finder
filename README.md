@@ -8,7 +8,7 @@
 
 Fan Finder is a location-based social networking app based on live music gigs, allowing users to find gigs in their area and interact with other music fans.
 
-You can [watch a short video of me demonstrating the app here](https://www.youtube.com/watch?v=kQ7weiOZzHM&t=2s), otherwise read on!
+You can watch a [short video of me demonstrating the app here](https://www.youtube.com/watch?v=kQ7weiOZzHM&t=2s), or check out the [team presentation over on Northcoders](https://northcoders.com/projects/apr-2023/fanfinder)... otherwise read on!
 
 This project was initially built as part of a team of 4 (big shout out to Team Express!) during the amazing [Northcoders Full-Stack Software Developer Bootcamp](https://northcoders.com/) with the aim of demonstrating & developing the following skills:
 
