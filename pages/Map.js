@@ -52,7 +52,7 @@ export default function Map() {
   }, []);
 
   useEffect(() => {
-    getGigs()
+    getGigs(userLat, userLong)
       .then((results) => {
         setFetchedGigs(results);
       })
@@ -60,7 +60,7 @@ export default function Map() {
         // some error handling here
         // console.log(err);
       });
-  }, []);
+  }, [haveUserLocation]);
 
   if (haveUserLocation) {
     return (
@@ -114,8 +114,7 @@ export default function Map() {
     );
   }
 
-
-// whilst waiting for the user location to be set, display a loading message
+  // whilst waiting for the user location to be set, display a loading message
   return (
     <View style={styles.LoadingContainer}>
       <ActivityIndicator
@@ -127,7 +126,6 @@ export default function Map() {
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

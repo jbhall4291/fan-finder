@@ -3,10 +3,12 @@
 
 import { apiKey } from '../apikey';
 
-export const getGigs = () => {
+export const getGigs = (lat, long) => {
   
+console.log(`https://app.ticketmaster.com/discovery/v2/events/?apikey=${apiKey}&latlong=${lat},${long}&radius=30&locale=*&segmentName=Music&size=20`)
+
   return fetch(
-    `https://app.ticketmaster.com/discovery/v2/events/?apikey=${apiKey}&latlong=51.50937515739257,-0.12690104907847516&radius=30&locale=*&segmentName=Music&size=20`
+    `https://app.ticketmaster.com/discovery/v2/events/?apikey=${apiKey}&latlong=${lat},${long}&radius=1000&locale=*&segmentName=Music&size=200`
   )
     .then((response) => {
       // console.log('Response status:', response.status);
