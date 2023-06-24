@@ -1,5 +1,5 @@
 // creates the ugly o.UIManager error when expo snack is opened and defaulted to 'web'
-import Map from './pages/Map';
+import MapPage from './pages/MapPage';
 
 import { View, Text, Platform } from 'react-native';
 
@@ -15,7 +15,7 @@ export default function App() {
     );
   } else {
     return (
-     <Map />
+     <MapPage />
     );
   }
 }
