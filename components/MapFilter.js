@@ -12,26 +12,36 @@ import { useState, useEffect } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Button } from '@rneui/themed';
 
-export default function MapFilter() {
+export default function MapFilter({
+  setSelectedDate = { setSelectedDate },
+  setSelectedDistance = { setSelectedDistance },
+}) {
   const [datePickerOpen, setDatePickerOpen] = useState(false);
   const [datePickerValue, setDatePickerValue] = useState('thisWeek');
   const [datePickerItems, setDatePickerItems] = useState([
     { label: 'Today', value: 'today' },
-    { label: 'Tomorrow', value: 'tomorrow' },
-    { label: 'This Week', value: 'thisWeek' },
-    { label: 'Next Week', value: 'nextWeek' },
-    { label: 'This Month', value: 'thisMonth' },
+    { label: 'Today & Tomorrow', value: 'tomorrow' },
+    { label: 'Next 7 days', value: 'thisWeek' },
+    { label: 'Next 30 days', value: 'thisMonth' },
   ]);
 
   const [distancePickerOpen, setDistancePickerOpen] = useState(false);
-  const [distancePickerValue, setDistancePickerValue] = useState('25miles');
+  const [distancePickerValue, setDistancePickerValue] = useState(25);
   const [distancePickerItems, setDistancePickerItems] = useState([
-    { label: '5 miles', value: '5miles' },
-    { label: '10 miles', value: '10miles' },
-    { label: '25 miles', value: '25miles' },
-    { label: '50 miles', value: '50miles' },
-    { label: '80 miles+', value: '80miles' },
+    { label: '5 miles', value: 5 },
+    { label: '10 miles', value: 10 },
+    { label: '25 miles', value: 25 },
+    { label: '50 miles', value: 50 },
+    { label: '100 miles', value: 100 },
   ]);
+
+  const handleFilterButtonPress = (date, distance) => {
+    // console.log(
+    //   `MapFilter button pressed with these values: ${datePickerValue} ${distancePickerValue}`
+    // );
+    setSelectedDate(datePickerValue);
+    setSelectedDistance(distancePickerValue);
+  };
 
   return (
     <View style={styles.container}>
@@ -55,6 +65,7 @@ export default function MapFilter() {
           containerStyle={styles.pickerContainer}
         />
         <Button
+          onPress={handleFilterButtonPress}
           icon={{
             name: 'search',
             type: 'font-awesome',
@@ -64,6 +75,8 @@ export default function MapFilter() {
           buttonStyle={styles.button}
         />
       </View>
+
+     
     </View>
   );
 }

@@ -11,7 +11,7 @@ import { getGigs } from '../utils/api';
 
 import * as Device from 'expo-device';
 
-export default function Map() {
+export default function Map({ selectedDate, selectedDistance }) {
   const [haveUserLocation, setHaveUserLocation] = useState(false);
 
   // store all gigs the ticketmaster API returns
@@ -45,7 +45,7 @@ export default function Map() {
   }, []);
 
   useEffect(() => {
-    getGigs(userLat, userLong)
+    getGigs(userLat, userLong, selectedDate, selectedDistance)
       .then((results) => {
         setFetchedGigs(results);
       })
@@ -53,11 +53,17 @@ export default function Map() {
         // some error handling here
         // console.log(err);
       });
-  }, [haveUserLocation]);
+  }, [selectedDate, selectedDistance]);
 
   if (haveUserLocation) {
     return (
       <View style={styles.container}>
+        <View>
+          <Text>
+            date: {selectedDate}! distance: {selectedDistance}!
+          </Text>
+        </View>
+
         <MapView
           provider={PROVIDER_GOOGLE} // remove if not using Google Maps
           showsMyLocationButton={true}
@@ -126,10 +132,8 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
     // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
-    
   },
   map: {
-    height: 700
-    
+    height: 700,
   },
 });

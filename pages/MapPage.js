@@ -11,18 +11,24 @@ import {
 } from 'react-native';
 
 const MapPage = () => {
-  const [filterData, setFilterData] = useState({}); // State for filter data
+  // const [datePickerValue, setDatePickerValue] = useState('thisWeek');
+  // const [distancePickerValue, setDistancePickerValue] = useState('25miles');
 
-  // Function to handle filter data changes
-  const handleFilterChange = (newFilterData) => {
-    setFilterData(newFilterData);
-  };
+  // // Function to handle filter data changes
+  // const handleFilterChange = (newFilterData) => {
+  //   setFilterData(newFilterData);
+  // };
+
+const [selectedDate, setSelectedDate] = useState("thisWeek");
+const [selectedDistance, setSelectedDistance] = useState(25);
+
+
 
   return (
     <View style={styles.container}>
-      <Map onFilterChange={handleFilterChange} />
+      <Map selectedDate={selectedDate} selectedDistance={selectedDistance}  />
        <View style={styles.mapFilterContainer}>
-      <MapFilter filterData={filterData} />
+      <MapFilter setSelectedDate={setSelectedDate} setSelectedDistance={setSelectedDistance} />
     </View>  
     </View>
   );
