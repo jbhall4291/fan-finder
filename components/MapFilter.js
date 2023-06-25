@@ -8,7 +8,7 @@ import {
   Pressable,
 } from 'react-native';
 import { useState, useEffect } from 'react';
-import { Picker } from '@react-native-picker/picker';
+
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Button } from '@rneui/themed';
 
@@ -35,35 +35,35 @@ export default function MapFilter() {
 
   return (
     <View style={styles.container}>
-    <View style={styles.row}>
-      <DropDownPicker
-        open={datePickerOpen}
-        value={datePickerValue}
-        items={datePickerItems}
-        setOpen={setDatePickerOpen}
-        setValue={setDatePickerValue}
-        setItems={setDatePickerItems}
-        containerStyle={styles.pickerContainer}
-      />
-      <DropDownPicker
-        open={distancePickerOpen}
-        value={distancePickerValue}
-        items={distancePickerItems}
-        setOpen={setDistancePickerOpen}
-        setValue={setDistancePickerValue}
-        setItems={setDistancePickerItems}
-        containerStyle={styles.pickerContainer}
-      />
-      <Button
-        icon={{
-          name: 'search',
-          type: 'font-awesome',
-          size: 35,
-          color: 'white',
-        }}
-        buttonStyle={styles.button}
-      />
-    </View>
+      <View style={styles.row}>
+        <DropDownPicker
+          open={datePickerOpen}
+          value={datePickerValue}
+          items={datePickerItems}
+          setOpen={setDatePickerOpen}
+          setValue={setDatePickerValue}
+          setItems={setDatePickerItems}
+          containerStyle={styles.pickerContainer}
+        />
+        <DropDownPicker
+          open={distancePickerOpen}
+          value={distancePickerValue}
+          items={distancePickerItems}
+          setOpen={setDistancePickerOpen}
+          setValue={setDistancePickerValue}
+          setItems={setDistancePickerItems}
+          containerStyle={styles.pickerContainer}
+        />
+        <Button
+          icon={{
+            name: 'search',
+            type: 'font-awesome',
+            size: 20,
+            color: 'white',
+          }}
+          buttonStyle={styles.button}
+        />
+      </View>
     </View>
   );
 }
@@ -75,21 +75,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     zIndex: 1,
     // backgroundColor: 'grey',
-    marginTop: 60
+    margin: 10,
   },
   pickerContainer: {
+    color: 'red',
     flex: 1,
-    height: 40,
-    marginRight: 10,
+    // height: 40,
+    marginRight: 2,
     // backgroundColor: 'lightgray',
-    zIndex: 1
+    zIndex: 1,
+    borderColor: '#4b006e',
   },
   button: {
-    backgroundColor: 'rgba(90, 154, 230, 1)',
+    backgroundColor: '#4b006e',
     borderColor: 'transparent',
     borderWidth: 0,
-    borderRadius: 30,
-    width: 100,
-    marginHorizontal: 10,
+    borderRadius: 15,
+    width: 50,
+    height: 50,
+    margin: 2,
   },
 });
