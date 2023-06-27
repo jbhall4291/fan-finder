@@ -7,6 +7,9 @@ const customMarker = require('../assets/custom_marker.png');
 import { convertToFriendlyDate } from '../utils/functions';
 import * as Location from 'expo-location';
 
+import { useNavigation } from '@react-navigation/native';
+
+
 import { getGigs } from '../utils/api';
 
 import * as Device from 'expo-device';
@@ -19,6 +22,11 @@ export default function Map({ selectedDate, selectedDistance }) {
 
   const [userLat, setUserLat] = useState(null);
   const [userLong, setUserLong] = useState(null);
+
+
+  const navigation = useNavigation();
+
+  
 
   // ask for location permissions, and set lat & long into state
   useEffect(() => {
@@ -88,7 +96,9 @@ export default function Map({ selectedDate, selectedDistance }) {
                   // style={{ height: 100, width: 160 }}
                   style={{ width: 150, backgroundColor: 'white' }}
                   onPress={() =>
-                     navigation.navigate('Current Gig', { msg: `${gig.id}` })
+                    //  navigation.navigate('Current Gig', { msg: `${gig.id}` })
+                    navigation.navigate('SingleGigPage', {gig: gig.id})
+
                     // console.log(gig.id)
                   }>
                     <Text style={styles.GigName}>{gig.name}</Text>
