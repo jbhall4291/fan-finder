@@ -3,6 +3,8 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
@@ -13,26 +15,31 @@ import ProfilePage from './pages/ProfilePage';
 import SingleGigPage from './pages/SingleGigPage';
 
 const Tab = createMaterialBottomTabNavigator();
+const Stack = createStackNavigator();
+
+
+
+
+const TabScreens = () => (
+  <Tab.Navigator>
+ <Tab.Screen   name="MapPage" component={MapPage} />
+        <Tab.Screen name="ChatsPage" component={ChatsPage} />
+        <Tab.Screen name="ProfilePage" component={ProfilePage} />
+    
+  </Tab.Navigator>
+);
+
+
 
 function App() {
   return (
     
-    <NavigationContainer >
-    <Tab.Navigator
-      initialRouteName="Map"
-      activeColor="#e91e63"
-      labelStyle={{ fontSize: 12 }}
-      style={{ backgroundColor: 'tomato' }}
-    >
-
-    
-        <Tab.Screen   name="MapPage" component={MapPage} />
-        <Tab.Screen name="ChatsPage" component={ChatsPage} />
-        <Tab.Screen name="ProfilePage" component={SingleGigPage} />
-</Tab.Navigator>
-
-</NavigationContainer>
-    
+    <NavigationContainer>
+    <Stack.Navigator initialRouteName="TabScreens" >
+      <Stack.Screen name="TabScreens" component={TabScreens} options={{ headerShown: false }} />
+      <Stack.Screen name="SingleGigPage" component={SingleGigPage} options={{ headerTitle: 'Single Gig', headerBackTitle: 'Back to Map' }}/>
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 }
 
