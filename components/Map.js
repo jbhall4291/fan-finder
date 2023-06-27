@@ -78,15 +78,12 @@ export default function Map({ selectedDate, selectedDistance }) {
             
             return (
               <Marker
+              image={customMarker}
                 key={index}
                 coordinate={{
                   latitude: Number(gig._embedded.venues[0].location.latitude),
                   longitude: Number(gig._embedded.venues[0].location.longitude),
                 }}>
-                <Image
-                  source={customMarker}
-                  style={{ height: 45, width: 45 }}
-                />
                 <Callout
                   // style={{ height: 100, width: 160 }}
                   style={{ width: 150, backgroundColor: 'white' }}
