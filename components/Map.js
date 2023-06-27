@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Image, ActivityIndicator } from 'react-native';
 import Constants from 'expo-constants';
-import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
+import MapView, { Callout, Circle, Marker, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import { useState, useEffect } from 'react';
 const customMarker = require('../assets/custom_marker.png');
 import { convertToFriendlyDate } from '../utils/functions';
@@ -50,8 +50,7 @@ export default function Map({ selectedDate, selectedDistance }) {
         setFetchedGigs(results);
       })
       .catch((err) => {
-        // some error handling here
-        // console.log(err);
+        // error handling
       });
   }, [selectedDate, selectedDistance]);
 
@@ -63,21 +62,20 @@ export default function Map({ selectedDate, selectedDistance }) {
             date: {selectedDate}! distance: {selectedDistance}!
           </Text>
         </View>
-
         <MapView
           provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-          showsMyLocationButton={true}
+          showsMyLocationButton={false}
           showsUserLocation={true}
           style={styles.map}
           initialRegion={{
             //delta values - the higher the number, the more zoomed out
             latitude: userLat,
-
             longitude: userLong,
             latitudeDelta: 1.10408435934594706,
             longitudeDelta: 1.08552860468626022,
           }}>
           {fetchedGigs.map((gig, index) => {
+            
             return (
               <Marker
                 key={index}
@@ -95,19 +93,21 @@ export default function Map({ selectedDate, selectedDistance }) {
                   onPress={() =>
                     navigation.navigate('Current Gig', { msg: `${gig.id}` })
                   }>
-                  <View>
                     <Text style={styles.GigName}>{gig.name}</Text>
                     <Text style={styles.GigStart}>
                       On: {convertToFriendlyDate(gig.dates.start.localDate)}
                     </Text>
                     <Text style={styles.GigStart}>
                       At: {gig.dates.start.localTime?.slice(0, 5)}
-                    </Text>
-                  </View>
+                    </Text>    
                 </Callout>
               </Marker>
+              
             );
           })}
+
+          <Circle
+            strokeWidth={1} strokeColor="rgba(75, 0, 110,0.1)" fillColor="rgba(75, 0, 110,0.1)" center={{latitude: userLat, longitude: userLong}} radius={selectedDistance * 1609.344}/>
         </MapView>
       </View>
     );
