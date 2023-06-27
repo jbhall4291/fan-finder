@@ -37,19 +37,25 @@ export const getGigs = (lat, long, date, distance) => {
     dateRange = thisMonth.toISOString().slice(0, 11) + '23:59:59Z';
   }
 
-  console.log(dateRange, " here's the date range after converting to ticketmaster api spec");
-
   return fetch(
-    `https://app.ticketmaster.com/discovery/v2/events/?apikey=${apiKey}&latlong=${lat},${long}&radius=${distance}&endDateTime=${dateRange}&locale=*&segmentName=Music&size=200`
+    `https://app.ticketmaster.com/discovery/v2/events/?apikey=${apiKey}&latlong=${lat},${long}&radius=${distance}&endDateTime=${dateRange}&unit=miles&sort=distance,asc&locale=*&segmentName=Music&size=200`
+    
   )
     .then((response) => {
-      // console.log('Response status:', response.status);
+      
+
       return response.json();
+    }).then((results) => {
+      if (results._embedded) {
+        console.log("Got some results");
+        return results._embedded.events;
+      } else {
+        console.log("Got no results");
+        return []; // Return an empty array when there are no results
+      }
     })
-    .then((results) => {
-      //  console.log(results._embedded.events);
-      return results._embedded.events; // Return the parsed JSON data
-    })
+
+    
     .catch((error) => {
       // console.log('Error:', error);
       throw error;
