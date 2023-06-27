@@ -63,8 +63,8 @@ export default function Map({ selectedDate, selectedDistance }) {
           </Text>
         </View>
         <MapView
-          provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-          showsMyLocationButton={false}
+        showsMyLocationButton={Device.isDevice} // only show the location button if on an actual device (as simular will be in random US city!)
+          provider={PROVIDER_GOOGLE} 
           showsUserLocation={true}
           style={styles.map}
           initialRegion={{
