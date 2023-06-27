@@ -57,11 +57,11 @@ export default function Map({ selectedDate, selectedDistance }) {
   if (haveUserLocation) {
     return (
       <View style={styles.container}>
-        <View>
+        {/* <View>
           <Text>
             date: {selectedDate}! distance: {selectedDistance}!
           </Text>
-        </View>
+        </View> */}
         <MapView
         showsMyLocationButton={Device.isDevice} // only show the location button if on an actual device (as simular will be in random US city!)
           provider={PROVIDER_GOOGLE} 
@@ -88,7 +88,8 @@ export default function Map({ selectedDate, selectedDistance }) {
                   // style={{ height: 100, width: 160 }}
                   style={{ width: 150, backgroundColor: 'white' }}
                   onPress={() =>
-                    navigation.navigate('Current Gig', { msg: `${gig.id}` })
+                     navigation.navigate('Current Gig', { msg: `${gig.id}` })
+                    // console.log(gig.id)
                   }>
                     <Text style={styles.GigName}>{gig.name}</Text>
                     <Text style={styles.GigStart}>
@@ -131,6 +132,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ecf0f1',
   },
   map: {
-    height: 700,
+    width: "100%",
+    height: "100%",
   },
 });

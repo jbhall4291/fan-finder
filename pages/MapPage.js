@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Map from '../components/Map';
 import MapFilter from '../components/MapFilter';
+
+import Constants from 'expo-constants';
+
 import {
   StyleSheet,
   Text,
@@ -37,6 +40,8 @@ const [selectedDistance, setSelectedDistance] = useState(25);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: Constants.statusBarHeight,
+    
   },
   mapFilterContainer: {
     position: 'absolute',

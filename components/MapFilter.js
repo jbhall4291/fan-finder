@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
     // backgroundColor: 'grey',
     margin: 10,
+    marginTop: 50
   },
   pickerContainer: {
     color: 'red',
