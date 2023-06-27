@@ -9,11 +9,14 @@ import {
 } from 'react-native';
 import Constants from 'expo-constants';
 
-const SingleGigPage = () => {
+const SingleGigPage = ({route}) => {
+
+
+  const id = route.params.gig;
 
   return (
     <View style={styles.container}>
-     <Text>hello from SingleGig page</Text>
+     <Text>hello from SingleGig page for {id} </Text>
     </View>
   );
 };
