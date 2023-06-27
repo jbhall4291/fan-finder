@@ -10,5 +10,5 @@ export const relativeTimeAndDate = (created_at) => {
 
 export const convertToFriendlyDate = (date) => {
   dayjs.extend(localizedFormat)
-  return dayjs(date).format('ddd D MMM');
+  return dayjs(date).format('ddd D MMM YYYY');
 };
