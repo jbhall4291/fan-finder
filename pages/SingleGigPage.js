@@ -112,7 +112,7 @@ const checkUserGigs = () => {
      <Text style={styles.titleText}>{gig.name}</Text>
       <Text style={styles.bodyText}>On: {gig.dates.start.localDate}</Text>
       <Text style={styles.bodyText}>
-        Starts At: {gig.dates.start.localTime.slice(0, 5)}
+        Starts At: {gig.dates.start.localTime?.slice(0, 5)}
       </Text>
       <Image
         style={styles.gigImage}
