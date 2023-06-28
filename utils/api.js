@@ -119,3 +119,20 @@ export const patchUserGigs = (gigId) => {
       console.error(error);
     });
 };
+
+export const getGigComments = (gigId) => {
+  console.log("about to get comments....");
+  return fetch(
+    `https://fanfinder-api-tzm2.onrender.com/api/gigs/${gigId}/comments`
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((results) => {
+      return results.comments;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
