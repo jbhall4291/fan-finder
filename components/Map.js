@@ -96,10 +96,8 @@ export default function Map({ selectedDate, selectedDistance }) {
                   // style={{ height: 100, width: 160 }}
                   style={{ width: 150, backgroundColor: 'white' }}
                   onPress={() =>
-                    //  navigation.navigate('Current Gig', { msg: `${gig.id}` })
-                    navigation.navigate('SingleGigPage', {gig: gig.id})
-
-                    // console.log(gig.id)
+                    navigation.navigate('SingleGigPage', {gig: gig})
+                    
                   }>
                     <Text style={styles.GigName}>{gig.name}</Text>
                     <Text style={styles.GigStart}>
