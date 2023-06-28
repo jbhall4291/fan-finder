@@ -4,12 +4,11 @@
 import { apiKey } from '../apikey';
 
 export const getGigs = (lat, long, date, distance) => {
-  console.log(date, ' from getGigs');
-
-  // get the passed 'date' into the correct format for making calls to the ticketmaster api
+  
 
   let dateRange = '';
-
+  // get the passed 'date' into the correct format for making calls to the ticketmaster api
+  
   if (date == 'today') {
     const currentDate = new Date();
     dateRange = currentDate.toISOString().slice(0, 11) + '23:59:59Z';
@@ -47,10 +46,10 @@ export const getGigs = (lat, long, date, distance) => {
       return response.json();
     }).then((results) => {
       if (results._embedded) {
-        console.log("Got some results");
+        // console.log("Got some results");
         return results._embedded.events;
       } else {
-        console.log("Got no results");
+        // console.log("Got no results");
         return []; // Return an empty array when there are no results
       }
     })
@@ -65,3 +64,78 @@ export const getGigs = (lat, long, date, distance) => {
 
 
 };
+
+
+
+
+export const getUserGigs = () => {
+  
+  return fetch(
+    'https://fanfinder-api-tzm2.onrender.com/api/users/Team_Express/gigs'
+  )
+    .then((response) => {
+      return response.json();}).
+    then((results) => {
+      
+      return results.gigs;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+
+export const getAllAttendees = (gigId) => {
+  // console.log("getting all attendees");
+  
+    return fetch(
+      `https://fanfinder-api-tzm2.onrender.com/api/gigs/${gigId}/fans`
+    )
+
+    .then((response) => {
+      return response.json();})
+
+
+    .then((results) => {
+      //  console.log(results.data.fans, "these are users going to this gig");
+      return results.fans;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+
+export const patchUserGigs = (gigId) => {
+   console.log("doing a patch to users gigs");
+
+  const url = 'https://fanfinder-api-tzm2.onrender.com/api/users/Team_Express/gigs';
+const data = {
+  gig_id: gigId 
+};
+
+const requestOptions = {
+  method: 'PATCH',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+};
+
+fetch(url, requestOptions)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Request failed');
+    }
+  })
+  .then(() => {
+    // Request completed successfully
+    console.log('Request to patch WAS SUCCESSFULL <<<<<<<');
+  })
+  .catch(error => {
+    // Handle any errors that occurred during the request
+    console.error(error);
+  });
+}
