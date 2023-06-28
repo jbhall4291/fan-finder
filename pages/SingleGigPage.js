@@ -12,6 +12,7 @@ import {
 import { Button } from "@rneui/themed";
 import Constants from "expo-constants";
 
+import { useNavigation } from "@react-navigation/native";
 import { getUserGigs, patchUserGigs, getAllAttendees } from "../utils/api";
 
 const SingleGigPage = ({ route }) => {
@@ -22,6 +23,8 @@ const SingleGigPage = ({ route }) => {
 
   const [allUsersAttending, setAllUsersAttending] = useState([]);
   const [attendingUsersLoaded, setAttendingUsersLoaded] = useState(false);
+
+  const navigation = useNavigation();
 
   //   // our hardcoded user
   // const [user, setUser] = useState({
@@ -182,12 +185,7 @@ const SingleGigPage = ({ route }) => {
             borderRadius: 10,
           }}
           title="Go To Forum"
-          onPress={() =>
-            navigation.navigate("ForumCard", {
-              msg: `${gigId}`,
-              infoForGig: gigInfo,
-            })
-          }
+          onPress={() => navigation.navigate("ForumStack", { gig: gig })}
         />
       </View>
 
