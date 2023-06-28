@@ -11,6 +11,7 @@ import MapPage from "./pages/MapPage";
 import ChatsPage from "./pages/ChatsPage";
 import ProfilePage from "./pages/ProfilePage";
 import SingleGigPage from "./pages/SingleGigPage";
+import ForumStack from "./pages/ForumStack";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -38,6 +39,14 @@ function App() {
           options={{
             headerTitle: "Single Gig",
             headerBackTitle: "Back to Map",
+          }}
+        />
+        <Stack.Screen
+          name="ForumStack"
+          component={ForumStack}
+          options={{
+            headerTitle: "Forum Stack",
+            headerBackTitle: "Back to Gig",
           }}
         />
       </Stack.Navigator>
