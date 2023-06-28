@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,14 +6,13 @@ import {
   Image,
   ActivityIndicator,
   Pressable,
-} from 'react-native';
-import Constants from 'expo-constants';
+} from "react-native";
+import Constants from "expo-constants";
 
 const ChatsPage = () => {
-
   return (
     <View style={styles.container}>
-     <Text>hello from chats page</Text>
+      <Text>hello from chats page</Text>
     </View>
   );
 };
@@ -21,11 +20,10 @@ const ChatsPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     paddingTop: Constants.statusBarHeight,
   },
-
 });
 
 export default ChatsPage;

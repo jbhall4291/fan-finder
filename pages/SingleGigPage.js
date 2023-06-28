@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -8,50 +8,50 @@ import {
   Pressable,
   Linking,
   ScrollView,
-} from 'react-native';
+} from "react-native";
 import { Button } from "@rneui/themed";
-import Constants from 'expo-constants';
+import Constants from "expo-constants";
 
 import { getUserGigs, patchUserGigs, getAllAttendees } from "../utils/api";
 
-const SingleGigPage = ({route}) => {
-  
+const SingleGigPage = ({ route }) => {
   const gig = route.params.gig;
-  console.log(route.props + " <<<<<<")
-  
+  console.log(route.props + " <<<<<<");
+
   const [thisUserAttending, setThisUserAttending] = useState(false);
 
   const [allUsersAttending, setAllUsersAttending] = useState([]);
   const [attendingUsersLoaded, setAttendingUsersLoaded] = useState(false);
 
-//   // our hardcoded user
-// const [user, setUser] = useState({
-//   displayName: "Team_Express",
-//   avatar_img_url: "https://cdn.onlinewebfonts.com/svg/img_365985.png",
-// });
+  //   // our hardcoded user
+  // const [user, setUser] = useState({
+  //   displayName: "Team_Express",
+  //   avatar_img_url: "https://cdn.onlinewebfonts.com/svg/img_365985.png",
+  // });
 
-
- // add this gig's ID to this users 'gigs I'm attending' array
+  // add this gig's ID to this users 'gigs I'm attending' array
   const addToUsersGigs = () => {
     console.log("you clicked the button to add a gig to users gigs");
-    setThisUserAttending(true)
+    setThisUserAttending(true);
     setAllUsersAttending((currentAttendees) => {
-      //optimistically render the current user into 'users going' 
-return [{displayName: "hello i team express, am going"}, ...currentAttendees]
-    })
-    patchUserGigs(gig.id)
+      //optimistically render the current user into 'users going'
+      return [
+        { displayName: "hello i team express, am going" },
+        ...currentAttendees,
+      ];
+    });
+    patchUserGigs(gig.id);
   };
 
-// this if this gig is already in this users's 'gigs I'm attending' array
-const checkUserGigs = () => {
-  return getUserGigs().then((res) => {
-    console.log(res, "single card res");
-    if (res.includes(gig.id) === true) {
-      setThisUserAttending(true);
-    }
-  });
-};
-
+  // this if this gig is already in this users's 'gigs I'm attending' array
+  const checkUserGigs = () => {
+    return getUserGigs().then((res) => {
+      console.log(res, "single card res");
+      if (res.includes(gig.id) === true) {
+        setThisUserAttending(true);
+      }
+    });
+  };
 
   const checkAllUsersGoing = () => {
     // api call to check all users going, display them somewhere on page
@@ -61,8 +61,6 @@ const checkUserGigs = () => {
       setAttendingUsersLoaded(true);
     });
   };
-
-
 
   const UsersGoing = () => {
     if (!attendingUsersLoaded) {
@@ -87,11 +85,9 @@ const checkUserGigs = () => {
           <ScrollView style={styles.ScrollView}>
             {allUsersAttending.map((attendee) => {
               console.log(attendee.displayName, "attendee<<<<<");
-              { return (
-                <Text>{attendee.displayName}</Text>
-                
-                
-              ); }
+              {
+                return <Text>{attendee.displayName}</Text>;
+              }
             })}
             {console.log(allUsersAttending)}
           </ScrollView>
@@ -100,16 +96,14 @@ const checkUserGigs = () => {
     }
   };
 
-
   useEffect(() => {
     checkUserGigs(); //if this user is already marked as going to gig, render 'I'm going' button differently
     checkAllUsersGoing(); //get all users going to this gig, results may include current user
   }, []);
 
-
   return (
     <View style={styles.screen}>
-     <Text style={styles.titleText}>{gig.name}</Text>
+      <Text style={styles.titleText}>{gig.name}</Text>
       <Text style={styles.bodyText}>On: {gig.dates.start.localDate}</Text>
       <Text style={styles.bodyText}>
         Starts At: {gig.dates.start.localTime?.slice(0, 5)}
@@ -123,17 +117,15 @@ const checkUserGigs = () => {
       {/* <Text style={styles.GigInfo}>Interested? Then get involved!</Text> */}
 
       <Button
-          
         icon={{
-                name: 'ticket',
-                type: 'font-awesome',
-                 size: 30,
-                color: 'white',
-              }}
+          name: "ticket",
+          type: "font-awesome",
+          size: 30,
+          color: "white",
+        }}
         size="lg"
         titleStyle={{ color: "white" }}
         buttonStyle={{
-         
           width: "100%",
           borderColor: "#4b006e",
           backgroundColor: "#4b006e",
@@ -144,8 +136,7 @@ const checkUserGigs = () => {
         onPress={() => Linking.openURL(`${gig.url}`)}
       />
 
-
-<View style={styles.buttonContainer}>
+      <View style={styles.buttonContainer}>
         {thisUserAttending ? (
           <Button
             color="red"
@@ -201,8 +192,7 @@ const checkUserGigs = () => {
       </View>
 
       <Text style={styles.ConfirmedText}>These fans have confirmed:</Text>
-<UsersGoing />
-
+      <UsersGoing />
     </View>
   );
 };
