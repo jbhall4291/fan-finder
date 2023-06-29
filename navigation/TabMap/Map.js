@@ -8,13 +8,13 @@ import MapView, {
   PROVIDER_GOOGLE,
 } from "react-native-maps"; // remove PROVIDER_GOOGLE import if not using Google Maps
 import { useState, useEffect } from "react";
-const customMarker = require("../assets/custom_marker.png");
-import { convertToFriendlyDate } from "../utils/functions";
+const customMarker = require("../../assets/custom_marker.png");
+import { convertToFriendlyDate } from "../../utils/functions";
 import * as Location from "expo-location";
 
 import { useNavigation } from "@react-navigation/native";
 
-import { getGigs } from "../utils/api";
+import { getGigs } from "../../utils/api";
 
 import * as Device from "expo-device";
 

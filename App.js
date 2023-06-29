@@ -7,20 +7,20 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import MapPage from "./pages/MapPage";
-import ChatsPage from "./pages/ChatsPage";
-import ProfilePage from "./pages/ProfilePage";
-import SingleGigPage from "./pages/SingleGigPage";
-import ForumStack from "./pages/ForumStack";
+import TabMap from "./navigation/TabMap";
+import TabChats from "./navigation/TabChats";
+import TabProfile from "./navigation/TabProfile";
+import StackSingleGig from "./navigation/StackSingleGig";
+import StackGigForum from "./navigation/StackGigForum";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const TabScreens = () => (
   <Tab.Navigator>
-    <Tab.Screen name="MapPage" component={MapPage} />
-    <Tab.Screen name="ChatsPage" component={ChatsPage} />
-    <Tab.Screen name="ProfilePage" component={ProfilePage} />
+    <Tab.Screen name="TabMap" component={TabMap} />
+    <Tab.Screen name="TabChats" component={TabChats} />
+    <Tab.Screen name="TabProfile" component={TabProfile} />
   </Tab.Navigator>
 );
 
@@ -34,16 +34,16 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="SingleGigPage"
-          component={SingleGigPage}
+          name="StackSingleGig"
+          component={StackSingleGig}
           options={{
             headerTitle: "Single Gig",
             headerBackTitle: "Back to Map",
           }}
         />
         <Stack.Screen
-          name="ForumStack"
-          component={ForumStack}
+          name="StackGigForum"
+          component={StackGigForum}
           options={{
             headerTitle: "Forum Stack",
             headerBackTitle: "Back to Gig",

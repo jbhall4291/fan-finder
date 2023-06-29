@@ -14,7 +14,7 @@ import Constants from "expo-constants";
 import { getGigComments } from "../utils/api";
 import { postComment } from "../utils/api";
 
-const ForumStack = ({ route }) => {
+const StackGigForum = ({ route }) => {
   const gig = route.params.gig;
 
   const [existingComments, setExistingComments] = useState([]);
@@ -221,4 +221,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForumStack;
+export default StackGigForum;

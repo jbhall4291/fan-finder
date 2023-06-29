@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 
-const ChatsPage = () => {
+const TabChats = () => {
   return (
     <View style={styles.container}>
       <Text>hello from chats page</Text>
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChatsPage;
+export default TabChats;

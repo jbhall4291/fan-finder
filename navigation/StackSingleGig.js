@@ -15,7 +15,7 @@ import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
 import { getUserGigs, patchUserGigs, getAllAttendees } from "../utils/api";
 
-const SingleGigPage = ({ route }) => {
+const StackSingleGig = ({ route }) => {
   const gig = route.params.gig;
   console.log(route.props + " <<<<<<");
 
@@ -278,4 +278,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SingleGigPage;
+export default StackSingleGig;

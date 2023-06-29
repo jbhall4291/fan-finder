@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Map from "../components/Map";
-import MapFilter from "../components/MapFilter";
+import Map from "./TabMap/Map";
+import MapFilter from "./TabMap/MapFilter";
 
 import Constants from "expo-constants";
 
@@ -13,7 +13,7 @@ import {
   Pressable,
 } from "react-native";
 
-const MapPage = () => {
+const TabMap = () => {
   // const [datePickerValue, setDatePickerValue] = useState('thisWeek');
   // const [distancePickerValue, setDistancePickerValue] = useState('25miles');
 
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MapPage;
+export default TabMap;

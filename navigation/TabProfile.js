@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 
-const ProfilePage = () => {
+const TabProfile = () => {
   return (
     <View style={styles.container}>
       <Text>hello from profile page</Text>
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfilePage;
+export default TabProfile;
