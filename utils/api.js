@@ -88,7 +88,7 @@ export const getAllAttendees = (gigId) => {
 };
 
 export const patchUserGigs = (gigId) => {
-  console.log("doing a patch to users gigs");
+  
 
   const url =
     "https://fanfinder-api-tzm2.onrender.com/api/users/Team_Express/gigs";
@@ -112,7 +112,6 @@ export const patchUserGigs = (gigId) => {
     })
     .then(() => {
       // Request completed successfully
-      console.log("Request to patch WAS SUCCESSFULL <<<<<<<");
     })
     .catch((error) => {
       // Handle any errors that occurred during the request
@@ -121,7 +120,6 @@ export const patchUserGigs = (gigId) => {
 };
 
 export const getGigComments = (gigId) => {
-  console.log("about to get comments....");
   return fetch(
     `https://fanfinder-api-tzm2.onrender.com/api/gigs/${gigId}/comments`
   )
@@ -136,3 +134,46 @@ export const getGigComments = (gigId) => {
     });
 };
 
+// export const postComment = ({ id, commentText }) => {
+//   console.log(id, "id from api");
+//   console.log(commentText, "comment from api");
+//   return fanFinderAPI
+//     .post(`/gigs/${id}/comments`, {
+//       gig_id: id,
+//       user: "Team_Express",
+//       text: commentText,
+//       created_at: new Date(),
+//     })
+//     .then((results) => {
+//       console.log(results.data.comment, "results in api");
+//       return results.data.comment;
+//     })
+//     .catch((err) => {
+//       console.log(err, "<< err");
+//     });
+// };
+
+export const postComment = ( gigId, commentText ) => {
+  
+  const requestPayload = {
+    gig_id: gigId,
+    user: "Team_Express",
+    text: commentText,
+    created_at: new Date(),
+  };
+
+  return fetch(`https://fanfinder-api-tzm2.onrender.com/api/gigs/${gigId}/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(requestPayload),
+  })
+    .then(response => response.json())
+    .then((data) => {
+      return data.comment;
+    })
+    .catch((error) => {
+      console.log(error, "<< err");
+    });
+};

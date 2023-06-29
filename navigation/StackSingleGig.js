@@ -17,8 +17,7 @@ import { getUserGigs, patchUserGigs, getAllAttendees } from "../utils/api";
 
 const StackSingleGig = ({ route }) => {
   const gig = route.params.gig;
-  console.log(route.props + " <<<<<<");
-
+  
   const [thisUserAttending, setThisUserAttending] = useState(false);
 
   const [allUsersAttending, setAllUsersAttending] = useState([]);
@@ -34,7 +33,7 @@ const StackSingleGig = ({ route }) => {
 
   // add this gig's ID to this users 'gigs I'm attending' array
   const addToUsersGigs = () => {
-    console.log("you clicked the button to add a gig to users gigs");
+    
     setThisUserAttending(true);
     setAllUsersAttending((currentAttendees) => {
       //optimistically render the current user into 'users going'
@@ -49,7 +48,7 @@ const StackSingleGig = ({ route }) => {
   // this if this gig is already in this users's 'gigs I'm attending' array
   const checkUserGigs = () => {
     return getUserGigs().then((res) => {
-      console.log(res, "single card res");
+      
       if (res.includes(gig.id) === true) {
         setThisUserAttending(true);
       }
@@ -59,7 +58,7 @@ const StackSingleGig = ({ route }) => {
   const checkAllUsersGoing = () => {
     // api call to check all users going, display them somewhere on page
     getAllAttendees(gig.id).then((results) => {
-      console.log(results, "hi from line 48");
+      
       setAllUsersAttending(results);
       setAttendingUsersLoaded(true);
     });
@@ -87,12 +86,12 @@ const StackSingleGig = ({ route }) => {
         <>
           <ScrollView style={styles.ScrollView}>
             {allUsersAttending.map((attendee) => {
-              console.log(attendee.displayName, "attendee<<<<<");
+              
               {
                 return <Text>{attendee.displayName}</Text>;
               }
             })}
-            {console.log(allUsersAttending)}
+            
           </ScrollView>
         </>
       );

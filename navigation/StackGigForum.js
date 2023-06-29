@@ -23,20 +23,19 @@ const StackGigForum = ({ route }) => {
 
   const commentInputBoxRef = useRef(null); // used by the button so it can 'blur' the input and hide the virtual keyboard
 
-  // const submitComment = () => {
-  //   commentInputBoxRef.current.blur();
-  //   postComment({ id, commentText }).then((returnedComment) => {
-  //     setCommentText("");
-  //     setComments((currentComments) => {
-  //       console.log(returnedComment, "returned comment in forumcard");
-  //       return [returnedComment, ...currentComments];
-  //     });
-  //   });
-  // };
+  const submitComment = () => {
+    commentInputBoxRef.current.blur();
+    postComment( gig.id, commentText ).then((returnedComment) => {
+      setCommentText("");
+      setExistingComments((currentComments) => {
+        return [returnedComment, ...currentComments];
+      });
+    });
+  };
 
   useEffect(() => {
     getGigComments(gig.id).then((comments) => {
-      setExistingComments(existingComments.reverse());
+      setExistingComments(comments.reverse());
       setHaveCommentsLoaded(true);
     });
   }, []);
@@ -75,7 +74,7 @@ const StackGigForum = ({ route }) => {
       return (
         <ScrollView style={styles.ScrollView}>
           {existingComments.map((comment) => {
-            return <CommentCard key={comment._id} comment={comment} />;
+            return <Text> {comment.text} </Text>;
           })}
         </ScrollView>
       );

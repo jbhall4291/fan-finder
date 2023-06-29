@@ -40,8 +40,8 @@ const TabMap = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    // paddingTop: Constants.statusBarHeight,
+    // flex: 1,
+    paddingTop: Constants.statusBarHeight,
   },
   mapFilterContainer: {
     position: "absolute",
