@@ -185,7 +185,7 @@ const StackSingleGig = ({ route }) => {
             borderRadius: 10,
           }}
           title="Go To Forum"
-          onPress={() => navigation.navigate("ForumStack", { gig: gig })}
+          onPress={() => navigation.navigate("StackGigForum", { gig: gig })}
         />
       </View>
 

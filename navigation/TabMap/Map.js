@@ -98,7 +98,7 @@ export default function Map({ selectedDate, selectedDistance }) {
                   // style={{ height: 100, width: 160 }}
                   style={{ width: 150, backgroundColor: "white" }}
                   onPress={() =>
-                    navigation.navigate("SingleGigPage", { gig: gig })
+                    navigation.navigate("StackSingleGig", { gig: gig })
                   }
                 >
                   <Text style={styles.GigName}>{gig.name}</Text>
