@@ -30,11 +30,12 @@ export default function Map({ selectedDate, selectedDistance }) {
   const navigation = useNavigation();
 
   const markerTapped = (markerLat, markerLong) => {
+    const offset = 0.03; // Offset value to adjust the view so marker is in top half
     const region = {
-      latitude: markerLat,
+      latitude: markerLat - offset,
       longitude: markerLong,
-      latitudeDelta: 1,
-      longitudeDelta: 1,
+      latitudeDelta: 0.2,
+      longitudeDelta: 0.2,
     };
     mapView.animateToRegion(region, 500);
   };
