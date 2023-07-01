@@ -29,6 +29,16 @@ export default function Map({ selectedDate, selectedDistance }) {
 
   const navigation = useNavigation();
 
+  const markerTapped = (markerLat, markerLong) => {
+    const region = {
+      latitude: markerLat,
+      longitude: markerLong,
+      latitudeDelta: 1,
+      longitudeDelta: 1,
+    };
+    mapView.animateToRegion(region, 500);
+  };
+
   // ask for location permissions, and set lat & long into state
   useEffect(() => {
     (async () => {
@@ -72,6 +82,7 @@ export default function Map({ selectedDate, selectedDistance }) {
           </Text>
         </View> */}
         <MapView
+          ref={(ref) => (mapView = ref)}
           showsMyLocationButton={Device.isDevice} // only show the location button if on an actual device (as simular will be in random US city!)
           provider={PROVIDER_GOOGLE}
           showsUserLocation={true}
@@ -87,6 +98,16 @@ export default function Map({ selectedDate, selectedDistance }) {
           {fetchedGigs.map((gig, index) => {
             return (
               <Marker
+                onPress={(e) => {
+                  markerTapped(
+                    e.nativeEvent.coordinate.latitude,
+                    e.nativeEvent.coordinate.longitude
+                  );
+                  // setSelectedMarkerLat(e.nativeEvent.coordinate.latitude)
+                  // setSelectedMarkerLong(e.nativeEvent.coordinate.longitude)
+                  //  console.log(e.nativeEvent.coordinate.latitude);
+                  //  console.log(e.nativeEvent.coordinate.longitude);
+                }}
                 image={customMarker}
                 key={index}
                 coordinate={{
