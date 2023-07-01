@@ -1,5 +1,12 @@
 import * as React from "react";
-import { StyleSheet, Text, View, Image, ActivityIndicator } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ActivityIndicator,
+  Dimensions,
+} from "react-native";
 import Constants from "expo-constants";
 import MapView, {
   Callout,
@@ -30,7 +37,9 @@ export default function Map({ selectedDate, selectedDistance }) {
   const navigation = useNavigation();
 
   const markerTapped = (markerLat, markerLong) => {
-    const offset = 0.03; // Offset value to adjust the view so marker is in top half
+    const mapHeight = Dimensions.get("window").height;
+    const offset = mapHeight * 0.00005; // centre marker in top half of map viewport
+    console.log(offset);
     const region = {
       latitude: markerLat - offset,
       longitude: markerLong,
