@@ -108,10 +108,10 @@ export default function Map({ selectedDate, selectedDistance }) {
           {fetchedGigs.map((gig, index) => {
             return (
               <Marker
-                onPress={(e) => {
+                onPress={() => {
                   markerTapped(
-                    e.nativeEvent.coordinate.latitude,
-                    e.nativeEvent.coordinate.longitude
+                    Number(gig._embedded.venues[0].location.latitude),
+                    Number(gig._embedded.venues[0].location.longitude)
                   );
                   // setSelectedMarkerLat(e.nativeEvent.coordinate.latitude)
                   // setSelectedMarkerLong(e.nativeEvent.coordinate.longitude)
