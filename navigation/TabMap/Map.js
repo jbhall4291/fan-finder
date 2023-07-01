@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
   Dimensions,
 } from "react-native";
+
 import Constants from "expo-constants";
 import MapView, {
   Callout,
@@ -20,12 +21,17 @@ import { convertToFriendlyDate } from "../../utils/functions";
 import * as Location from "expo-location";
 
 import { useNavigation } from "@react-navigation/native";
+// import { BottomSheet } from "react-native-elements"; // for the modal pop-up at the bottom
+
+import GigModal from "./GigModal";
 
 import { getGigs } from "../../utils/api";
 
 import * as Device from "expo-device";
 
 export default function Map({ selectedDate, selectedDistance }) {
+  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
+
   const [haveUserLocation, setHaveUserLocation] = useState(false);
 
   // store all gigs the ticketmaster API returns
@@ -34,11 +40,13 @@ export default function Map({ selectedDate, selectedDistance }) {
   const [userLat, setUserLat] = useState(null);
   const [userLong, setUserLong] = useState(null);
 
+  const [selectedGig, setSelectedGig] = useState(null);
+
   const navigation = useNavigation();
 
   const markerTapped = (markerLat, markerLong) => {
     const mapHeight = Dimensions.get("window").height;
-    const offset = mapHeight * 0.00005; // centre marker in top half of map viewport
+    const offset = mapHeight * 0.000075; // centre marker in top half of map viewport
     console.log(offset);
     const region = {
       latitude: markerLat - offset,
@@ -47,6 +55,7 @@ export default function Map({ selectedDate, selectedDistance }) {
       longitudeDelta: 0.2,
     };
     mapView.animateToRegion(region, 500);
+    setIsBottomSheetVisible(true);
   };
 
   // ask for location permissions, and set lat & long into state
@@ -113,10 +122,8 @@ export default function Map({ selectedDate, selectedDistance }) {
                     Number(gig._embedded.venues[0].location.latitude),
                     Number(gig._embedded.venues[0].location.longitude)
                   );
-                  // setSelectedMarkerLat(e.nativeEvent.coordinate.latitude)
-                  // setSelectedMarkerLong(e.nativeEvent.coordinate.longitude)
-                  //  console.log(e.nativeEvent.coordinate.latitude);
-                  //  console.log(e.nativeEvent.coordinate.longitude);
+                  
+                  setSelectedGig(gig)
                 }}
                 image={customMarker}
                 key={index}
@@ -125,7 +132,8 @@ export default function Map({ selectedDate, selectedDistance }) {
                   longitude: Number(gig._embedded.venues[0].location.longitude),
                 }}
               >
-                <Callout
+                
+                {/* <Callout
                   // style={{ height: 100, width: 160 }}
                   style={{ width: 150, backgroundColor: "white" }}
                   onPress={() =>
@@ -139,7 +147,7 @@ export default function Map({ selectedDate, selectedDistance }) {
                   <Text style={styles.GigStart}>
                     At: {gig.dates.start.localTime?.slice(0, 5)}
                   </Text>
-                </Callout>
+                </Callout> */}
               </Marker>
             );
           })}
@@ -152,6 +160,11 @@ export default function Map({ selectedDate, selectedDistance }) {
             radius={selectedDistance * 1609.344}
           />
         </MapView>
+        <GigModal
+          gig={selectedGig}
+          isBottomSheetVisible={isBottomSheetVisible}
+          setIsBottomSheetVisible={setIsBottomSheetVisible}
+        />
       </View>
     );
   }
