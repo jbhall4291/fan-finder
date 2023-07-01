@@ -4,6 +4,7 @@ import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -26,6 +27,7 @@ const TabScreens = () => (
 
 function App() {
   return (
+    <SafeAreaProvider>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="TabScreens">
         <Stack.Screen
@@ -51,6 +53,7 @@ function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 
