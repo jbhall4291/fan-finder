@@ -7,12 +7,17 @@ import { BottomSheet } from "react-native-elements";
 const GigModal = ({
   isBottomSheetVisible,
   setIsBottomSheetVisible,
-  gig
+  gig,
+  modalClosed,
 }) => {
   const navigation = useNavigation();
 
   const closeModal = () => {
     setIsBottomSheetVisible(false);
+    modalClosed(
+      Number(gig._embedded.venues[0].location.latitude),
+      Number(gig._embedded.venues[0].location.longitude)
+    );
   };
 
   if (!isBottomSheetVisible) {
@@ -37,8 +42,12 @@ const GigModal = ({
             <Button
               title="Go To Gig Hub"
               onPress={() => {
-                closeModal();
-                navigation.navigate("StackSingleGig", { gig: gig });
+                // closeModal();
+                setIsBottomSheetVisible(false);
+                navigation.navigate("StackSingleGig", {
+                  gig: gig,
+                  setIsBottomSheetVisible: setIsBottomSheetVisible,
+                });
               }}
             />
             <Button title="Close" onPress={closeModal} />

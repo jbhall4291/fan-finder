@@ -9,12 +9,7 @@ import {
 } from "react-native";
 
 import Constants from "expo-constants";
-import {
-  Callout,
-  Circle,
-  Marker,
-  PROVIDER_GOOGLE,
-} from "react-native-maps"; // remove PROVIDER_GOOGLE import if not using Google Maps
+import { Callout, Circle, Marker, PROVIDER_GOOGLE } from "react-native-maps"; // remove PROVIDER_GOOGLE import if not using Google Maps
 import MapView from "react-native-map-clustering";
 
 import { useState, useEffect, useRef } from "react";
@@ -32,7 +27,6 @@ import { getGigs } from "../../utils/api";
 import * as Device from "expo-device";
 
 export default function Map({ selectedDate, selectedDistance }) {
-
   // const handleRegionChangeComplete = (region) => {
   //   const { latitudeDelta, longitudeDelta } = region;
   //   console.log("Zoom Level - Latitude Delta:", latitudeDelta);
@@ -71,6 +65,25 @@ export default function Map({ selectedDate, selectedDistance }) {
 
     //  mapView.animateToRegion(region, 500);
     setIsBottomSheetVisible(true);
+  };
+
+
+  const modalClosed = (markerLat, markerLong) => {
+    const mapHeight = Dimensions.get("window").height;
+    const offset = mapHeight * 0.00000012; // centre marker in top half of map viewport
+    // console.log(offset);
+    const region = {
+      latitude: markerLat - offset, // remove offset?,
+      longitude: markerLong,
+      latitudeDelta: 0.2,
+      longitudeDelta: 0.2,
+      // latitudeDelta: 0.02,
+      // longitudeDelta: 0.02,
+    };
+    mapRef.current.animateToRegion(region, 1000);
+
+    //  mapView.animateToRegion(region, 500);
+    setIsBottomSheetVisible(false);
   };
 
   // ask for location permissions, and set lat & long into state
@@ -115,14 +128,13 @@ export default function Map({ selectedDate, selectedDistance }) {
             date: {selectedDate}! distance: {selectedDistance}!
           </Text>
         </View> */}
-        
+
         <MapView
-                // onRegionChangeComplete={handleRegionChangeComplete}
+          // onRegionChangeComplete={handleRegionChangeComplete}
 
-        clusterColor="#4b006e"
-        spiderLineColor="#4b006e"
-        ref={mapRef}
-
+          clusterColor="#4b006e"
+          spiderLineColor="#4b006e"
+          ref={mapRef}
           showsMyLocationButton={Device.isDevice} // only show the location button if on an actual device (as simular will be in random US city!)
           provider={PROVIDER_GOOGLE}
           showsUserLocation={true}
@@ -143,8 +155,8 @@ export default function Map({ selectedDate, selectedDistance }) {
                     Number(gig._embedded.venues[0].location.latitude),
                     Number(gig._embedded.venues[0].location.longitude)
                   );
-                  
-                  setSelectedGig(gig)
+
+                  setSelectedGig(gig);
                 }}
                 image={customMarker}
                 key={index}
@@ -153,7 +165,6 @@ export default function Map({ selectedDate, selectedDistance }) {
                   longitude: Number(gig._embedded.venues[0].location.longitude),
                 }}
               >
-                
                 {/* <Callout
                   // style={{ height: 100, width: 160 }}
                   style={{ width: 150, backgroundColor: "white" }}
@@ -182,6 +193,7 @@ export default function Map({ selectedDate, selectedDistance }) {
           />
         </MapView>
         <GigModal
+        modalClosed={modalClosed}
           gig={selectedGig}
           isBottomSheetVisible={isBottomSheetVisible}
           setIsBottomSheetVisible={setIsBottomSheetVisible}
