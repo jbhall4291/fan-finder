@@ -17,7 +17,7 @@ import {
 } from "react-native-maps"; // remove PROVIDER_GOOGLE import if not using Google Maps
 import MapView from "react-native-map-clustering";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 const customMarker = require("../../assets/custom_marker.png");
 import { convertToFriendlyDate } from "../../utils/functions";
 import * as Location from "expo-location";
@@ -32,6 +32,15 @@ import { getGigs } from "../../utils/api";
 import * as Device from "expo-device";
 
 export default function Map({ selectedDate, selectedDistance }) {
+
+  // const handleRegionChangeComplete = (region) => {
+  //   const { latitudeDelta, longitudeDelta } = region;
+  //   console.log("Zoom Level - Latitude Delta:", latitudeDelta);
+  //   console.log("Zoom Level - Longitude Delta:", longitudeDelta);
+  // };
+
+  const mapRef = useRef();
+
   const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
 
   const [haveUserLocation, setHaveUserLocation] = useState(false);
@@ -48,14 +57,18 @@ export default function Map({ selectedDate, selectedDistance }) {
 
   const markerTapped = (markerLat, markerLong) => {
     const mapHeight = Dimensions.get("window").height;
-    const offset = mapHeight * 0.000075; // centre marker in top half of map viewport
-    console.log(offset);
+    const offset = mapHeight * 0.00000012; // centre marker in top half of map viewport
+    // console.log(offset);
     const region = {
       latitude: markerLat - offset,
       longitude: markerLong,
-      latitudeDelta: 0.2,
-      longitudeDelta: 0.2,
+      latitudeDelta: 0.0003598589742495051,
+      longitudeDelta: 0.00031717121601104736,
+      // latitudeDelta: 0.02,
+      // longitudeDelta: 0.02,
     };
+    mapRef.current.animateToRegion(region, 1000);
+
     //  mapView.animateToRegion(region, 500);
     setIsBottomSheetVisible(true);
   };
@@ -102,10 +115,14 @@ export default function Map({ selectedDate, selectedDistance }) {
             date: {selectedDate}! distance: {selectedDistance}!
           </Text>
         </View> */}
+        
         <MapView
+                onRegionChangeComplete={handleRegionChangeComplete}
+
         clusterColor="#4b006e"
         spiderLineColor="#4b006e"
-          ref={(ref) => (mapView = ref)}
+        ref={mapRef}
+
           showsMyLocationButton={Device.isDevice} // only show the location button if on an actual device (as simular will be in random US city!)
           provider={PROVIDER_GOOGLE}
           showsUserLocation={true}
