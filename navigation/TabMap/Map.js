@@ -9,12 +9,14 @@ import {
 } from "react-native";
 
 import Constants from "expo-constants";
-import MapView, {
+import {
   Callout,
   Circle,
   Marker,
   PROVIDER_GOOGLE,
 } from "react-native-maps"; // remove PROVIDER_GOOGLE import if not using Google Maps
+import MapView from "react-native-map-clustering";
+
 import { useState, useEffect } from "react";
 const customMarker = require("../../assets/custom_marker.png");
 import { convertToFriendlyDate } from "../../utils/functions";
@@ -54,7 +56,7 @@ export default function Map({ selectedDate, selectedDistance }) {
       latitudeDelta: 0.2,
       longitudeDelta: 0.2,
     };
-    mapView.animateToRegion(region, 500);
+    //  mapView.animateToRegion(region, 500);
     setIsBottomSheetVisible(true);
   };
 
@@ -101,6 +103,8 @@ export default function Map({ selectedDate, selectedDistance }) {
           </Text>
         </View> */}
         <MapView
+        clusterColor="#4b006e"
+        spiderLineColor="#4b006e"
           ref={(ref) => (mapView = ref)}
           showsMyLocationButton={Device.isDevice} // only show the location button if on an actual device (as simular will be in random US city!)
           provider={PROVIDER_GOOGLE}
