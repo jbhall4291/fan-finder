@@ -117,7 +117,7 @@ export default function Map({ selectedDate, selectedDistance }) {
         </View> */}
         
         <MapView
-                onRegionChangeComplete={handleRegionChangeComplete}
+                // onRegionChangeComplete={handleRegionChangeComplete}
 
         clusterColor="#4b006e"
         spiderLineColor="#4b006e"
