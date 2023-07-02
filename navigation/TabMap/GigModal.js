@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { Button } from "@rneui/themed";
-
-import { BottomSheet } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
+import { BottomSheet } from "react-native-elements";
 
-const GigModal = ({ isBottomSheetVisible, setIsBottomSheetVisible, gig }) => {
-  const toggleBottomSheet = () => {
-    setIsBottomSheetVisible(!isBottomSheetVisible);
+const GigModal = ({
+  isBottomSheetVisible,
+  setIsBottomSheetVisible,
+  gig
+}) => {
+  const navigation = useNavigation();
+
+  const closeModal = () => {
+    setIsBottomSheetVisible(false);
   };
 
-  const navigation = useNavigation();
+  if (!isBottomSheetVisible) {
+    return null; // Don't render the modal if it's not visible
+  }
 
   return (
     <View style={styles.container}>
       <View>
-        {/* <Button title="Show Bottom Sheet" onPress={toggleBottomSheet} /> */}
         <BottomSheet
           isVisible={isBottomSheetVisible}
           containerStyle={styles.bottomSheetContainer}
@@ -25,17 +31,17 @@ const GigModal = ({ isBottomSheetVisible, setIsBottomSheetVisible, gig }) => {
             <Image
               style={styles.gigImage}
               source={{
-                uri: `${gig?.images[0].url}`, //index 0 has the majority most relevant band image at highest resolution
+                uri: `${gig?.images[0].url}`,
               }}
-            ></Image>
+            />
             <Button
               title="Go To Gig Hub"
               onPress={() => {
-                setIsBottomSheetVisible(false);
+                closeModal();
                 navigation.navigate("StackSingleGig", { gig: gig });
               }}
             />
-            <Button title="Close" onPress={toggleBottomSheet} />
+            <Button title="Close" onPress={closeModal} />
           </View>
         </BottomSheet>
       </View>
@@ -44,8 +50,13 @@ const GigModal = ({ isBottomSheetVisible, setIsBottomSheetVisible, gig }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   bottomSheetContainer: {
-    backgroundColor: "transparent", //transparent as quick fix so user can't move map around when modal open
+    backgroundColor: "transparent",
   },
   bottomSheetContent: {
     backgroundColor: "#fff",
